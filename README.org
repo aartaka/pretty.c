@@ -1,0 +1,66 @@
+#+TITLE:Lib Pretty—Making C Look ✨Pretty✨
+
+The purpose of libpretty is to provide a programmer with a set of
+macros to make C code much more readable. Inspired by Python,
+JavaScript, and Lisp. Here's how the code might look like with
+libpretty:
+
+#+begin_src C
+
+#+end_src
+
+
+
+* Provided conveniences
+
+** C95 alternative operator macros
+This is not a libpretty change, but rather an [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] inclusion. It
+provides readable alternatives to regular operators, including ~and~
+for ~&&~ and ~or~ for ~||~. Neat!
+
+** ~for~-macros
+These macros are aliases for certain ~for~ loop pattern, each
+abstracting away some of the frequent ~for~ loop uses.
+
+*** ~for_every (var, type, length, ...)~
+This one walks an array or memory region initialized to the vararg
+expression. Every time it iterates, ~var~ is a pointer to the
+respective array element. Yes, pointer—so that you can modify the
+element in place if you need to.
+
+*** ~for_range (var, init, target)~
+Iterate over a range of numbers from ~init~ to ~target~.
+
+*** ~for_times (var, top)~ 
+A frequent case of going from 0 to some positive number. Saves you
+quite some time for your
+#+begin_src C
+  for (int i = 0; i < 8; i++)
+          printf("%i\n", i);
+#+end_src
+turning it into a simple
+#+begin_src C
+  for_times (i, 8)
+          printf("%s\n", );
+#+end_src
+
+** ~with~
+This ensures that you never have use-after-free, because you provide
+the freeing procedure upfront before the actual use for the resource.
+#+begin_src C
+  
+#+end_src
+
+** Ternary aliases
+Ternaries are frightening, so it won't hurt to add some plain text.
+#+begin_src C
+  
+#+end_src
+
+** ~new~
+C++ ~new~ operator is nice, so it won't hurt having something similar
+in C, right? Ask no more:
+#+begin_src C
+  
+#+end_src
+
