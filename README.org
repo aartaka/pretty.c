@@ -72,6 +72,9 @@ the freeing procedure upfront.
   
 #+end_src
 
+One of the downsides is that the bound variable is a ~void *~, so you
+need to coerce it to your type before proper use.
+
 ** Ternary aliases
 Ternaries are frightening, so it won't hurt to add some plain
 text. ~if~ and ~else~ are taken, but there are proper linguistic
