@@ -13,18 +13,20 @@ libpretty:
 * Provided Conveniences
 
 ** Included Standard Headers
-- Use of ~stdbool.h~ for pretty boolean handling, like ~true~ and
+- Use of [[https://en.cppreference.com/w/c/types/boolean][stdbool.h]] for pretty boolean handling, like ~true~ and
   ~bool~.
 - [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] inclusion. It provides readable alternatives to regular
   operators, including ~and~ for ~&&~ and ~or~ for ~||~. Neat!
   - As an added convenience/consistency, libpretty adds ~eq~, because
     ~iso646.h~ only has ~not_eq~.
+  - Plus ~bitnot~ and ~bitxor~ for operations that used to be called
+    inconsistently.
 
 ** ~for~ Macros
 These macros are aliases for certain ~for~ loop pattern, each
 abstracting away some of the frequent ~for~ loop uses.
 
-*** ~forevery (type, var, length, ...)~
+*** ~foreach (type, var, length, ...)~
 This one walks an array or memory region initialized to the vararg
 expression. Every time it iterates, ~var~ is set to a pointer to the
 respective array element. Yes, pointer—so that you can modify the
