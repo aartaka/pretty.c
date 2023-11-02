@@ -33,11 +33,11 @@
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
 
-#define with(close, var, ...)                                   \
-        for (int i_##__LINE__ = 0,                              \
-                     void *var = (void *) (__VA_ARGS__);        \
-             !i_##__LINE__;                                     \
-             (close)(var), i_##__LINE__ = 1)
+#define with(close, var, ...)                                    \
+        for (void *flag_##__LINE__ = (void *) 0,                 \
+                     *var = (void *) (__VA_ARGS__);              \
+             !flag_##__LINE__;                                  \
+             (close)(var), flag_##__LINE__ = (void *) 1)
 
 #define new(type, ...) &((type){__VA_ARGS__})
 
