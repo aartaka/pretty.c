@@ -24,11 +24,11 @@ libpretty:
 These macros are aliases for certain ~for~ loop pattern, each
 abstracting away some of the frequent ~for~ loop uses.
 
-*** ~forevery (var, type, length, ...)~
+*** ~forevery (type, var, length, ...)~
 This one walks an array or memory region initialized to the vararg
-expression. Every time it iterates, ~var~ is a pointer to the
+expression. Every time it iterates, ~var~ is set to a pointer to the
 respective array element. Yes, pointer—so that you can modify the
-element in place if you need to.
+element in place if you have to.
 
 *** ~forrange (var, init, target)~
 Iterate over a range of numbers from ~init~ to ~target~.
