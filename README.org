@@ -33,7 +33,16 @@ respective array element. Yes, pointer—so that you can modify the
 element in place if you have to.
 
 *** ~forrange (var, init, target)~
-Iterate over a range of numbers from ~init~ to ~target~.
+Iterate over a range of numbers from ~init~ to ~target~. Pythonesque.
+#+begin_src C
+  forrange(i, 0, 10)
+          printf("%i\n", i);
+  /* Almost the same as Python:
+     for i in range(0, 10):
+       print(i)
+  ,*/
+#+end_src
+
 
 *** ~fortimes (var, top)~ 
 A frequent case of going from 0 to some positive number. Saves you
