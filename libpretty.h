@@ -23,8 +23,6 @@
              var < (init ## __LINE__ + length);                         \
              var++)
 
-// foreach (int, i, 10, array)
-
 #define forrange(var, init, target)                                     \
         for (long long int var = init;                                  \
              var != target;                                             \
