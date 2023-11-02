@@ -6,6 +6,7 @@
 
 #include <iso646.h>
 #include <stdbool.h>
+#include <string.h>
 
 /* Missing yet useful. */
 #define eq ==
@@ -39,6 +40,13 @@
              !flag_##__LINE__;                                  \
              (close)(var), flag_##__LINE__ = (void *) 1)
 
-#define new(type, ...) &((type){__VA_ARGS__})
+void *_new (size_t size, void *contents)
+{
+        void *allocated = malloc(size);
+        memcpy(allocated, contents, size);
+        return allocated;
+}
+
+#define new(type, ...) _new(sizeof(type), &((type) {__VA_ARGS__}))
 
 #endif /* __LIBPRETTY_H__ */
