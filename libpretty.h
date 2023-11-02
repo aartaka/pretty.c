@@ -100,7 +100,7 @@ void *_new (size_t size, void *contents)
                             wchar_t: TYPE_WCHAR,          \
                             wint_t: TYPE_WINT,            \
                             nullptr_t: TYPE_NULLPTR       \
-                            /* TODO. */                   \
+                            /* TODO. See also: https://developer-old.gnome.org/glib/stable/glib-Basic-Types.html */                   \
                 )
 
 #endif /* __LIBPRETTY_H__ */
