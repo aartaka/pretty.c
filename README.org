@@ -64,8 +64,16 @@ the freeing procedure upfront.
 #+end_src
 
 ** Ternary aliases
-Ternaries are frightening, so it won't hurt to add some plain text.
+Ternaries are frightening, so it won't hurt to add some plain
+text. ~if~ and ~else~ are taken, but there are proper linguistic
+alternatives that look quite Python/Lisp-like:
 #+begin_src C
-  
+  return when some_condition
+         then do_something()
+         otherwise do_something_else();
 #+end_src
 
+It's ternaries underneath:
+- ~when~ expands to empty.
+- ~then~ expands to ~?~.
+- ~otherwise~ expands to ~:~.
