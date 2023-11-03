@@ -29,11 +29,13 @@
              var++)
 
 #define forrange(var, init, target)                                     \
-        for (long long int var = init;                                  \
-             var != target;                                             \
-             (when (init > target)                                      \
-              then var--                                                \
-              otherwise var++))
+        for (long long int var = (init);                                \
+             (when ((init) >= (target))                                 \
+              then (var > target)                                       \
+              otherwise (var < target));                                \
+             (when ((init) >= (target))                                 \
+              then (var)--                                              \
+              otherwise (var)++))
 
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
