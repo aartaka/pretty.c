@@ -16,6 +16,7 @@
 #define bitxor ^
 
 #define when
+#define unless not
 #define then ?
 #define otherwise :
 
