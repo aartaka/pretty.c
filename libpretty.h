@@ -25,7 +25,7 @@
 #define foreach(type, var, length, ...)                                 \
         for (type *init ## __LINE__ = (__VA_ARGS__),                    \
                      *var = init ## __LINE__;                           \
-             var < (init ## __LINE__ + length);                         \
+             var < (init ## __LINE__ + (length));                       \
              var++)
 
 #define forrange(var, init, target)                                     \
