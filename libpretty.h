@@ -103,7 +103,7 @@ void *_new (size_t size, void *contents)
                             wint_t: TYPE_WINT,            \
                             nullptr_t: TYPE_NULLPTR       \
                             /* TODO. See also: https://developer-old.gnome.org/glib/stable/glib-Basic-Types.html */                   \
-                )
+                            default: TYPE_OTHER)
 
 
 
