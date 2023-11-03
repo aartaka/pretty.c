@@ -39,10 +39,10 @@
         forrange(var, 0, times)
 
 #define with(close, var, ...)                                    \
-        for (void *flag_##__LINE__ = (void *) 0,                 \
+        for (void *flag_ ## __LINE__ = (void *) 0,                 \
                      *var = (void *) (__VA_ARGS__);              \
-             !flag_##__LINE__;                                  \
-             (close)(var), flag_##__LINE__ = (void *) 1)
+             !flag_ ## __LINE__;                                   \
+             (close)(var), flag_ ## __LINE__ = (void *) 1)
 
 void *_new (size_t size, void *contents)
 {
