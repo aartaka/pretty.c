@@ -17,10 +17,38 @@ libpretty:
   ~bool~.
 - [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] inclusion. It provides readable alternatives to regular
   operators, including ~and~ for ~&&~ and ~or~ for ~||~. Neat!
-  - As an added convenience/consistency, libpretty adds ~eq~, because
-    ~iso646.h~ only has ~not_eq~.
-  - Plus ~bitnot~ and ~bitxor~ for operations that used to be called
-    inconsistently.
+** New aliases
+Mainly modeled after Lua:
+- ~eq~, because ~iso646.h~ only has ~not_eq~.
+- ~bitnot~ and ~bitxor~ for operations that used to be called
+  inconsistently (~compl~ and ~xor~ respectively) in ~iso646.h~.
+- ~nil~ for ~NULL~.
+- ~until~ for negated ~while~.
+- ~repeat~ from Lua as an alias for ~do~.
+- ~begin~ and ~end~ block markers.
+
+** Pretty ternaries
+Ternaries are frightening, so it won't hurt to add some plain
+text. ~if~ and ~else~ are taken, but there are proper linguistic
+alternatives that look quite Python/Lisp-like:
+#+begin_src C
+  return when some_condition
+         then do_something()
+         otherwise do_something_else();
+#+end_src
+
+It's ternaries underneath:
+- ~when~ expands to empty and only provided for consistency.
+- ~then~ expands to ~?~.
+- ~otherwise~ expands to ~:~.
+
+There's also ~notherwise~ for when the ~otherwise~ clause is
+unnecessary:
+#+begin_src C
+  return when done()
+         then 42 notherwise;
+#+end_src
+
 
 ** ~for~ Macros
 These macros are aliases for certain ~for~ loop pattern, each
@@ -31,6 +59,11 @@ This one walks an array or memory region initialized to the vararg
 expression. Every time it iterates, ~var~ is set to a pointer to the
 respective array element. Yes, pointer—so that you can modify the
 element in place if you have to.
+
+*** ~foriter (type, var, iter, ...)~
+Iterates over vararg data using the ~iter~ single-parameter
+function. If ~iter~ returns ~nil~, end. If it returns new value,
+assign ~type~-d ~var~ to it.
 
 *** ~forrange (var, init, target)~
 Iterate over a range of numbers from ~init~ to ~target~. Pythonesque.
@@ -43,8 +76,10 @@ Iterate over a range of numbers from ~init~ to ~target~. Pythonesque.
   ,*/
 #+end_src
 
+Note that ~init~ and ~target~ might be any integers, signed and
+unsigned. And ~init~ might be greater than ~target~.
 
-*** ~fortimes (var, top)~ 
+*** ~fortimes (var, times)~ 
 A frequent case of going from 0 to some positive number. Saves you
 quite some time for your
 #+begin_src C
@@ -74,18 +109,3 @@ the freeing procedure upfront.
 
 One of the downsides is that the bound variable is a ~void *~, so you
 need to coerce it to your type before proper use.
-
-** Ternary aliases
-Ternaries are frightening, so it won't hurt to add some plain
-text. ~if~ and ~else~ are taken, but there are proper linguistic
-alternatives that look quite Python/Lisp-like:
-#+begin_src C
-  return when some_condition
-         then do_something()
-         otherwise do_something_else();
-#+end_src
-
-It's ternaries underneath:
-- ~when~ expands to empty.
-- ~then~ expands to ~?~.
-- ~otherwise~ expands to ~:~.

@@ -14,19 +14,36 @@
 #define bitnot ~
 #define bitxor ^
 
+/* Lua/Lisp nil. */
+#define nil NULL
+
+/* Ternaries. */
 #define when
 #define unless not
 #define then ?
 #define otherwise :
-#define notherwise : NULL
-#define until(...) while(not (__VA_ARGS__))
+#define notherwise : nil
 
+/* Loops and blocks. Lisp, Lua, BASIC. */
+#define until(...) while(not (__VA_ARGS__))
+#define repeat do
+#define begin {
+#define end }
+
+/* For each loop from basically every language. */
 #define foreach(type, var, length, ...)                                 \
         for (type *init ## __LINE__ = (__VA_ARGS__),                    \
                      *var = init ## __LINE__;                           \
              var < (init ## __LINE__ + (length));                       \
              var++)
 
+/* Iterators. Python, Lua. */
+#define foriter(type, var, iter, ...)                   \
+        for (type var = (__VA_ARGS__);                  \
+             (iter)(var);                               \
+             var = (iter)(var))
+
+/* Ranges from INIT to TARGET. Python. */
 #define forrange(var, init, target)                                     \
         for (long long int var = (init);                                \
              (when ((init) >= (target))                                 \
@@ -36,9 +53,12 @@
               then (var)--                                              \
               otherwise (var)++))
 
+/* Repeat X times. Lisp.
+ * Also see repeat keyword for Lua-style loop. */
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
 
+/* Tracking and freeing resources. Lisp, Python. */
 #define with(close, var, ...)                                      \
         for (void *flag_ ## __LINE__ = (void *) 0,                 \
                      *var = (void *) (__VA_ARGS__);                \
@@ -52,6 +72,7 @@ void *_new (size_t size, void *contents)
         return allocated;
 }
 
+/* Easy resource allocation akin to C++ */
 #define new(type, ...) _new(sizeof(type), &((type) {__VA_ARGS__}))
 
 #endif /* __LIBPRETTY_H__ */
