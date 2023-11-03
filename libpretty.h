@@ -7,7 +7,6 @@
 #include <iso646.h>
 #include <stdbool.h>
 #include <string.h>
-#include <inttypes.h>
 
 /* Missing yet useful. */
 #define eq ==
