@@ -103,4 +103,38 @@ void *_new (size_t size, void *contents)
                             /* TODO. See also: https://developer-old.gnome.org/glib/stable/glib-Basic-Types.html */                   \
                 )
 
+
+
+/* gboolean, gssize. */
+/* gint8, guint8, gint16, guint16, gint32, guint32, gint64, guint64. */
+/* gpointer, gconstpointer, guchar, guint, gushort, gulong. */
+/* gchar, gint, gshort, glong, gfloat, gdouble. */
+/* gsize, goffset, gintptr, guintptr. */
+
+
+/* G_TYPE_INVALID */
+/* G_TYPE_NONE */
+/* G_TYPE_INTERFACE */
+/* G_TYPE_CHAR */
+/* G_TYPE_UCHAR */
+/* G_TYPE_BOOLEAN */
+/* G_TYPE_INT */
+/* G_TYPE_UINT */
+/* G_TYPE_LONG */
+/* G_TYPE_ULONG */
+/* G_TYPE_INT64 */
+/* G_TYPE_UINT64 */
+/* G_TYPE_ENUM */
+/* G_TYPE_FLAGS */
+/* G_TYPE_FLOAT */
+/* G_TYPE_DOUBLE */
+/* G_TYPE_STRING */
+/* G_TYPE_POINTER */
+/* G_TYPE_BOXED */
+/* G_TYPE_PARAM */
+/* G_TYPE_OBJECT */
+
+
+
+
 #endif /* __LIBPRETTY_H__ */
