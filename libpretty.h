@@ -19,6 +19,7 @@
 #define unless not
 #define then ?
 #define otherwise :
+#define notherwise : NULL
 #define until(...) while(not (__VA_ARGS__))
 
 #define foreach(type, var, length, ...)                                 \
