@@ -8,7 +8,10 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#if __STDC_NO_THREADS__
+#else
 #include <threads.h>
+#endif
 
 /* Missing yet useful. */
 #define eq ==
@@ -88,12 +91,15 @@ void *_new (size_t size, void *contents)
 /* Easy resource allocation akin to C++ */
 #define new(type, ...) _new(sizeof(type), &((type) {__VA_ARGS__}))
 
-/* Go-style coroutine syntax.*/
+#if __STDC_NO_THREADS__
+#else
+/* Go-style coroutine syntax. */
 thrd_t *go(thrd_start_t fn, void *arg)
 {
         thrd_t *thrd = malloc(sizeof(thrd_t));
         thrd_create(thrd, fn, arg);
         return thrd;
 }
+#endif
 
 #endif /* __LIBPRETTY_H__ */
