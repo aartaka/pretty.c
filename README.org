@@ -106,7 +106,12 @@ time. Pythonesque.
 C++ ~new~ operator is nice, so it won't hurt having something similar
 in C, right? Ask no more:
 #+begin_src C
+  struct ListNode {
+          int val;
+          struct ListNode *next;
+  };
   
+  struct ListNode *node = new(struct ListNode, 2, new(struct ListNode, 1, nil));
 #+end_src
 
 ** ~with~
