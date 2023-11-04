@@ -56,10 +56,10 @@
         forrange(var, 0, times)
 
 /* Tracking and freeing resources. Lisp, Python. */
-#define with(close, var, ...)                                      \
-        for (void *flag_ ## __LINE__ = (void *) 0,                 \
-                     *var = (void *) (__VA_ARGS__);                \
-             !flag_ ## __LINE__;                                   \
+#define with(close, var, ...)                                   \
+        for (void *flag_ ## __LINE__ = (void *) 0,              \
+                     *var = (void *) (__VA_ARGS__);             \
+             !flag_ ## __LINE__;                                \
              (close)(var), flag_ ## __LINE__ = (void *) 1)
 
 void *_new (size_t size, void *contents)
