@@ -15,7 +15,7 @@
 
 /* Missing yet useful. */
 #define eq ==
-/* Fixing inconsistent bit operations. */
+/* Fixing inconsistent bit operation names. */
 #define bitnot ~
 #define bitxor ^
 
