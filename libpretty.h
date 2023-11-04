@@ -8,6 +8,9 @@
 #include <stdbool.h>
 #include <string.h>
 
+/* Function types. */
+typedef void (*fn_t) (void);
+
 /* Missing yet useful. */
 #define eq ==
 /* Fixing inconsistent bit operations. */
