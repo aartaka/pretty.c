@@ -23,6 +23,7 @@
 #define then ?
 #define otherwise :
 #define notherwise : nil
+#define only : nil
 
 /* Loops and blocks. Lisp, Lua, BASIC. */
 #define until(...) while(not (__VA_ARGS__))
