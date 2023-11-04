@@ -92,6 +92,16 @@ void *_new (size_t size, void *contents)
 /* Easy resource allocation akin to C++ */
 #define new(type, ...) _new(sizeof(type), &((type) {__VA_ARGS__}))
 
+void *_vector (size_t size, size_t length, void *arr)
+{
+        void *new = malloc(size * length);
+        memcpy(new, arr, size * length);
+        return new;
+}
+
+#define vector(type, length, ...)                                       \
+        _vector(sizeof(type), length, (type[length]){__VA_ARGS__})
+
 #if __STDC_NO_THREADS__
 #else
 /* Go-style coroutine syntax. */
