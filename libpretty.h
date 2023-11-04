@@ -67,12 +67,11 @@ typedef void (*fn_t) (void);
              !flag_ ## __LINE__;                                \
              (close)(var), flag_ ## __LINE__ = (void *) 1)
 
-/* Go defer, but rather block scoped. */
-#define defer(deferred_fn, ...)                                 \
+/* Go defer, but rather block scoped and with arbitrary code in it. */
+#define defer(...)                                              \
         for (void *flag_ ## __LINE__ = (void *) 0;              \
              !flag_ ## __LINE__;                                \
-             (deferred_fn)(__VA_ARGS__),                        \
-                     flag_ ## __LINE__ = (void *) 1)
+             flag_ ## __LINE__ = (void *) 1, __VA_ARGS__)
 
 void *_new (size_t size, void *contents)
 {
