@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #if __STDC_NO_THREADS__
 #else
 #include <threads.h>
@@ -101,5 +102,9 @@ thrd_t *go(thrd_start_t fn, void *arg)
         return thrd;
 }
 #endif
+
+#define try do
+#define catch switch (errno)
+#define NOERROR 0
 
 #endif /* __LIBPRETTY_H__ */
