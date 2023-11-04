@@ -65,6 +65,13 @@
              !flag_ ## __LINE__;                                \
              (close)(var), flag_ ## __LINE__ = (void *) 1)
 
+/* Arbitrary blocks that are break-able and goto-able. Lisp. */
+#define block(name)                                             \
+        name:                                                   \
+        for (bool flag_ ## __LINE__ = false;                    \
+             !flag_ ## __LINE__;                                \
+             flag_ ## __LINE__ = true)
+
 /* Go defer, but rather block scoped and with arbitrary code in it. */
 #define defer(...)                                              \
         for (void *flag_ ## __LINE__ = (void *) 0;              \
