@@ -9,9 +9,6 @@
 #include <string.h>
 #include <threads.h>
 
-/* Function types. */
-typedef void (*fn_t) (void);
-
 /* Missing yet useful. */
 #define eq ==
 /* Fixing inconsistent bit operations. */
