@@ -37,12 +37,6 @@
              var < (init ## __LINE__ + (length));                       \
              var++)
 
-/* Iterators. Python, Lua. */
-#define foriter(type, var, iter, ...)                   \
-        for (type var = (__VA_ARGS__);                  \
-             (iter)(var);                               \
-             var = (iter)(var))
-
 /* Ranges from INIT to TARGET. Python. */
 #define forrange(var, init, target)                                     \
         for (long long int var = (init);                                \

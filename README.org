@@ -60,11 +60,6 @@ expression. Every time it iterates, ~var~ is set to a pointer to the
 respective array element. Yes, pointer—so that you can modify the
 element in place if you have to.
 
-*** ~foriter (type, var, iter, ...)~
-Iterates over vararg data using the ~iter~ single-parameter
-function. If ~iter~ returns ~nil~, end. If it returns new value,
-assign ~type~-d ~var~ to it.
-
 *** ~forrange (var, init, target)~
 Iterate over a range of numbers from ~init~ to ~target~. Pythonesque.
 #+begin_src C
