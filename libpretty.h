@@ -31,21 +31,24 @@
 #define end }
 
 /* For each loop from basically every language. */
-#define foreach(type, var, length, ...)                                 \
-        for (type *init ## __LINE__ = (__VA_ARGS__),                    \
-                     *var = init ## __LINE__;                           \
-             var < (init ## __LINE__ + (length));                       \
+#define foreach(type, var, length, ...)                 \
+        for (type *init ## __LINE__ = (__VA_ARGS__),    \
+                     *var = init ## __LINE__;           \
+             var < (init ## __LINE__ + (length));       \
              var++)
 
+#define forrangeby(type, var, init, target, by) \
+        for (type var = (init);                 \
+             (when ((init) >= (target))         \
+              then (var > target)               \
+              otherwise (var < target));        \
+             (when ((init) >= (target))         \
+              then (var = var - (by))           \
+              otherwise (var = var + (by))))
+
 /* Ranges from INIT to TARGET. Python. */
-#define forrange(var, init, target)                                     \
-        for (long long int var = (init);                                \
-             (when ((init) >= (target))                                 \
-              then (var > target)                                       \
-              otherwise (var < target));                                \
-             (when ((init) >= (target))                                 \
-              then (var)--                                              \
-              otherwise (var)++))
+#define forrange(var, init, target)                     \
+        forrangeby(long long int, var, init, target, 1)
 
 /* Repeat X times. Lisp.
  * Also see repeat keyword for Lua-style loop. */

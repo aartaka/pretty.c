@@ -60,6 +60,22 @@ expression. Every time it iterates, ~var~ is set to a pointer to the
 respective array element. Yes, pointer—so that you can modify the
 element in place if you have to.
 
+*** ~fortimes (var, times)~
+A frequent case of going from 0 to some positive number. Saves you
+quite some time for your
+#+begin_src C
+  for (int i = 0; i < 8; i++)
+          printf("%i\n", i);
+#+end_src
+
+turning it into a simple
+#+begin_src C
+  fortimes (i, 8)
+          printf("%s\n", i);
+#+end_src
+
+Implemented with...
+
 *** ~forrange (var, init, target)~
 Iterate over a range of numbers from ~init~ to ~target~. Pythonesque.
 #+begin_src C
@@ -74,18 +90,16 @@ Iterate over a range of numbers from ~init~ to ~target~. Pythonesque.
 Note that ~init~ and ~target~ might be any integers, signed and
 unsigned. And ~init~ might be greater than ~target~.
 
-*** ~fortimes (var, times)~ 
-A frequent case of going from 0 to some positive number. Saves you
-quite some time for your
-#+begin_src C
-  for (int i = 0; i < 8; i++)
-          printf("%i\n", i);
-#+end_src
+Implemented with...
 
-turning it into a simple
+*** ~forrangeby (type, var, init, target, by)~
+
+Iterate ~type~-d ~var~ from ~iter~ to ~target~, stepping by ~by~ every
+time. Pythonesque.
+
 #+begin_src C
-  fortimes (i, 8)
-          printf("%s\n", i);
+  forrangeby(double, x, 1.0, 10.0, 0.5)
+          printf("%f\n", x);
 #+end_src
 
 ** ~new~
