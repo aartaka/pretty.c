@@ -66,6 +66,13 @@ typedef void (*fn_t) (void);
              !flag_ ## __LINE__;                                \
              (close)(var), flag_ ## __LINE__ = (void *) 1)
 
+/* Go defer, but rather block scoped. */
+#define defer(deferred_fn, ...)                                 \
+        for (void *flag_ ## __LINE__ = (void *) 0;              \
+             !flag_ ## __LINE__;                                \
+             (deferred_fn)(__VA_ARGS__),                        \
+                     flag_ ## __LINE__ = (void *) 1)
+
 void *_new (size_t size, void *contents)
 {
         void *allocated = malloc(size);
