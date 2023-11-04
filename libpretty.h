@@ -27,7 +27,7 @@
 #define notherwise : nil
 #define only : nil
 
-/* Loops and blocks. Lisp, Lua, BASIC. */
+/* Loops and blocks. Lisp, Lua, Ruby. */
 #define until(...) while(not (__VA_ARGS__))
 #define repeat do
 #define begin {
@@ -40,6 +40,7 @@
              var < (init ## __LINE__ + (length));       \
              var++)
 
+/* Ranges from INIT to TARGET. Python range() syntax. */
 #define forrangeby(type, var, init, target, by) \
         for (type var = (init);                 \
              (when ((init) >= (target))         \
@@ -53,8 +54,7 @@
 #define forrange(var, init, target)                     \
         forrangeby(long long int, var, init, target, 1)
 
-/* Repeat X times. Lisp.
- * Also see repeat keyword for Lua-style loop. */
+/* Repeat X times. Lisp, Lua*/
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
 
