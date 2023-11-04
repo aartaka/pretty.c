@@ -7,6 +7,7 @@
 #include <iso646.h>
 #include <stdbool.h>
 #include <string.h>
+#include <threads.h>
 
 /* Function types. */
 typedef void (*fn_t) (void);
@@ -82,5 +83,13 @@ void *_new (size_t size, void *contents)
 
 /* Easy resource allocation akin to C++ */
 #define new(type, ...) _new(sizeof(type), &((type) {__VA_ARGS__}))
+
+/* Go-style coroutine syntax.*/
+thrd_t *go(thrd_start_t fn, void *arg)
+{
+        thrd_t *thrd = malloc(sizeof(thrd_t));
+        thrd_create(thrd, fn, arg);
+        return thrd;
+}
 
 #endif /* __LIBPRETTY_H__ */
