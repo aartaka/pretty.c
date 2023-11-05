@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: Artyom Bologov
-// SPDX-License-Identifier: BSD-2 Clause
-
 #ifndef __LIBPRETTY_H__
 #define __LIBPRETTY_H__
 
