@@ -198,6 +198,9 @@ from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
   }
 #+end_src
 
+~NOERR~ and ~NOERROR~ are also provided by libpretty, for convenience
+of error switch-casing.
+
 ** Go-inspired utilities
 Golang has several nice operations that are worth creatively
 stealing. Mainly due to its concurrency handling.
