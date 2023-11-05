@@ -132,9 +132,16 @@ in C, right? Ask no more:
           int val;
           struct ListNode *next;
   };
-  
+
   struct ListNode *node = new(struct ListNode, 2, new(struct ListNode, 1, nil));
 #+end_src
+
+Or, if you fancy, you can add even more syntax:
+#+begin_src C
+  #define cons(val, ...) new(struct ListNode, val, __VA_ARGS__)
+  cons(2, cons(1, nil));
+#+end_src
+
 
 *** ~vector (length, type, ...)~
 C++ again. ~std::vector~ is an extremely useful and versatile data
