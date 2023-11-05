@@ -55,11 +55,11 @@
 
 // Ranges from INIT to TARGET. Python range() syntax.
 #define forrangeby(var, type, init, target, by) \
-        for (type var = (init);                 \
-             (when ((init) >= (target))         \
-              then (var > target)               \
-              otherwise (var < target));        \
-             (when ((init) >= (target))         \
+        for (type var = (type)(init);               \
+             (when ((init) >= ((type) target))         \
+              then (var > ((type) target))                    \
+              otherwise (var < ((type) target)));      \
+             (when ((init) >= ((type) target))         \
               then (var = var - (by))           \
               otherwise (var = var + (by))))
 
