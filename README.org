@@ -186,9 +186,9 @@ actually a wrapper around ~switch~ on ~errno~. Repurposing the example
 from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
 
 #+begin_src C
-  try
+  try {
           log(0.0);
-  catch {
+  } catch {
           case NOERR:
                   printf("No error.\n");
                   break;
