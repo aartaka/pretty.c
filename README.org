@@ -106,7 +106,7 @@ Iterate over a range of numbers from ~init~ to ~target~. Pythonesque.
   ,*/
 #+end_src
 
-Note that ~init~ and ~target~ might be any integers, signed and
+Note that ~init~ and ~target~ are arbitrary integers, signed and
 unsigned. And ~init~ might be greater than ~target~.
 
 Implemented with...
@@ -150,9 +150,9 @@ contents":
 
 ** Block utilities
 Most of these are wrappers around ~for~ (which proven itself quite a
-versatile tool for this library. So they can be ~break~/~continue~-d
-out of. But they mostly serve a special purpose, so it makes no sense
-breaking out.
+versatile tool for this library. So they can use ~break~ to jump out
+of the block. But they mostly serve a special purpose, so it makes no
+sense ~break~-ing out.
 
 *** ~once~
 Runs the following block strictly once.
