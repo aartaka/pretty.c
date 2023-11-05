@@ -34,12 +34,17 @@
 #define begin {
 #define end }
 
+#define let(var, type, ...)                                             \
+        for (type var = (__VA_ARGS__),                                  \
+                     *flag_ ## __LINE__ = (void *) 0;                   \
+             !((void *) flag_ ## __LINE__);                             \
+             flag_ ## __LINE__ = (void *) 1)
+
 // For each loop from basically every language.
-#define foreach(var, type, length, ...)                 \
-        for (type *init ## __LINE__ = (__VA_ARGS__),    \
-                     *var = init ## __LINE__;           \
-             var < (init ## __LINE__ + (length));       \
-             var++)
+#define foreach(var, type, length, ...)                                 \
+        let (init ## __LINE__, type*, (__VA_ARGS__))                    \
+                fortimes (offset ## __LINE__, length)                   \
+                let (var, type*, (init ## __LINE__ + offset ## __LINE__))
 
 // Ranges from INIT to TARGET. Python range() syntax.
 #define forrangeby(var, type, init, target, by) \
