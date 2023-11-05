@@ -94,7 +94,7 @@ turning it into a simple
   printf("\n28 stab wounds, you didn't want to leave him a chance, huh?\n");
 #+end_src
 
-Implemented with...
+~fortimes~ is implemented with...
 
 *** ~forrange (var, init, target)~
 Iterate over a range of numbers from ~init~ to ~target~. Pythonesque.
@@ -109,7 +109,7 @@ Iterate over a range of numbers from ~init~ to ~target~. Pythonesque.
 Note that ~init~ and ~target~ are arbitrary integers, signed and
 unsigned. And ~init~ might be greater than ~target~.
 
-Implemented with...
+~forrange~ is implemented with...
 
 *** ~forrangeby (var, type, init, target, by)~
 
