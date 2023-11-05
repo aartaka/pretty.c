@@ -96,7 +96,7 @@ void *_allocpy (size_t size, void *contents)
 #define new(type, ...) _allocpy(sizeof(type), &((type) {__VA_ARGS__}))
 
 // Easy array allocation. C++ vector, but more primitive.
-#define vector(type, length, ...)                                       \
+#define vector(length, type, ...)                                       \
         _allocpy(sizeof(type) * length, (type[length]){__VA_ARGS__})
 
 #if __STDC_NO_THREADS__
