@@ -163,7 +163,8 @@ of the block. But they mostly serve a special purpose, so it makes no
 sense ~break~-ing out.
 
 *** ~once~
-Runs the following block strictly once.
+Runs the following block strictly once. Cleaner version of idiomatic
+~do ... while(false)~.
 
 *** ~block (name)~
 Sets up a ~goto~-able label and runs the following block. You can
