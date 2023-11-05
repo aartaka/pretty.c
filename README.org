@@ -151,7 +151,6 @@ pattern of "allocate an array of that much elements and with these
 contents":
 #+begin_src C
   double *vec = vector(10, double, 1, 2, 3, 4, 5);
-
   // Same as:
   // double vec[10] = {1, 2, 3, 4, 5};
   // But allocates the array on the heap.
