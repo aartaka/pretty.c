@@ -9,6 +9,14 @@ libpretty:
 
 #+end_src
 
+The goals for the library are:
+- Provide so much syntactic sugar as to cause any C developer a
+  diabetes-induced heart attack.
+- Deprecate Lua, Python, JavaScript, Ruby and a dozen other languages,
+  because C+libpretty is the ultimate scripting language, but
+  lightning-fast and strongly typed!
+- Including only one header (yes, libpretty is a header-only library!)
+  to turn any codebase into a beginner friendly one.
 
 * Provided Conveniences
 
