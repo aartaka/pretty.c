@@ -38,14 +38,14 @@
 #define end }
 
 // For each loop from basically every language.
-#define foreach(type, var, length, ...)                 \
+#define foreach(var, type, length, ...)                 \
         for (type *init ## __LINE__ = (__VA_ARGS__),    \
                      *var = init ## __LINE__;           \
              var < (init ## __LINE__ + (length));       \
              var++)
 
 // Ranges from INIT to TARGET. Python range() syntax.
-#define forrangeby(type, var, init, target, by) \
+#define forrangeby(var, type, init, target, by) \
         for (type var = (init);                 \
              (when ((init) >= (target))         \
               then (var > target)               \
