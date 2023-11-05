@@ -122,7 +122,7 @@ time. Pythonesque.
 #+end_src
 
 ** Allocation macros
-*** ~new~
+*** ~new (type, ...)~
 C++ ~new~ operator is nice, so it won't hurt having something similar
 in C, right? Ask no more:
 #+begin_src C
@@ -134,7 +134,7 @@ in C, right? Ask no more:
   struct ListNode *node = new(struct ListNode, 2, new(struct ListNode, 1, nil));
 #+end_src
 
-*** ~vector~
+*** ~vector (length, type, ...)~
 C++ again. ~std::vector~ is an extremely useful and versatile data
 structure that's easy to reason about. While this macro is not even
 remotely as featureful as C++ counterpart, it simplifies a frequent
@@ -144,11 +144,20 @@ contents":
   double *vec = vector(10, double, 1, 2, 3, 4, 5);
 
   // Same as:
-  // double vec[10] = {1, 2, 3, 4, 5}
+  // double vec[10] = {1, 2, 3, 4, 5};
   // But allocates the array on the heap.
 #+end_src
 
-** ~with~
+** Block utilities
+Most of these are wrappers around ~for~ (which proven itself quite a
+versatile tool for this library. So they can be ~break~/~continue~-d
+out of. But they mostly serve a special purpose, so it makes no sense
+breaking out.
+
+*** ~once~
+Runs the following block strictly once.
+
+*** ~with (close, var, ...)~
 This ensures that you never have use-after-free, because you provide
 the freeing procedure upfront.
 #+begin_src C
@@ -156,4 +165,32 @@ the freeing procedure upfront.
 #+end_src
 
 One of the downsides is that the bound variable is a ~void *~, so you
-need to coerce it to your type before proper use.
+need to coerce it to your type before using it.
+
+*** ~block (name)~
+Sets up a ~goto~-able label and runs the following block. You can
+~break~ out of it.
+
+*** ~try~ and ~catch~
+Fancy error handling, now in C. Compatible with ~errno~ and is
+actually a wrapper around ~switch~ on ~errno~. Repurposing the example
+from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
+
+#+begin_src C
+  try
+          log(0.0);
+  catch {
+          case NOERR:
+                  printf("No error.\n");
+                  break;
+          case EDOM:
+                  printf("Domain error!\n");
+                  break;
+          case ERANGE:
+                  printf("Range error!\n");
+                  break;
+  }
+#+end_src
+
+
+** Go-inspired operators
