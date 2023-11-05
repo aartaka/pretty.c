@@ -214,3 +214,6 @@ C. Still, libpretty ~defer~ is useful enough.
 Allows creating a new routine (thread, actually) calling ~fn~ with
 ~arg~. Allows to quickly jot down some parallelized code without
 working with clumsy ~thread.h~ functions.
+
+But, in case you want to work with clumsy ~thread.h~ functions, ~go~
+returns a thread identifier that might be reused when necessary.
