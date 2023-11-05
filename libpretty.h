@@ -1,5 +1,5 @@
-/* SPDX-FileCopyrightText: Artyom Bologov
-   SPDX-License-Identifier: BSD-2 Clause */
+// SPDX-FileCopyrightText: Artyom Bologov
+// SPDX-License-Identifier: BSD-2 Clause
 
 #ifndef __LIBPRETTY_H__
 #define __LIBPRETTY_H__
@@ -14,16 +14,16 @@
 #include <threads.h>
 #endif
 
-/* Missing yet useful. */
+// Missing yet useful.
 #define eq ==
-/* Fixing inconsistent bit operation names. */
+// Fixing inconsistent bit operation names.
 #define bitnot ~
 #define bitxor ^
 
-/* Lua/Lisp nil. */
+// Lua/Lisp nil.
 #define nil NULL
 
-/* Ternaries. */
+// Ternaries.
 #define when
 #define unless not
 #define then ?
@@ -31,20 +31,20 @@
 #define notherwise : nil
 #define only : nil
 
-/* Loops and blocks. Lisp, Lua, Ruby. */
+// Loops and blocks. Lisp, Lua, Ruby.
 #define until(...) while(not (__VA_ARGS__))
 #define repeat do
 #define begin {
 #define end }
 
-/* For each loop from basically every language. */
+// For each loop from basically every language.
 #define foreach(type, var, length, ...)                 \
         for (type *init ## __LINE__ = (__VA_ARGS__),    \
                      *var = init ## __LINE__;           \
              var < (init ## __LINE__ + (length));       \
              var++)
 
-/* Ranges from INIT to TARGET. Python range() syntax. */
+// Ranges from INIT to TARGET. Python range() syntax.
 #define forrangeby(type, var, init, target, by) \
         for (type var = (init);                 \
              (when ((init) >= (target))         \
@@ -54,15 +54,15 @@
               then (var = var - (by))           \
               otherwise (var = var + (by))))
 
-/* Ranges from INIT to TARGET. Python. */
+// Ranges from INIT to TARGET. Python.
 #define forrange(var, init, target)                     \
         forrangeby(long long int, var, init, target, 1)
 
-/* Repeat X times. Lisp, Lua*/
+// Repeat X times. Lisp, Lua
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
 
-/* Tracking and freeing resources. Lisp, Python. */
+// Tracking and freeing resources. Lisp, Python.
 #define with(close, var, ...)                                   \
         for (void *flag_ ## __LINE__ = (void *) 0,              \
                      *var = (void *) (__VA_ARGS__);             \
@@ -89,7 +89,7 @@ void *_new (size_t size, void *contents)
         return allocated;
 }
 
-/* Easy resource allocation akin to C++ */
+// Easy resource allocation akin to C++.
 #define new(type, ...) _new(sizeof(type), &((type) {__VA_ARGS__}))
 
 void *_vector (size_t size, size_t length, void *arr)
@@ -99,12 +99,13 @@ void *_vector (size_t size, size_t length, void *arr)
         return new;
 }
 
+// Easy array allocation. C++ vector, but more primitive.
 #define vector(type, length, ...)                                       \
         _vector(sizeof(type), length, (type[length]){__VA_ARGS__})
 
 #if __STDC_NO_THREADS__
 #else
-/* Go-style coroutine syntax. */
+// Go-style coroutine syntax.
 thrd_t *go(thrd_start_t fn, void *arg)
 {
         thrd_t *thrd = malloc(sizeof(thrd_t));
