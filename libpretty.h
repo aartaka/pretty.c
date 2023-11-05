@@ -113,5 +113,6 @@ thrd_t *go(thrd_start_t fn, void *arg)
 #define try once
 #define catch switch (errno)
 #define NOERROR 0
+#define NOERR 0
 
 #endif /* __LIBPRETTY_H__ */
