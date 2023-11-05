@@ -62,18 +62,18 @@
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
 
+// A block that runs only once.
+#define once                                    \
+        for (bool flag_ ## __LINE__ = false;    \
+             !flag_ ## __LINE__;                \
+             flag_ ## __LINE__ = true)
+
 // Tracking and freeing resources. Lisp, Python.
 #define with(close, var, ...)                                   \
         for (void *flag_ ## __LINE__ = (void *) 0,              \
                      *var = (void *) (__VA_ARGS__);             \
              !flag_ ## __LINE__;                                \
              (close)(var), flag_ ## __LINE__ = (void *) 1)
-
-// A block that runs only once.
-#define once                                    \
-        for (bool flag_ ## __LINE__ = false;    \
-             !flag_ ## __LINE__;                \
-             flag_ ## __LINE__ = true)
 
 //Arbitrary blocks that are break-able and goto-able. Lisp.
 #define block(name)                                             \
