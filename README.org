@@ -121,8 +121,11 @@ time. Pythonesque.
 #+end_src
 
 ** Allocation macros
+These allow quick-and-dirty allocation for typical patterns. Mostly
+modeled after C++.
+
 *** ~new (type, ...)~
-C++ ~new~ operator is nice, so it won't hurt having something similar
+~new~ operator is nice, so it won't hurt having something similar
 in C, right? Ask no more:
 #+begin_src C
   struct ListNode {
