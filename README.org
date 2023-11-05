@@ -73,6 +73,11 @@ This one walks an array or memory region initialized to the vararg
 expression. Every time it iterates, ~var~ is set to a pointer to the
 respective array element. Yes, pointer—so that you can modify the
 element in place if you have to.
+#+begin_src C
+  foreach(i, int, 10, vector(10, int, 1,2,3,3,4,5))
+          printf("%i\n", *i);
+#+end_src
+Also shows the use of provided ~vector~ utility.
 
 *** ~fortimes (var, times)~
 A frequent case of going from 0 to some positive number. Saves you
