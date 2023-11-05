@@ -1,7 +1,7 @@
 #+TITLE:Lib Pretty—Making C Look ✨Pretty✨
 
 The purpose of libpretty is to provide a programmer with a set of
-macros to make C code much more readable. Inspired by Python,
+macros to make C code much more readable. Inspired by Lua, Python,
 JavaScript, and Lisp. Here's how the code might look like with
 libpretty:
 
@@ -13,8 +13,7 @@ libpretty:
 * Provided Conveniences
 
 ** Included Standard Headers
-- Use of [[https://en.cppreference.com/w/c/types/boolean][stdbool.h]] for pretty boolean handling, like ~true~ and
-  ~bool~.
+- Use of [[https://en.cppreference.com/w/c/types/boolean][stdbool.h]] for pretty boolean names, like ~true~ and ~bool~.
 - [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] inclusion. It provides readable alternatives to regular
   operators, including ~and~ for ~&&~ and ~or~ for ~||~. Neat!
 
@@ -39,7 +38,7 @@ alternatives that look quite Python/Lisp-like:
 #+end_src
 
 It's ternaries underneath:
-- ~when~ expands to empty and only provided for consistency.
+- ~when~ expands to empty string and is only provided for readability.
 - ~then~ expands to ~?~.
 - ~otherwise~ expands to ~:~.
 
