@@ -17,6 +17,7 @@ libpretty:
   ~bool~.
 - [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] inclusion. It provides readable alternatives to regular
   operators, including ~and~ for ~&&~ and ~or~ for ~||~. Neat!
+
 ** New aliases
 Mainly modeled after Lua:
 - ~eq~, because ~iso646.h~ only has ~not_eq~.
@@ -42,11 +43,11 @@ It's ternaries underneath:
 - ~then~ expands to ~?~.
 - ~otherwise~ expands to ~:~.
 
-There's also ~notherwise~ for when the ~otherwise~ clause is
+There's also ~only~ and ~notherwise~ for when the ~otherwise~ clause is
 unnecessary:
 #+begin_src C
   return when done()
-         then 42 notherwise;
+         then 42 only;
 #+end_src
 
 
@@ -54,7 +55,7 @@ unnecessary:
 These macros are aliases for certain ~for~ loop pattern, each
 abstracting away some of the frequent ~for~ loop uses.
 
-*** ~foreach (type, var, length, ...)~
+*** ~foreach (var, type, length, ...)~
 This one walks an array or memory region initialized to the vararg
 expression. Every time it iterates, ~var~ is set to a pointer to the
 respective array element. Yes, pointer—so that you can modify the
@@ -92,13 +93,13 @@ unsigned. And ~init~ might be greater than ~target~.
 
 Implemented with...
 
-*** ~forrangeby (type, var, init, target, by)~
+*** ~forrangeby (var, type, init, target, by)~
 
 Iterate ~type~-d ~var~ from ~iter~ to ~target~, stepping by ~by~ every
 time. Pythonesque.
 
 #+begin_src C
-  forrangeby(double, x, 1.0, 10.0, 0.5)
+  forrangeby(x, double, 1.0, 10.0, 0.5)
           printf("%f\n", x);
 #+end_src
 
