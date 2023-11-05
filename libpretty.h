@@ -46,6 +46,13 @@
                 fortimes (offset ## __LINE__, length)                   \
                 let (var, type*, (init ## __LINE__ + offset ## __LINE__))
 
+#define forthese(var, type, ...)                                \
+        let (init ## __LINE__, type*, (type[]){__VA_ARGS__})          \
+                fortimes (offset ## __LINE__,                   \
+                          (sizeof((type[]){__VA_ARGS__})        \
+                           / sizeof(type)))\
+                let (var, type, *(init ## __LINE__ + offset ## __LINE__))
+
 // Ranges from INIT to TARGET. Python range() syntax.
 #define forrangeby(var, type, init, target, by) \
         for (type var = (init);                 \
