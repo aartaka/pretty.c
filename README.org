@@ -169,13 +169,15 @@ Sets up a ~goto~-able label and runs the following block. You can
 
 *** ~with (close, var, ...)~
 This ensures that you never have use-after-free, because you provide
-the freeing procedure upfront.
+the freeing procedure (~close~) upfront. Especially useful for
+dynamically allocated objects and file designators.
 #+begin_src C
-  
+  with (fclose, file, fopen("hello.txt", "w"))
+          fprintf(file, "Hello world!");
 #+end_src
 
-One of the downsides is that the bound variable is a ~void *~, so you
-need to coerce it to your type before using it.
+One of the downsides is that the bound ~var~ is a ~void *~, so you
+might need to coerce it to your type before using it.
 
 *** ~try~ and ~catch~
 Fancy error handling, now in C. Compatible with ~errno~ and is
