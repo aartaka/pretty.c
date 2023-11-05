@@ -110,7 +110,7 @@ thrd_t *go(thrd_start_t fn, void *arg)
 }
 #endif
 
-#define try once
+#define try errno = 0; once
 #define catch switch (errno)
 #define NOERROR 0
 #define NOERR 0
