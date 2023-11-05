@@ -25,7 +25,21 @@ Mainly modeled after Lua:
 - ~nil~ for ~NULL~.
 - ~until~ for negated ~while~.
 - ~repeat~ from Lua as an alias for ~do~.
-- ~begin~ and ~end~ block markers.
+#+begin_src C
+  int a = 10;
+  repeat {
+          printf("value of a: %i\n", a);
+          a++;
+  } until (a > 15);
+
+  // Versus Lua:
+  // a = 10
+  // repeat
+  //    print("value of a:", a)
+  //    a = a + 1
+  // until( a > 15 ) */
+#+end_src
+- ~begin~ and ~end~ block markers from BASIC, Ruby etc.
 
 ** Pretty ternaries
 Ternaries are frightening, so it won't hurt to add some plain
