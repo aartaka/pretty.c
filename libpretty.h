@@ -85,7 +85,7 @@
              !flag_ ## __LINE__;                                \
              flag_ ## __LINE__ = (void *) 1, __VA_ARGS__)
 
-void *_new (size_t size, void *contents)
+void *_allocpy (size_t size, void *contents)
 {
         void *allocated = malloc(size);
         memcpy(allocated, contents, size);
@@ -93,18 +93,11 @@ void *_new (size_t size, void *contents)
 }
 
 // Easy resource allocation akin to C++.
-#define new(type, ...) _new(sizeof(type), &((type) {__VA_ARGS__}))
-
-void *_vector (size_t size, size_t length, void *arr)
-{
-        void *new = malloc(size * length);
-        memcpy(new, arr, size * length);
-        return new;
-}
+#define new(type, ...) _allocpy(sizeof(type), &((type) {__VA_ARGS__}))
 
 // Easy array allocation. C++ vector, but more primitive.
 #define vector(type, length, ...)                                       \
-        _vector(sizeof(type), length, (type[length]){__VA_ARGS__})
+        _allocpy(sizeof(type) * length, (type[length]){__VA_ARGS__})
 
 #if __STDC_NO_THREADS__
 #else
