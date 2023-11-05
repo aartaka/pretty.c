@@ -46,6 +46,7 @@
                 fortimes (offset ## __LINE__, length)                   \
                 let (var, type*, (init ## __LINE__ + offset ## __LINE__))
 
+// Loop over the provided arguments.
 #define forthese(var, type, ...)                                \
         let (init ## __LINE__, type*, (type[]){__VA_ARGS__})          \
                 fortimes (offset ## __LINE__,                   \
