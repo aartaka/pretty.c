@@ -166,6 +166,10 @@ sense ~break~-ing out.
 *** ~once~
 Runs the following block strictly once.
 
+*** ~block (name)~
+Sets up a ~goto~-able label and runs the following block. You can
+~break~ out of it.
+
 *** ~with (close, var, ...)~
 This ensures that you never have use-after-free, because you provide
 the freeing procedure upfront.
@@ -175,10 +179,6 @@ the freeing procedure upfront.
 
 One of the downsides is that the bound variable is a ~void *~, so you
 need to coerce it to your type before using it.
-
-*** ~block (name)~
-Sets up a ~goto~-able label and runs the following block. You can
-~break~ out of it.
 
 *** ~try~ and ~catch~
 Fancy error handling, now in C. Compatible with ~errno~ and is
@@ -200,7 +200,6 @@ from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
                   break;
   }
 #+end_src
-
 
 ** Go-inspired utilities
 Golang has several nice operations that are worth creatively
