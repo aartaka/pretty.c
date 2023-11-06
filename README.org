@@ -41,7 +41,7 @@ library, so you can
 #+begin_src C
   #include "libpretty.h"
 #+end_src
-from any file in the directory you drop ~libpretty.h~ to, or from any
+from any file in the directory you drop ~libpretty.h~ to. Or from any
 file really, if you specify the path to libpretty as an include (~-I~)
 path.
 
