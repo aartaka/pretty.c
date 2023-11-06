@@ -188,10 +188,6 @@ versatile tool for this library. So they can use ~break~ to jump out
 of the block. But they mostly serve a special purpose, so it makes no
 sense ~break~-ing out.
 
-*** ~let (var, type, ...)~
-Binds the ~type~-d ~var~ to the varargs for the duration of the next
-block. Simulates JavaScript/Lisp ~let~.
-
 *** ~once~
 Runs the following block strictly once. Cleaner version of idiomatic
 ~do ... while(false)~.
@@ -199,6 +195,10 @@ Runs the following block strictly once. Cleaner version of idiomatic
 *** ~block (name)~
 Sets up a ~goto~-able label and runs the following block. You can
 ~break~ out of it.
+
+*** ~let (var, type, ...)~ and ~local~
+Binds the ~type~-d ~var~ to the varargs for the duration of the next
+block. Simulates JavaScript/Lisp ~let~. Also available as ~local~ with the same functionality.
 
 *** ~with (close, var, ...)~
 This ensures that you never have use-after-free, because you provide

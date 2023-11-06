@@ -34,15 +34,6 @@
 #define begin {
 #define end }
 
-#define let(var, type, ...)                                             \
-        for (type var = (__VA_ARGS__),                                  \
-                     *flag_ ## __LINE__ = (void *) 0;                   \
-             !((void *) flag_ ## __LINE__);                             \
-             flag_ ## __LINE__ = (void *) 1)
-
-#define local(var, type, ...)                   \
-        let (var, type, __VA_ARGS__)
-
 // For each loop from basically every language.
 #define foreach(var, type, length, ...)                                 \
         let (init ## __LINE__, type*, (__VA_ARGS__))                    \
@@ -75,11 +66,25 @@
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
 
+
 // A block that runs only once.
 #define once                                    \
         for (bool flag_ ## __LINE__ = false;    \
              !flag_ ## __LINE__;                \
              flag_ ## __LINE__ = true)
+
+//Arbitrary blocks that are break-able and goto-able. Lisp.
+#define block(name)                                             \
+        name: once
+
+#define let(var, type, ...)                                             \
+        for (type var = (__VA_ARGS__),                                  \
+                     *flag_ ## __LINE__ = (void *) 0;                   \
+             !((void *) flag_ ## __LINE__);                             \
+             flag_ ## __LINE__ = (void *) 1)
+
+#define local(var, type, ...)                   \
+        let (var, type, __VA_ARGS__)
 
 // Tracking and freeing resources. Lisp, Python.
 #define with(close, var, ...)                                   \
@@ -87,16 +92,6 @@
                      *var = (void *) (__VA_ARGS__);             \
              !flag_ ## __LINE__;                                \
              (close)(var), flag_ ## __LINE__ = (void *) 1)
-
-//Arbitrary blocks that are break-able and goto-able. Lisp.
-#define block(name)                                             \
-        name: once
-
-// Go defer, but rather block scoped and with arbitrary code in it.
-#define defer(...)                                              \
-        for (void *flag_ ## __LINE__ = (void *) 0;              \
-             !flag_ ## __LINE__;                                \
-             flag_ ## __LINE__ = (void *) 1, __VA_ARGS__)
 
 void *_allocpy (size_t size, void *contents)
 {
@@ -125,6 +120,12 @@ thrd_t *go(thrd_start_t fn, void *arg)
         return thrd;
 }
 #endif
+
+// Go defer, but rather block scoped and with arbitrary code in it.
+#define defer(...)                                              \
+        for (void *flag_ ## __LINE__ = (void *) 0;              \
+             !flag_ ## __LINE__;                                \
+             flag_ ## __LINE__ = (void *) 1, __VA_ARGS__)
 
 #define try errno = 0; once
 #define catch switch (errno)
