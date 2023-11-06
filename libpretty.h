@@ -40,6 +40,9 @@
              !((void *) flag_ ## __LINE__);                             \
              flag_ ## __LINE__ = (void *) 1)
 
+#define local(var, type, ...)                   \
+        let (var, type, __VA_ARGS__)
+
 // For each loop from basically every language.
 #define foreach(var, type, length, ...)                                 \
         let (init ## __LINE__, type*, (__VA_ARGS__))                    \
