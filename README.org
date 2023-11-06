@@ -18,6 +18,19 @@ The goals for the library are:
 - Including only one header (yes, libpretty is a header-only library!)
   to turn any codebase into a beginner friendly one.
 
+* Getting Started
+Checkout the repository
+#+begin_src sh
+  git clone https://github.com/aartaka/libpretty
+#+end_src
+
+Or simply copy the ~libpretty.h~ file—libpretty is a header-only
+library, so you can
+#+begin_src C
+  #include "libpretty.h"
+#+end_src
+from anywhere you like.
+
 * Provided Conveniences
 
 ** Included Standard Headers
