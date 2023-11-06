@@ -2,11 +2,23 @@
 
 The purpose of libpretty is to provide a programmer with a set of
 macros to make C code much more readable. Inspired by Lua, Python,
-JavaScript, and Lisp. Here's how the code might look like with
-libpretty:
+JavaScript, and Lisp. Here's how a naive re-implementation of ~head~
+utility might look like with libpretty:
 
 #+begin_src C
-
+  int main (int argc, char **argv)
+  {
+      if (argc > 1)
+          with (fclose, f, fopen(argv[1], "r"))
+              fortimes (line, 10)
+                  with (free, buf, vector(200, char, 0))
+                      when (fscanf(f, "%s\n", buf) > 0)
+                          then puts(buf)
+                          otherwise 0;
+      else
+          puts("Please provide an input file");
+      return EXIT_SUCCESS;
+  }
 #+end_src
 
 The goals for the library are:
