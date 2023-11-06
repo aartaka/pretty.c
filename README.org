@@ -7,7 +7,7 @@ utility might look like with libpretty:
 
 #+begin_src C
   int main (int argc, char **argv)
-  {
+  begin
       if (argc > 1)
           with (fclose, f, fopen(argv[1], "r"))
               fortimes (line, 10)
@@ -18,7 +18,7 @@ utility might look like with libpretty:
       else
           puts("Please provide an input file");
       return EXIT_SUCCESS;
-  }
+  end
 #+end_src
 
 The goals for the library are:
