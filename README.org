@@ -48,9 +48,9 @@ path.
 * Provided Conveniences
 
 ** Included Standard Headers
-- Use of [[https://en.cppreference.com/w/c/types/boolean][stdbool.h]] for pretty booleans: ~true~ and ~bool~.
-- [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] inclusion. It provides readable alternatives to regular
-  operators, including ~and~ for ~&&~ and ~or~ for ~||~. Neat!
+- [[https://en.cppreference.com/w/c/types/boolean][stdbool.h]] :: for pretty booleans: ~true~ and ~bool~.
+- [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] :: for readable alternatives to regular operators, including
+  ~and~ for ~&&~ and ~or~ for ~||~. Neat!
 
 ** New aliases
 Mainly modeled after Lua:
