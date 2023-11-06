@@ -1,4 +1,4 @@
-#+TITLE:Lib Pretty—Making C Look ✨Pretty✨
+#+TITLE:libpretty: Making C Look ✨Pretty✨
 
 The purpose of libpretty is to provide a programmer with a set of
 macros to make C code much more readable. Inspired by Lua, Python,
