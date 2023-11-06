@@ -95,7 +95,6 @@ Iterates over the provided varargs, binding each of these to ~type~-d
           printf("%i\n", i);
 #+end_src
 
-
 *** ~fortimes (var, times)~
 A frequent case of going from 0 to some positive number. Saves you
 quite some time for your
