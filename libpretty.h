@@ -93,7 +93,8 @@
              !flag_ ## __LINE__;                                \
              (close)(var), flag_ ## __LINE__ = (void *) 1)
 
-void *_allocpy (size_t size, void *contents)
+void *
+_allocpy (size_t size, void *contents)
 {
         void *allocated = malloc(size);
         memcpy(allocated, contents, size);
@@ -113,7 +114,8 @@ void *_allocpy (size_t size, void *contents)
 #if __STDC_NO_THREADS__
 #else
 // Go-style coroutine syntax.
-thrd_t *go(thrd_start_t fn, void *arg)
+thrd_t *
+go(thrd_start_t fn, void *arg)
 {
         thrd_t *thrd = malloc(sizeof(thrd_t));
         thrd_create(thrd, fn, arg);
