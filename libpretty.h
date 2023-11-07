@@ -72,17 +72,6 @@
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
 
-
-// A block that runs only once.
-#define once                                    \
-        for (bool flag_ ## __LINE__ = false;    \
-             !flag_ ## __LINE__;                \
-             flag_ ## __LINE__ = true)
-
-//Arbitrary blocks that are break-able and goto-able. Lisp.
-#define block(name)                                             \
-        name: once
-
 #define let(var, type, ...)                                             \
         for (type var = (__VA_ARGS__),                                  \
                      *flag_ ## __LINE__ = (void *) 0;                   \
@@ -135,7 +124,13 @@ go(thrd_start_t fn, void *arg)
              !flag_ ## __LINE__;                                \
              flag_ ## __LINE__ = (void *) 1, __VA_ARGS__)
 
-#define try errno = 0; once
+#define try \
+        errno = 0;                              \
+        for (bool flag_ ## __LINE__ = false;    \
+             !flag_ ## __LINE__;                \
+             flag_ ## __LINE__ = true)
+
+
 #define catch switch (errno)
 #define NOERROR 0
 #define NOERR 0
