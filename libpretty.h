@@ -64,6 +64,34 @@
 #define forrange(var, init, target)                     \
         forrangeby(var, long long int, init, target, 1)
 
+// Dispatch over integer/value constant types
+
+// no suffix
+/* int */
+/* long int */
+/* unsigned long int (until C99) */
+/* long long int (since C99) */
+
+// U
+/* unsigned int */
+/* unsigned long int */
+/* unsigned long long int(since C99) */
+
+// L
+/* long int */
+/* unsigned long int(until C99) */
+/* long long int(since C99) */
+
+// LU
+/* unsigned long int */
+/* unsigned long long int(since C99) */
+
+// LL
+/* long long int(since C99) */
+
+// LLU
+/* unsigned long long int(since C99)  */
+
 // Repeat X times. Lisp, Lua
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
