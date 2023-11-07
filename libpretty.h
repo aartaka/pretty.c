@@ -115,7 +115,18 @@ _allocpy (size_t size, void *contents)
              flag_ ## __LINE__ = true)
 
 
-#define catch(err) if (errno == (err))
+bool _part_of (int err, size_t length, int *errs)
+{
+        foreach(i, int, length, errs)
+                if (err eq *i)
+                        return true;
+        return false;
+}
+
+#define catch(...) \
+        if (_part_of(errno,                                             \
+                     sizeof((int[]){__VA_ARGS__}) / sizeof(int),   \
+                     (int[]){__VA_ARGS__}))
 #define NOERROR 0
 #define NOERR 0
 

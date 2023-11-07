@@ -220,18 +220,14 @@ One of the downsides is that the bound ~var~ is a ~void *~, so you
 might need to coerce it to your type before using it.
 
 *** ~try~ and ~catch~
-Fancy error handling, now in C. Compatible with ~errno~ and is
-actually a wrapper around ~switch~ on ~errno~. Repurposing the example
-from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
+Fancy error handling, now in C. Fancy example from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
 
 #+begin_src C
   try log(0.0);
   catch (NOERR)
           printf("No error.\n");
-  catch (EDOM)
-          printf("Domain error!\n");
-  catch(ERANGE)
-          printf("Range error!\n");
+  catch (EDOM, ERANGE)
+          printf("Math error!\n");
 #+end_src
 
 ~NOERR~ and ~NOERROR~ are also provided by libpretty, for convenience
