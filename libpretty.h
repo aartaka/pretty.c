@@ -6,10 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#if __STDC_NO_THREADS__
-#else
-#include <threads.h>
-#endif
 
 // Missing yet useful.
 #define eq ==
@@ -105,18 +101,6 @@ _allocpy (size_t size, void *contents)
 #define vector(length, type, ...)                                       \
         (type*) _allocpy(sizeof(type) * length,                         \
                                 (type[length]){__VA_ARGS__})
-
-#if __STDC_NO_THREADS__
-#else
-// Go-style coroutine syntax.
-thrd_t *
-go(thrd_start_t fn, void *arg)
-{
-        thrd_t *thrd = malloc(sizeof(thrd_t));
-        thrd_create(thrd, fn, arg);
-        return thrd;
-}
-#endif
 
 // Go defer, but rather block scoped and with arbitrary code in it.
 #define defer(...)                                              \
