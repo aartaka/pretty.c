@@ -43,21 +43,21 @@
                 let (var, type*, (init ## __LINE__ + offset ## __LINE__))
 
 // Loop over the provided arguments.
-#define forthese(var, type, ...)                                \
-        let (init ## __LINE__, type*, (type[]){__VA_ARGS__})          \
-                fortimes (offset ## __LINE__,                   \
-                          (sizeof((type[]){__VA_ARGS__})        \
-                           / sizeof(type)))\
+#define forthese(var, type, ...)                                        \
+        let (init ## __LINE__, type*, (type[]){__VA_ARGS__})            \
+                fortimes (offset ## __LINE__,                           \
+                          (sizeof((type[]){__VA_ARGS__})                \
+                           / sizeof(type)))                             \
                 let (var, type, *(init ## __LINE__ + offset ## __LINE__))
 
 // Ranges from INIT to TARGET. Python range() syntax.
-#define forrangeby(var, type, init, target, by) \
-        for (type var = (type)(init);               \
-             (when ((init) >= ((type) target))         \
+#define forrangeby(var, type, init, target, by)               \
+        for (type var = (type)(init);                         \
+             (when ((init) >= ((type) target))                \
               then (var > ((type) target))                    \
-              otherwise (var < ((type) target)));      \
-             (when ((init) >= ((type) target))         \
-              then (var = var - (by))           \
+              otherwise (var < ((type) target)));             \
+             (when ((init) >= ((type) target))                \
+              then (var = var - (by))                         \
               otherwise (var = var + (by))))
 
 // Ranges from INIT to TARGET. Python.
@@ -108,7 +108,7 @@ _allocpy (size_t size, void *contents)
              !flag_ ## __LINE__;                                \
              flag_ ## __LINE__ = (void *) 1, __VA_ARGS__)
 
-#define try \
+#define try                                     \
         errno = 0;                              \
         for (bool flag_ ## __LINE__ = false;    \
              !flag_ ## __LINE__;                \
@@ -123,8 +123,8 @@ bool _part_of (int err, size_t length, int *errs)
         return false;
 }
 
-#define catch(...) \
-        if (_part_of(errno,                                             \
+#define catch(...)                                                 \
+        if (_part_of(errno,                                        \
                      sizeof((int[]){__VA_ARGS__}) / sizeof(int),   \
                      (int[]){__VA_ARGS__}))
 #define NOERROR 0
