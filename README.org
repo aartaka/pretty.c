@@ -141,13 +141,12 @@ turning it into a simple
 ~fortimes~ is implemented with...
 
 *** ~forrange (var, init, target)~
-Iterate over a range of numbers from ~init~ to ~target~. Pythonesque.
+Iterate over a range of numbers from ~init~ to
+~target~. Pythonesque. Here's Celsius to Fahrenheit conversion loop
+with ~forrange~:
 #+begin_src C
-  forrange(i, 0, 10)
-          printf("%i\n", i);
-  // Almost the same as Python:
-  // for i in range(0, 10):
-  //   print(i)
+  forrange(c, -10, 20)
+          printf("Celsius %i = Fahrenheit %f\n", c, (32 + (c * 1.8)));
 #+end_src
 
 Note that ~init~ and ~target~ are arbitrary integers, signed and
