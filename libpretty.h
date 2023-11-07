@@ -17,6 +17,12 @@
 #define bitnot ~
 #define bitxor ^
 
+// Comparion operators. Lisp loop macro keywords.
+#define below <
+#define above >
+#define upto <=
+#define downto >=
+
 // Lua/Lisp nil.
 #define nil NULL
 
