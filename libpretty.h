@@ -131,7 +131,7 @@ go(thrd_start_t fn, void *arg)
              flag_ ## __LINE__ = true)
 
 
-#define catch switch (errno)
+#define catch(err) if (errno == (err))
 #define NOERROR 0
 #define NOERR 0
 

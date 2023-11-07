@@ -226,18 +226,11 @@ from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
 
 #+begin_src C
   try {
-          log(0.0);
-  } catch {
-          case NOERR:
-                  printf("No error.\n");
-                  break;
-          case EDOM:
-                  printf("Domain error!\n");
-                  break;
-          case ERANGE:
-                  printf("Range error!\n");
-                  break;
+            log(0.0);
   }
+  catch (NOERR) printf("No error.\n");
+  catch (EDOM)  printf("Domain error!\n");
+  catch(ERANGE) printf("Range error!\n");
 #+end_src
 
 ~NOERR~ and ~NOERROR~ are also provided by libpretty, for convenience
