@@ -113,7 +113,7 @@ element in place if you have to.
   foreach(i, int, 10, vector(10, int, 1, 2, 3, 3, 4, 5))
           printf("%i\n", *i);
 #+end_src
-Also shows the use of provided ~vector~ utility.
+Also shows the use of ~vector~.
 
 *** ~forthese (var, type, ...)~
 Iterates over the provided varargs, binding each of these to ~type~-d
@@ -197,14 +197,13 @@ contents":
 #+end_src
 
 ** Block utilities
-Most of these are wrappers around ~for~ (which proven itself quite a
-versatile tool for this library. So they can use ~break~ to jump out
-of the block. But they mostly serve a special purpose, so it makes no
-sense ~break~-ing out.
+These establish new local bindings, ensure deferred computations, or
+otherwise act on the block after them.
 
 *** ~let (var, type, ...)~ and ~local~
 Binds the ~type~-d ~var~ to the varargs for the duration of the next
-block. Simulates JavaScript/Lisp ~let~. Also available as ~local~ with the same functionality.
+block. Simulates JavaScript/Lisp ~let~. Also available as ~local~ with
+the same functionality.
 
 *** ~with (close, var, ...)~
 This ensures that you never have use-after-free, because you provide
@@ -217,6 +216,11 @@ dynamically allocated objects and file designators.
 
 One of the downsides is that the bound ~var~ is a ~void *~, so you
 might need to coerce it to your type before using it.
+
+*** ~defer (...)~
+Offloads the code to be executed after the following block. Not at the
+end of function as in Go, because that's impossible to implement in
+C. Still, libpretty ~defer~ is useful enough.
 
 *** ~try~ and ~catch~
 Fancy error handling, now in C. Fancy example from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
@@ -231,12 +235,3 @@ Fancy error handling, now in C. Fancy example from [[https://en.cppreference.com
 
 ~NOERR~ and ~NOERROR~ are also provided by libpretty, for convenience
 of error switch-casing.
-
-** Go-inspired utilities
-Golang has several nice operations that are worth creatively
-stealing. Mainly due to its concurrency handling.
-
-*** ~defer (...)~
-Offloads the code to be executed after the following block. Not at the
-end of function as in Go, because that's impossible to implement in
-C. Still, libpretty ~defer~ is useful enough.
