@@ -121,8 +121,8 @@ _allocpy (size_t size, void *contents)
 }
 
 // Easy resource allocation akin to C++.
-#define new(type, ...) (type *) \
-        _allocpy(sizeof(type), &((type) {__VA_ARGS__}))
+#define new(type, ...) \
+        (type *) _allocpy(sizeof(type), &((type) {__VA_ARGS__}))
 
 // Easy array allocation. C++ vector, but more primitive.
 // FIXME: Enforce array type somehow?
