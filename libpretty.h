@@ -121,8 +121,8 @@ typedef void* T;
              !flag_ ## __LINE__;                                \
              (close)(var), flag_ ## __LINE__ = (T) 1)
 
-void *
-_allocpy (size_t size, void *contents)
+static void *
+allocpy (size_t size, void *contents)
 {
         void *allocated = malloc(size);
         memcpy(allocated, contents, size);
@@ -131,13 +131,13 @@ _allocpy (size_t size, void *contents)
 
 // Easy resource allocation akin to C++.
 #define new(type, ...) \
-        (type *) _allocpy(sizeof(type), &((type) {__VA_ARGS__}))
+        (type *) allocpy(sizeof(type), &((type) {__VA_ARGS__}))
 
 // Easy array allocation. C++ vector, but more primitive.
 // FIXME: Enforce array type somehow?
 #define vector(length, type, ...)                                       \
-        (type*) _allocpy(sizeof(type) * length,                         \
-                                (type[length]){__VA_ARGS__})
+        (type*) allocpy(sizeof(type) * length,                          \
+                        (type[length]){__VA_ARGS__})
 
 // Go defer, but rather block scoped and with arbitrary code in it.
 #define defer(...)                                              \
@@ -152,7 +152,8 @@ _allocpy (size_t size, void *contents)
              flag_ ## __LINE__ = true)
 
 
-bool _err_part_of (int err, size_t length, int *errs)
+static bool
+err_part_of (int err, size_t length, int *errs)
 {
         foreach(i, int, length, errs)
                 if (err eq *i)
@@ -161,9 +162,9 @@ bool _err_part_of (int err, size_t length, int *errs)
 }
 
 #define catch(...)                                                 \
-        if (_err_part_of(errno,                                    \
-                         sizeof((int[]){__VA_ARGS__}) / sizeof(int),    \
-                         (int[]){__VA_ARGS__}))
+        if (err_part_of(errno,                                    \
+                        sizeof((int[]){__VA_ARGS__}) / sizeof(int),     \
+                        (int[]){__VA_ARGS__}))
 #define NOERROR 0
 #define NOERR 0
 
