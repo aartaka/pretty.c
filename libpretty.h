@@ -23,6 +23,9 @@
 #define nil NULL
 #define t true
 
+// Top type.
+typedef void* T;
+
 // Ternaries.
 #define when
 #define unless not
@@ -104,19 +107,19 @@
 
 #define let(var, type, ...)                                             \
         for (type var = (__VA_ARGS__),                                  \
-                     *flag_ ## __LINE__ = (void *) 0;                   \
-             !((void *) flag_ ## __LINE__);                             \
-             flag_ ## __LINE__ = (void *) 1)
+                     *flag_ ## __LINE__ = (T) 0;                   \
+             !((T) flag_ ## __LINE__);                             \
+             flag_ ## __LINE__ = (T) 1)
 
 #define local(var, type, ...)                   \
         let (var, type, __VA_ARGS__)
 
 // Tracking and freeing resources. Lisp, Python.
 #define with(close, var, ...)                                   \
-        for (void *flag_ ## __LINE__ = (void *) 0,              \
-                     *var = (void *) (__VA_ARGS__);             \
+        for (T flag_ ## __LINE__ = (T) 0,              \
+                     *var = (T) (__VA_ARGS__);                  \
              !flag_ ## __LINE__;                                \
-             (close)(var), flag_ ## __LINE__ = (void *) 1)
+             (close)(var), flag_ ## __LINE__ = (T) 1)
 
 void *
 _allocpy (size_t size, void *contents)
@@ -138,9 +141,9 @@ _allocpy (size_t size, void *contents)
 
 // Go defer, but rather block scoped and with arbitrary code in it.
 #define defer(...)                                              \
-        for (void *flag_ ## __LINE__ = (void *) 0;              \
+        for (T flag_ ## __LINE__ = (T) 0;              \
              !flag_ ## __LINE__;                                \
-             flag_ ## __LINE__ = (void *) 1, __VA_ARGS__)
+             flag_ ## __LINE__ = (T) 1, __VA_ARGS__)
 
 #define try                                     \
         errno = 0;                              \
