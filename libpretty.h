@@ -74,9 +74,9 @@ typedef void* T;
 
 #define let(var, type, ...)                             \
         for (type var = (__VA_ARGS__),                  \
-                     *flag_ ## __LINE__ = (T) 0;        \
-             !((T) flag_ ## __LINE__);                  \
-             flag_ ## __LINE__ = (T) 1)
+                     *flag_ ## __LINE__ = (T) 1;        \
+             ((T) flag_ ## __LINE__);                   \
+             flag_ ## __LINE__ = (T) 0)
 
 #define local(var, type, ...)                   \
         let (var, type, __VA_ARGS__)
@@ -108,15 +108,15 @@ allocpy (size_t size, void *contents)
 
 // Go defer, but rather block scoped and with arbitrary code in it.
 #define defer(...)                                      \
-        for (T flag_ ## __LINE__ = (T) 0;               \
-             !flag_ ## __LINE__;                        \
-             flag_ ## __LINE__ = (T) 1, __VA_ARGS__)
+        for (bool flag_ ## __LINE__ = true;             \
+             flag_ ## __LINE__;                         \
+             flag_ ## __LINE__ = false, __VA_ARGS__)
 
 #define try                                     \
         errno = 0;                              \
-        for (bool flag_ ## __LINE__ = false;    \
-             !flag_ ## __LINE__;                \
-             flag_ ## __LINE__ = true)
+        for (bool flag_ ## __LINE__ = true;     \
+             flag_ ## __LINE__;                 \
+             flag_ ## __LINE__ = false)
 
 
 static bool
