@@ -58,7 +58,8 @@ Mainly modeled after Lua:
 - ~bitnot~ and ~bitxor~ for operations that used to be called
   inconsistently (~compl~ and ~xor~ respectively) in ~iso646.h~.
 - ~below~, ~above~, ~upto~, and ~downto~ comparison operators.
-- ~nil~ for ~NULL~.
+- ~nil~ for ~NULL~, ~t~ for ~true~.
+- Toplevel type ~T~ (~void *~).
 - ~until~ for negated ~while~.
 - ~repeat~ from Lua as an alias for ~do~.
 #+begin_src C
@@ -89,6 +90,7 @@ alternatives that look quite Python/Lisp-like:
 
 It's ternaries underneath:
 - ~when~ expands to empty string and is only provided for readability.
+  - ~unless~ expands to ~not~ to be a negative version of ~when~.
 - ~then~ expands to ~?~.
 - ~otherwise~ expands to ~:~.
 
