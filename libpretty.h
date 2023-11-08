@@ -64,6 +64,11 @@
 #define forrange(var, init, target)                     \
         forrangeby(var, long long int, init, target, 1)
 
+// TODO: Infer the type automagically. For example, with times array:
+// void *var = _Generic((times), int: (int[1]){times}, long: ...)
+// this way, void* can be cast to a proper value and
+// incremented/compared.
+
 // Dispatch over integer/value constant types
 
 // no suffix
