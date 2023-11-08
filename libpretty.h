@@ -55,70 +55,37 @@ typedef void* T;
                 let (var, type, *(init ## __LINE__ + offset ## __LINE__))
 
 // Ranges from INIT to TARGET. Python range() syntax.
-#define forrangeby(var, type, init, target, by)               \
-        for (type var = (type)(init);                         \
-             (when ((init) >= ((type) target))                \
-              then (var > ((type) target))                    \
-              otherwise (var < ((type) target)));             \
-             (when ((init) >= ((type) target))                \
-              then (var = var - (by))                         \
+#define forrangeby(var, type, init, target, by)         \
+        for (type var = (type)(init);                   \
+             (when ((init) >= ((type) target))          \
+              then (var > ((type) target))              \
+              otherwise (var < ((type) target)));       \
+             (when ((init) >= ((type) target))          \
+              then (var = var - (by))                   \
               otherwise (var = var + (by))))
 
 // Ranges from INIT to TARGET. Python.
 #define forrange(var, init, target)                     \
         forrangeby(var, long long int, init, target, 1)
 
-// TODO: Infer the type automagically. For example, with times array:
-// void *var = _Generic((times), int: (int[1]){times}, long: ...)
-// this way, void* can be cast to a proper value and
-// incremented/compared.
-
-// Dispatch over integer/value constant types
-
-// no suffix
-/* int */
-/* long int */
-/* unsigned long int (until C99) */
-/* long long int (since C99) */
-
-// U
-/* unsigned int */
-/* unsigned long int */
-/* unsigned long long int(since C99) */
-
-// L
-/* long int */
-/* unsigned long int(until C99) */
-/* long long int(since C99) */
-
-// LU
-/* unsigned long int */
-/* unsigned long long int(since C99) */
-
-// LL
-/* long long int(since C99) */
-
-// LLU
-/* unsigned long long int(since C99)  */
-
 // Repeat X times. Lisp, Lua
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
 
-#define let(var, type, ...)                                             \
-        for (type var = (__VA_ARGS__),                                  \
-                     *flag_ ## __LINE__ = (T) 0;                   \
-             !((T) flag_ ## __LINE__);                             \
+#define let(var, type, ...)                             \
+        for (type var = (__VA_ARGS__),                  \
+                     *flag_ ## __LINE__ = (T) 0;        \
+             !((T) flag_ ## __LINE__);                  \
              flag_ ## __LINE__ = (T) 1)
 
 #define local(var, type, ...)                   \
         let (var, type, __VA_ARGS__)
 
 // Tracking and freeing resources. Lisp, Python.
-#define with(close, var, ...)                                   \
-        for (T flag_ ## __LINE__ = (T) 0,              \
-                     *var = (T) (__VA_ARGS__);                  \
-             !flag_ ## __LINE__;                                \
+#define with(close, var, ...)                           \
+        for (T flag_ ## __LINE__ = (T) 0,               \
+                     *var = (T) (__VA_ARGS__);          \
+             !flag_ ## __LINE__;                        \
              (close)(var), flag_ ## __LINE__ = (T) 1)
 
 static void *
@@ -130,19 +97,19 @@ allocpy (size_t size, void *contents)
 }
 
 // Easy resource allocation akin to C++.
-#define new(type, ...) \
+#define new(type, ...)                                          \
         (type *) allocpy(sizeof(type), &((type) {__VA_ARGS__}))
 
 // Easy array allocation. C++ vector, but more primitive.
 // FIXME: Enforce array type somehow?
-#define vector(length, type, ...)                                       \
-        (type*) allocpy(sizeof(type) * length,                          \
+#define vector(length, type, ...)                       \
+        (type*) allocpy(sizeof(type) * length,          \
                         (type[length]){__VA_ARGS__})
 
 // Go defer, but rather block scoped and with arbitrary code in it.
-#define defer(...)                                              \
-        for (T flag_ ## __LINE__ = (T) 0;              \
-             !flag_ ## __LINE__;                                \
+#define defer(...)                                      \
+        for (T flag_ ## __LINE__ = (T) 0;               \
+             !flag_ ## __LINE__;                        \
              flag_ ## __LINE__ = (T) 1, __VA_ARGS__)
 
 #define try                                     \
@@ -161,8 +128,8 @@ err_part_of (int err, size_t length, int *errs)
         return false;
 }
 
-#define catch(...)                                                 \
-        if (err_part_of(errno,                                    \
+#define catch(...)                                                      \
+        if (err_part_of(errno,                                          \
                         sizeof((int[]){__VA_ARGS__}) / sizeof(int),     \
                         (int[]){__VA_ARGS__}))
 #define NOERROR 0
