@@ -76,6 +76,16 @@ Mainly modeled after Lua:
   // until( a > 15 ) */
 #+end_src
 - ~begin~ and ~end~ block markers from BASIC, Ruby etc.
+- ~always~, so that you can make infinite loops
+#+begin_src C
+  always print("After all this time?\n");
+#+end_src
+- and ~never~ to comment out some code with just one keyword, while
+  still allowing the compiler to analyze/optimize it:
+#+begin_src C
+  never printf("This never runs, but never gets outdated, because compiler will shout at you if it does.\n");
+#+end_src
+
 
 ** Pretty ternaries
 Ternaries are frightening, so it won't hurt to add some plain

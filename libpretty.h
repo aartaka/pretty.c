@@ -32,6 +32,8 @@
 
 // Loops and blocks. Lisp, Lua, Ruby.
 #define until(...) while(not (__VA_ARGS__))
+#define always while(true)
+#define never while(false)
 #define repeat do
 #define begin {
 #define end }
