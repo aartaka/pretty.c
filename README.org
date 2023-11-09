@@ -58,8 +58,7 @@ Mainly modeled after Lua:
 - ~bitnot~ and ~bitxor~ for operations that used to be called
   inconsistently (~compl~ and ~xor~ respectively) in ~iso646.h~.
 - ~below~, ~above~, ~upto~, and ~downto~ comparison operators.
-- ~nil~ for ~NULL~, ~t~ for ~true~.
-- Toplevel type ~T~ (~void *~).
+- ~nil~ for ~NULL~.
 - ~until~ for negated ~while~.
 - ~repeat~ from Lua as an alias for ~do~.
 #+begin_src C
