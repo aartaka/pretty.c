@@ -23,9 +23,6 @@
 #define nil NULL
 #define t true
 
-// Top type.
-typedef void* T;
-
 // Ternaries.
 #define when
 #define unless not
@@ -72,21 +69,21 @@ typedef void* T;
 #define fortimes(var, times)                    \
         forrange(var, 0, times)
 
-#define let(var, type, ...)                             \
-        for (type var = (__VA_ARGS__),                  \
-                     *flag_ ## __LINE__ = (T) 1;        \
-             ((T) flag_ ## __LINE__);                   \
-             flag_ ## __LINE__ = (T) 0)
+#define let(var, type, ...)                                             \
+        for (type var = (__VA_ARGS__),                                  \
+                     *flag_ ## __LINE__ = (void *) 1;                   \
+             ((void *) flag_ ## __LINE__);                             \
+             flag_ ## __LINE__ = (void *) 0)
 
 #define local(var, type, ...)                   \
         let (var, type, __VA_ARGS__)
 
 // Tracking and freeing resources. Lisp, Python.
-#define with(close, var, ...)                           \
-        for (T flag_ ## __LINE__ = (T) 0,               \
-                     *var = (T) (__VA_ARGS__);          \
-             !flag_ ## __LINE__;                        \
-             (close)(var), flag_ ## __LINE__ = (T) 1)
+#define with(close, var, ...)                                   \
+        for (void *flag_ ## __LINE__ = (void *) 1,              \
+                     *var = (void *) (__VA_ARGS__);             \
+             flag_ ## __LINE__;                                \
+             (close)(var), flag_ ## __LINE__ = (void *) 0)
 
 static void *
 allocpy (size_t size, void *contents)
