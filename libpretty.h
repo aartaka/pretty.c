@@ -19,9 +19,8 @@
 #define upto <=
 #define downto >=
 
-// Lua/Lisp t/nil.
+// Lua/Lisp nil.
 #define nil NULL
-#define t true
 
 // Ternaries.
 #define when
