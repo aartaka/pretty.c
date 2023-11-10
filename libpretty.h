@@ -64,7 +64,7 @@
 
 // Ranges from INIT to TARGET. Python.
 #define forrange(var, init, target)                     \
-        forrangeby(var, long long int, init, target, 1)
+        forrangeby(var, int, init, target, 1)
 
 // Repeat X times. Lisp, Lua
 #define fortimes(var, times)                    \
