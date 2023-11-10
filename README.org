@@ -53,7 +53,7 @@ path.
   ~and~ for ~&&~ and ~or~ for ~||~. Neat!
 
 ** New aliases
-Mainly modeled after Lua:
+Mainly modeled after Lua and Lisp:
 - ~eq~, because ~iso646.h~ only has ~not_eq~.
 - ~bitnot~ and ~bitxor~ for operations that used to be called
   inconsistently (~compl~ and ~xor~ respectively) in ~iso646.h~.
@@ -81,11 +81,11 @@ Mainly modeled after Lua:
   always print("After all this time?\n");
 #+end_src
 - and ~never~ to comment out some code with just one keyword, while
-  still allowing the compiler to analyze/optimize it:
+  still allowing the compiler to analyze/optimize it (similar to
+  Clojure ~comment~ form):
 #+begin_src C
   never printf("This never runs, but never gets outdated, because compiler will shout at you if it does.\n");
 #+end_src
-
 
 ** Pretty ternaries
 Ternaries are frightening, so it won't hurt to add some plain
@@ -121,7 +121,7 @@ expression. Every time it iterates, ~var~ is set to a pointer to the
 respective array element. Yes, pointer—so that you can modify the
 element in place if you have to.
 #+begin_src C
-  foreach(i, int, 10, vector(10, int, 1, 2, 3, 3, 4, 5))
+  foreach (i, int, 10, vector(10, int, 1, 2, 3, 3, 4, 5))
           printf("%i\n", *i);
 #+end_src
 Also shows the use of ~vector~.
@@ -130,7 +130,7 @@ Also shows the use of ~vector~.
 Iterates over the provided varargs, binding each of these to ~type~-d
 ~var~. The loop above can be translated as:
 #+begin_src C
-  forthese(i, int, 1, 2, 3, 3, 4, 5)
+  forthese (i, int, 1, 2, 3, 3, 4, 5)
           printf("%i\n", i);
 #+end_src
 
@@ -156,7 +156,7 @@ Iterate over a range of numbers from ~init~ to
 ~target~. Pythonesque. Here's Celsius to Fahrenheit conversion loop
 with ~forrange~:
 #+begin_src C
-  forrange(c, -10, 20)
+  forrange (c, -10, 20)
           printf("Celsius %i = Fahrenheit %f\n", c, (32 + (c * 1.8)));
 #+end_src
 
@@ -171,7 +171,7 @@ Iterate ~type~-d ~var~ from ~iter~ to ~target~, stepping by ~by~ every
 time. Pythonesque.
 
 #+begin_src C
-  forrangeby(x, double, 1.0, 10.0, 0.5)
+  forrangeby (x, double, 1.0, 10.0, 0.5)
           printf("%f\n", x);
 #+end_src
 
