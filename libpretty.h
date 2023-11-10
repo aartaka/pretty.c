@@ -68,7 +68,9 @@
 
 // Repeat X times. Lisp, Lua
 #define fortimes(var, times)                    \
-        forrange(var, 0, times)
+        for (int var = 0, result_ ## __LINE__ = times; \
+             var < result_ ## __LINE__;                  \
+             var++)
 
 #define let(var, type, ...)                                             \
         for (type var = (__VA_ARGS__),                                  \
