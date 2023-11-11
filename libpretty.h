@@ -1,5 +1,5 @@
-#ifndef __LIBPRETTY_H__
-#define __LIBPRETTY_H__
+#ifndef LIBPRETTY_H
+#define LIBPRETTY_H
 
 #include <iso646.h>
 #include <stdbool.h>
@@ -134,4 +134,4 @@ err_part_of (int err, size_t length, int *errs)
 #define NOERROR 0
 #define NOERR 0
 
-#endif /* __LIBPRETTY_H__ */
+#endif /* LIBPRETTY_H */
