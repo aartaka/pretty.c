@@ -67,7 +67,7 @@
 #define fortimes(var, times)                    \
         for (int var = 0, result_ ## __LINE__ = times; \
              var < result_ ## __LINE__;                  \
-             var++)
+             ++var)
 
 #define let(var, type, ...)                                             \
         for (type var = (__VA_ARGS__),                                  \
