@@ -34,8 +34,6 @@
 #define always while(true)
 #define never while(false)
 #define repeat do
-#define begin {
-#define end }
 
 // For each loop from basically every language.
 #define foreach(var, type, length, ...)                                 \
