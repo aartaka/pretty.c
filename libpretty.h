@@ -109,7 +109,7 @@ allocpy (size_t size, void *contents)
 #define defer(...)                                      \
         for (bool flag_ ## __LINE__ = true;             \
              flag_ ## __LINE__;                         \
-             flag_ ## __LINE__ = false, __VA_ARGS__)
+             flag_ ## __LINE__ = false, (__VA_ARGS__))
 
 #define try                                     \
         errno = 0;                              \
