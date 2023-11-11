@@ -4,7 +4,6 @@
 #include <iso646.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <string.h>
 #include <errno.h>
 
 // Missing yet useful.
@@ -91,8 +90,10 @@
 static void *
 allocpy (size_t size, void *contents)
 {
-        void *allocated = malloc(size);
-        memcpy(allocated, contents, size);
+        char *allocated = malloc(size);
+        char *char_contents = (char *) contents;
+        for (int i = 0; i < size; ++i)
+                allocated[i] = char_contents[i];
         return allocated;
 }
 
