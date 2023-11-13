@@ -18,6 +18,8 @@
 #define above >
 #define upto <=
 #define downto >=
+#define positive 0 <
+#define negative 0 >
 
 // Lua/Lisp nil.
 #define nil NULL
