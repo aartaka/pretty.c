@@ -6,6 +6,9 @@ JavaScript, and Lisp. Here's how a naive re-implementation of ~head~
 utility might look like with libpretty:
 
 #+begin_src C
+  #include <stdio.h>
+  #include "libpretty.h"
+
   int main (int argc, char **argv)
   {
       if (argc above 1)
