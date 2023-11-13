@@ -60,19 +60,19 @@
               otherwise (var = var + (by))))
 
 // Ranges from INIT to TARGET. Python.
-#define forrange(var, init, target)                     \
+#define forrange(var, init, target)             \
         forrangeby(var, int, init, target, 1)
 
 // Repeat X times. Lisp, Lua
-#define fortimes(var, times)                    \
-        for (int var = 0, result_ ## __LINE__ = times; \
+#define fortimes(var, times)                             \
+        for (int var = 0, result_ ## __LINE__ = times;   \
              var < result_ ## __LINE__;                  \
              ++var)
 
 #define let(var, type, ...)                                             \
         for (type var = (__VA_ARGS__),                                  \
                      *flag_ ## __LINE__ = (void *) 1;                   \
-             ((void *) flag_ ## __LINE__);                             \
+             ((void *) flag_ ## __LINE__);                              \
              flag_ ## __LINE__ = (void *) 0)
 
 #define local(var, type, ...)                   \
@@ -82,7 +82,7 @@
 #define with(close, var, ...)                                   \
         for (void *flag_ ## __LINE__ = (void *) 1,              \
                      *var = (void *) (__VA_ARGS__);             \
-             flag_ ## __LINE__;                                \
+             flag_ ## __LINE__;                                 \
              (close)(var), flag_ ## __LINE__ = (void *) 0)
 
 static void *
