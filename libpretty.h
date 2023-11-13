@@ -38,19 +38,21 @@
 #define never while(false)
 #define repeat do
 
-// For each loop from basically every language.
-#define foreach(var, type, length, ...)                                 \
-        let (init ## __LINE__, type*, (__VA_ARGS__))                    \
-                fortimes (offset ## __LINE__, length)                   \
-                let (var, type*, (init ## __LINE__ + offset ## __LINE__))
+// Local/lexical bindings.
+#define let(var, type, ...)                                             \
+        for (type var = (__VA_ARGS__),                                  \
+                     *flag_ ## __LINE__ = (void *) 1;                   \
+             ((void *) flag_ ## __LINE__);                              \
+             flag_ ## __LINE__ = (void *) 0)
+#define local(var, type, ...)                   \
+        let (var, type, __VA_ARGS__)
 
-// Loop over the provided arguments.
-#define forthese(var, type, ...)                                        \
-        let (init ## __LINE__, type*, (type[]){__VA_ARGS__})            \
-                fortimes (offset ## __LINE__,                           \
-                          (sizeof((type[]){__VA_ARGS__})                \
-                           / sizeof(type)))                             \
-                let (var, type, *(init ## __LINE__ + offset ## __LINE__))
+// Tracking and freeing resources. Lisp, Python.
+#define with(close, var, ...)                                   \
+        for (void *flag_ ## __LINE__ = (void *) 1,              \
+                     *var = (void *) (__VA_ARGS__);             \
+             flag_ ## __LINE__;                                 \
+             (close)(var), flag_ ## __LINE__ = (void *) 0)
 
 // Ranges from INIT to TARGET. Python range() syntax.
 #define forrangeby(var, type, init, target, by)         \
@@ -72,21 +74,19 @@
              var < result_ ## __LINE__;                  \
              ++var)
 
-#define let(var, type, ...)                                             \
-        for (type var = (__VA_ARGS__),                                  \
-                     *flag_ ## __LINE__ = (void *) 1;                   \
-             ((void *) flag_ ## __LINE__);                              \
-             flag_ ## __LINE__ = (void *) 0)
+// For each loop from basically every language.
+#define foreach(var, type, length, ...)                                 \
+        let (init ## __LINE__, type*, (__VA_ARGS__))                    \
+                fortimes (offset ## __LINE__, length)                   \
+                let (var, type*, (init ## __LINE__ + offset ## __LINE__))
 
-#define local(var, type, ...)                   \
-        let (var, type, __VA_ARGS__)
-
-// Tracking and freeing resources. Lisp, Python.
-#define with(close, var, ...)                                   \
-        for (void *flag_ ## __LINE__ = (void *) 1,              \
-                     *var = (void *) (__VA_ARGS__);             \
-             flag_ ## __LINE__;                                 \
-             (close)(var), flag_ ## __LINE__ = (void *) 0)
+// Loop over the provided arguments.
+#define forthese(var, type, ...)                                        \
+        let (init ## __LINE__, type*, (type[]){__VA_ARGS__})            \
+                fortimes (offset ## __LINE__,                           \
+                          (sizeof((type[]){__VA_ARGS__})                \
+                           / sizeof(type)))                             \
+                let (var, type, *(init ## __LINE__ + offset ## __LINE__))
 
 static void *
 allocpy (size_t size, void *contents)
