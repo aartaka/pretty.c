@@ -77,13 +77,13 @@ Mainly modeled after Lua and Lisp:
   // until( a > 15 ) */
 #+end_src
 - ~begin~ and ~end~ block markers from BASIC, Ruby etc.
-- ~always~, so that you can make infinite loops
+- ~always~, so that you can make infinite (event? server?) loops
 #+begin_src C
   always print("After all this time?\n");
 #+end_src
 - and ~never~ to comment out some code with just one keyword, while
   still allowing the compiler to analyze/optimize it (similar to
-  Clojure ~comment~ form):
+  [[https://clojuredocs.org/clojure.core/comment][Clojure ~comment~ form]]):
 #+begin_src C
   never printf("This never runs, but never gets outdated, because compiler will shout at you if it does.\n");
 #+end_src
