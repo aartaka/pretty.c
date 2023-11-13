@@ -4,11 +4,8 @@
 #include <iso646.h>
 #include <stdlib.h>
 #include <errno.h>
-
-#if __STDC_VERSION__ >= 199901L
 #include <stdbool.h>
 #include <stdint.h>
-#endif
 
 // Missing yet useful.
 #define eq ==
