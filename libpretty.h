@@ -69,9 +69,9 @@
         forrangeby(var, int, init, target, 1)
 
 // Repeat X times. Lisp, Lua
-#define fortimes(var, times)                             \
-        for (int var = 0, result_ ## __LINE__ = times;   \
-             var < result_ ## __LINE__;                  \
+#define fortimes(var, ...)                                      \
+        for (int var = 0, result_ ## __LINE__ = (__VA_ARGS__);  \
+             var < result_ ## __LINE__;                         \
              ++var)
 
 // For each loop from basically every language.
