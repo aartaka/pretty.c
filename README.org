@@ -82,7 +82,7 @@ Mainly modeled after Lua and Lisp:
 - ~begin~ and ~end~ block markers from BASIC, Ruby etc.
 - ~always~, so that you can make infinite (event? server?) loops
 #+begin_src C
-  always print("After all this time?\n");
+  always printf("After all this time?\n");
 #+end_src
 - and ~never~ to comment out some code with just one keyword, while
   still allowing the compiler to analyze/optimize it (similar to
