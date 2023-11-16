@@ -89,11 +89,11 @@
                 let (var, type, *(init ## __LINE__ + offset ## __LINE__))
 
 static void *
-allocpy (size_t size, void *contents)
+allocpy (int size, void *contents)
 {
         char *allocated = malloc(size);
         char *char_contents = (char *) contents;
-        for (int i = 0; i < size; ++i)
+        fortimes (i, size)
                 allocated[i] = char_contents[i];
         return allocated;
 }
