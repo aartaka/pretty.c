@@ -56,6 +56,11 @@ path.
 - [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] :: for readable alternatives to regular operators,
   including ~and~ for ~&&~ and ~or~ for ~||~. Neat!
 
+** Simple macros
+Everyone defines these, so why not provide them?
+- ~max~ and ~min~ of two numbers.
+- ~len~ for array length.
+
 ** New types
 Type aliases:
 - ~string~ :: ~char*~.

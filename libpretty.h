@@ -19,6 +19,14 @@ typedef char  byte;
 typedef byte* bytes;
 typedef void* any;
 
+// Small macros.
+#undef min
+#define min(a, b) ((a) < (b) ? (a) : (b))
+#undef max
+#define max(a, b) ((a) < (b) ? (b) : (a))
+#undef len
+#define len(a)    (sizeof(a) / sizeof(a)[0])
+
 // Comparion operators. Lisp loop macro keywords.
 #define below <
 #define above >
