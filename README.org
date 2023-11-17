@@ -114,7 +114,6 @@ unnecessary:
          then 42 only;
 #+end_src
 
-
 ** ~for~ Macros
 These macros are aliases for certain ~for~ loop pattern, each
 abstracting away some of the frequent ~for~ loop uses.
@@ -170,7 +169,6 @@ unsigned. And ~init~ might be greater than ~target~.
 ~forrange~ is implemented with...
 
 *** ~forrangeby (var, type, init, target, by)~
-
 Iterate ~type~-d ~var~ from ~iter~ to ~target~, stepping by ~by~ every
 time. Pythonesque.
 
