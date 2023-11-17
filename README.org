@@ -9,7 +9,7 @@ utility might look like with libpretty:
   #include <stdio.h>
   #include "libpretty.h"
 
-  int main (int argc, char **argv)
+  int main (int argc, string argv[])
   {
       if (argc above 1)
           with (fclose, f, fopen(argv[1], "r"))
@@ -55,6 +55,13 @@ path.
 - [[https://en.cppreference.com/w/c/types/integer][stdint.h]] :: for fixed-width integer types like ~uint64_t~.
 - [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] :: for readable alternatives to regular operators,
   including ~and~ for ~&&~ and ~or~ for ~||~. Neat!
+
+** New types
+Type aliases:
+- ~string~ :: ~char*~.
+- ~byte~ :: ~char~.
+- ~bytes~ :: ~char*~.
+- ~any~ :: ~void*~.
 
 ** New aliases
 Mainly modeled after Lua and Lisp:
