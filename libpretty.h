@@ -27,7 +27,7 @@ typedef void* any;
 #define max(a, b) ((a) < (b) ? (b) : (a))
 #undef len
 #define len(...) _Generic((__VA_ARGS__),                                \
-                          string: strlen(__VA_ARGS__),                  \
+                          string: strlen((string)(__VA_ARGS__)),              \
                           default: (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0]))
 
 // Comparion operators. Lisp loop macro keywords.
