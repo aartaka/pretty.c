@@ -16,7 +16,7 @@ utility might look like with libpretty:
               fortimes (line, 10)
                   with (free, buf, vector(200, char, 0))
                       when (fgets(buf, 200, f))
-                          then puts(buf)
+                          then printf(buf)
                           otherwise 0;
       else
           puts("Please provide an input file");
