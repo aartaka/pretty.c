@@ -15,7 +15,7 @@ utility might look like with libpretty:
           with (fclose, f, fopen(argv[1], "r"))
               fortimes (line, 10)
                   with (free, buf, vector(200, char, 0))
-                      when (positive fscanf(f, "%s\n", buf))
+                      when (fgets(buf, 200, f))
                           then puts(buf)
                           otherwise 0;
       else
