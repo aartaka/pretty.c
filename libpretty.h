@@ -13,6 +13,12 @@
 #define bitnot ~
 #define bitxor ^
 
+// Frequently used types.
+typedef char* string;
+typedef char  byte;
+typedef byte* bytes;
+typedef void* any;
+
 // Comparion operators. Lisp loop macro keywords.
 #define below <
 #define above >
@@ -39,20 +45,20 @@
 #define repeat do
 
 // Local/lexical bindings.
-#define let(var, type, ...)                                             \
-        for (type var = (__VA_ARGS__),                                  \
-                     *flag_ ## __LINE__ = (void *) 1;                   \
-             ((void *) flag_ ## __LINE__);                              \
-             flag_ ## __LINE__ = (void *) 0)
+#define let(var, type, ...)                             \
+        for (type var = (__VA_ARGS__),                  \
+                     *flag_ ## __LINE__ = (any) 1;      \
+             ((any) flag_ ## __LINE__);                 \
+             flag_ ## __LINE__ = (any) 0)
 #define local(var, type, ...)                   \
         let (var, type, __VA_ARGS__)
 
 // Tracking and freeing resources. Lisp, Python.
 #define with(close, var, ...)                                   \
-        for (void *flag_ ## __LINE__ = (void *) 1,              \
-                     *var = (void *) (__VA_ARGS__);             \
+        for (void *flag_ ## __LINE__ = (any) 1,                 \
+                     *var = (any) (__VA_ARGS__);                \
              flag_ ## __LINE__;                                 \
-             (close)(var), flag_ ## __LINE__ = (void *) 0)
+             (close)(var), flag_ ## __LINE__ = (any) 0)
 
 // Ranges from INIT to TARGET. Python range() syntax.
 #define forrangeby(var, type, init, target, by)         \
@@ -88,11 +94,11 @@
                            / sizeof(type)))                             \
                 let (var, type, *(init ## __LINE__ + offset ## __LINE__))
 
-static void *
-allocpy (int size, void *contents)
+static any
+allocpy (int size, any contents)
 {
-        char *allocated = malloc(size);
-        char *char_contents = (char *) contents;
+        bytes allocated = malloc(size);
+        bytes char_contents = (bytes) contents;
         fortimes (i, size)
                 allocated[i] = char_contents[i];
         return allocated;
