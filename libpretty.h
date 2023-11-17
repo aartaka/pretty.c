@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <string.h>
 
 // Missing yet useful.
 #define eq ==
@@ -25,7 +26,9 @@ typedef void* any;
 #undef max
 #define max(a, b) ((a) < (b) ? (b) : (a))
 #undef len
-#define len(a)    (sizeof(a) / sizeof(a)[0])
+#define len(a) _Generic((a),                                    \
+                        string: strlen(a),                      \
+                        default: (sizeof(a) / sizeof(a)[0]))
 
 // Comparion operators. Lisp loop macro keywords.
 #define below <
@@ -106,9 +109,7 @@ static any
 allocpy (int size, any contents)
 {
         bytes allocated = malloc(size);
-        bytes char_contents = (bytes) contents;
-        fortimes (i, size)
-                allocated[i] = char_contents[i];
+        memcpy(allocated, contents, size);
         return allocated;
 }
 
