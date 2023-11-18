@@ -67,6 +67,11 @@ Type aliases:
 - ~byte~ :: ~char~.
 - ~bytes~ :: ~char*~.
 - ~any~ :: ~void*~.
+- Integer shortcuts:
+  - ~uchar~.
+  - ~ushort~.
+  - ~uint~.
+  - ~ulong~
 
 ** New aliases
 Mainly modeled after Lua and Lisp:
