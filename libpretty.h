@@ -19,6 +19,8 @@ typedef char* string;
 typedef char  byte;
 typedef byte* bytes;
 typedef void* any;
+// Suckless, and consistent with uint32_t etc.
+typedef unsigned int uint;
 
 // Small macros.
 #undef min
