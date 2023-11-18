@@ -42,6 +42,9 @@ typedef void* any;
 #define downto >=
 #define positive 0 <
 #define negative 0 >
+#define ispos 0 <
+#define isneg 0 >
+#define isnull nil ==
 
 // Lua/Lisp nil.
 #define nil NULL
