@@ -20,7 +20,10 @@ typedef char  byte;
 typedef byte* bytes;
 typedef void* any;
 // Suckless, and consistent with uint32_t etc.
+typedef unsigned char uchar;
 typedef unsigned int uint;
+typedef unsigned long ulong;
+typedef unsigned short ushort;
 
 // Small macros.
 #undef min
