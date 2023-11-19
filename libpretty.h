@@ -49,6 +49,7 @@ typedef unsigned short ushort;
 #define negative 0 >
 #define ispos 0 <
 #define isneg 0 >
+#define iszero 0 ==
 #define isnull nil ==
 
 // Lua/Lisp nil.
