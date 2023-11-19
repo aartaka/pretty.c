@@ -30,12 +30,13 @@ typedef unsigned long  ulong;
 #define min(a, b) (when (a) below (b) \
                    then (a)           \
                    otherwise (b))
+
 #undef max
 #define max(a, b) (when (a) above (b)           \
                    then (a)                     \
                    otherwise (b))
-#undef len
 
+#undef len
 #if __STDC_VERSION__ >= 201112
 #define len(...) _Generic((__VA_ARGS__),                                \
                           string: strlen((string)(__VA_ARGS__)),        \
