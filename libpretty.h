@@ -27,14 +27,18 @@ typedef unsigned long  ulong;
 
 // Small macros.
 #undef min
-#define min(a, b) ((a) < (b) ? (a) : (b))
+#define min(a, b) (when (a) below (b) \
+                   then (a)           \
+                   otherwise (b))
 #undef max
-#define max(a, b) ((a) < (b) ? (b) : (a))
+#define max(a, b) (when (a) above (b)           \
+                   then (a)                     \
+                   otherwise (b))
 #undef len
 
 #if __STDC_VERSION__ >= 201112
 #define len(...) _Generic((__VA_ARGS__),                                \
-                          string: strlen((string)(__VA_ARGS__)),              \
+                          string: strlen((string)(__VA_ARGS__)),        \
                           default: (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0]))
 #else
 #define len(...) (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0])
