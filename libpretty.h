@@ -165,7 +165,7 @@ err_part_of (int err, size_t length, int *errs)
 
 #define catch(...)                                                      \
         if (err_part_of(errno,                                          \
-                        sizeof((int[]){__VA_ARGS__}) / sizeof(int),     \
+                        len((int[]){__VA_ARGS__}),                      \
                         (int[]){__VA_ARGS__}))
 #define NOERROR 0
 #define NOERR 0
