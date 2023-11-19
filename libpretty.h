@@ -74,15 +74,6 @@ typedef unsigned long  ulong;
 #define never while(false)
 #define repeat do
 
-// Local/lexical bindings.
-#define let(var, type, ...)                             \
-        for (type var = (__VA_ARGS__),                  \
-                     *flag_ ## __LINE__ = (any) 1;      \
-             ((any) flag_ ## __LINE__);                 \
-             flag_ ## __LINE__ = (any) 0)
-#define local(var, type, ...)                   \
-        let (var, type, __VA_ARGS__)
-
 // Tracking and freeing resources. Lisp, Python.
 #define with(close, var, ...)                                   \
         for (void *flag_ ## __LINE__ = (any) 1,                 \
@@ -100,7 +91,6 @@ typedef unsigned long  ulong;
               then (var = var - (by))                   \
               otherwise (var = var + (by))))
 
-// Ranges from INIT to TARGET. Python.
 #define forrange(var, init, target)             \
         forrangeby(var, int, init, target, 1)
 
@@ -109,6 +99,15 @@ typedef unsigned long  ulong;
         for (int var = 0, result_ ## __LINE__ = (__VA_ARGS__);  \
              var < result_ ## __LINE__;                         \
              ++var)
+
+// Local/lexical bindings.
+#define let(var, type, ...)                             \
+        for (type var = (__VA_ARGS__),                  \
+                     *flag_ ## __LINE__ = (any) 1;      \
+             ((any) flag_ ## __LINE__);                 \
+             flag_ ## __LINE__ = (any) 0)
+#define local(var, type, ...)                   \
+        let (var, type, __VA_ARGS__)
 
 // For each loop from basically every language.
 #define foreach(var, type, length, ...)                                 \
