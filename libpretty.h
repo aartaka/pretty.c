@@ -72,13 +72,20 @@ typedef unsigned long  ulong;
 #define never while(false)
 #define repeat do
 
-// TODO: auto type inference with on C23.
 // Tracking and freeing resources. Lisp, Python.
+#if defined(__GNUC__) || __STDC_VERSION__ >= 202311L
+#define with(close, var, ...)                                     \
+        for (typeof((__VA_ARGS__)) var = (__VA_ARGS__)            \
+                     *flag_ ## __LINE__ = (void*) true;           \
+             flag_ ## __LINE__;                                   \
+             (close)(var), flag_ ## __LINE__ = (void*) false)
+#else
 #define with(close, var, ...)                                   \
-        for (void *flag_ ## __LINE__ = (void*) true,              \
-                     *var = (void*) (__VA_ARGS__);                \
+        for (void *flag_ ## __LINE__ = (void*) true,            \
+                     *var = (void*) (__VA_ARGS__);              \
              flag_ ## __LINE__;                                 \
              (close)(var), flag_ ## __LINE__ = (void*) false)
+#endif
 
 // Ranges from INIT to TARGET. Python range() syntax.
 #define forrangeby(var, type, init, target, by)         \
@@ -93,12 +100,19 @@ typedef unsigned long  ulong;
 #define forrange(var, init, target)             \
         forrangeby(var, int, init, target, 1)
 
-// TODO: auto type inference on C23.
 // Repeat X times. Lisp, Lua
+#if defined(__GNUC__) || __STDC_VERSION__ >= 202311L
+#define fortimes(var, ...)                                              \
+        for (typeof((__VA_ARGS__)) result_ ## __LINE__ = (__VA_ARGS__), \
+                     var = (typeof((__VA_ARGS__))) 0;                   \
+             var < result_ ## __LINE__;                                 \
+             ++var)
+#else
 #define fortimes(var, ...)                                      \
         for (int var = 0, result_ ## __LINE__ = (__VA_ARGS__);  \
              var < result_ ## __LINE__;                         \
              ++var)
+#endif
 
 // Local/lexical bindings.
 #define let(var, type, ...)                             \
