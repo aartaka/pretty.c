@@ -69,22 +69,16 @@ typedef unsigned long  ulong;
 #define repeat do
 
 // Tracking and freeing resources. Lisp, Python.
-#if __STDC_VERSION__ >= 202311L
+#if __STDC_VERSION__ >= 202311L || defined(__GNUC__)
 #define with(close, var, ...)                                   \
-        for (typeof_unqual((__VA_ARGS__)) var = (__VA_ARGS__)   \
+        for (typeof((__VA_ARGS__)) var = (__VA_ARGS__)          \
                      *flag_ ## __LINE__ = (void*) true;         \
              flag_ ## __LINE__;                                 \
              (close)(var), flag_ ## __LINE__ = (void*) false)
-#elif defined(__GNUC__)
-#define with(close, var, ...)                                           \
-        for (__typeof_unqual__((__VA_ARGS__)) var = (__VA_ARGS__)       \
-                     *flag_ ## __LINE__ = (void*) true;                 \
-             flag_ ## __LINE__;                                         \
-             (close)(var), flag_ ## __LINE__ = (void*) false)
 #else
 #define with(close, var, ...)                                   \
-        for (void *flag_ ## __LINE__ = (void*) true,            \
-                     *var = (void*) (__VA_ARGS__);              \
+        for (void *var = (void*) (__VA_ARGS__),                 \
+                     *flag_ ## __LINE__ = (void*) true;         \
              flag_ ## __LINE__;                                 \
              (close)(var), flag_ ## __LINE__ = (void*) false)
 #endif
@@ -103,18 +97,13 @@ typedef unsigned long  ulong;
         forrangeby(var, int, init, target, 1)
 
 // Repeat X times. Lisp, Lua
-#if  __STDC_VERSION__ >= 202311L
+#if  __STDC_VERSION__ >= 202311L || defined(__GNUC__)
 #define fortimes(var, ...)                                              \
-        for (typeof_unqual((__VA_ARGS__)) result_ ## __LINE__ = (__VA_ARGS__), \
+        for (typeof((__VA_ARGS__)) result_ ## __LINE__ = (__VA_ARGS__), \
                      var = (typeof((__VA_ARGS__))) 0;                   \
              var < result_ ## __LINE__;                                 \
              ++var)
-#elif defined(__GNUC__)
-#define fortimes(var, ...)                                              \
-        for (__typeof_unqual__((__VA_ARGS__)) result_ ## __LINE__ = (__VA_ARGS__), \
-                     var = (typeof((__VA_ARGS__))) 0;                   \
-             var < result_ ## __LINE__;                                 \
-             ++var)
+#else
 #define fortimes(var, ...)                                      \
         for (int var = 0, result_ ## __LINE__ = (__VA_ARGS__);  \
              var < result_ ## __LINE__;                         \
