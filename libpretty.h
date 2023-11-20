@@ -19,7 +19,7 @@
 // Frequently used types.
 typedef char* string;
 typedef char  byte;
-typedef byte* bytes;
+typedef char* bytes;
 typedef void* any;
 // Suckless, and consistent with uint32_t etc.
 typedef unsigned char  uchar;
@@ -29,14 +29,10 @@ typedef unsigned long  ulong;
 
 // Small macros.
 #undef min
-#define min(a, b) (when (a) below (b) \
-                   then (a)           \
-                   otherwise (b))
+#define min(a, b) ((a) < (b) ? (a) : (b))
 
 #undef max
-#define max(a, b) (when (a) above (b)           \
-                   then (a)                     \
-                   otherwise (b))
+#define max(a, b) ((a) > (b) ? (a) : (b))
 
 #undef len
 #if __STDC_VERSION__ >= 201112
@@ -57,21 +53,21 @@ typedef unsigned long  ulong;
 #define downto   >=
 #define positive 0 <
 #define negative 0 >
-#define ispos    positive
-#define isneg    negative
+#define ispos    0 <
+#define isneg    0 >
 #define iszero   0 ==
-#define isnull   nil ==
+#define isnull   NULL ==
 
 // Ternaries.
 #define when
 #define unless not
 #define then ?
 #define otherwise :
-#define notherwise : nil
-#define only : nil
+#define notherwise : NULL
+#define only : NULL
 
 // Loops and blocks. Lisp, Lua, Ruby.
-#define until(...) while(not (__VA_ARGS__))
+#define until(...) while(!(__VA_ARGS__))
 #define always while(true)
 #define never while(false)
 #define repeat do
@@ -79,10 +75,10 @@ typedef unsigned long  ulong;
 // TODO: auto type inference with on C23.
 // Tracking and freeing resources. Lisp, Python.
 #define with(close, var, ...)                                   \
-        for (void *flag_ ## __LINE__ = (any) true,              \
-                     *var = (any) (__VA_ARGS__);                \
+        for (void *flag_ ## __LINE__ = (void*) true,              \
+                     *var = (void*) (__VA_ARGS__);                \
              flag_ ## __LINE__;                                 \
-             (close)(var), flag_ ## __LINE__ = (any) false)
+             (close)(var), flag_ ## __LINE__ = (void*) false)
 
 // Ranges from INIT to TARGET. Python range() syntax.
 #define forrangeby(var, type, init, target, by)         \
@@ -107,9 +103,9 @@ typedef unsigned long  ulong;
 // Local/lexical bindings.
 #define let(var, type, ...)                             \
         for (type var = (__VA_ARGS__),                  \
-                     *flag_ ## __LINE__ = (any) true;      \
+                     *flag_ ## __LINE__ = (void*) true;      \
              flag_ ## __LINE__;                            \
-             flag_ ## __LINE__ = (any) false)
+             flag_ ## __LINE__ = (void*) false)
 #define local(var, type, ...)                   \
         let (var, type, __VA_ARGS__)
 
@@ -127,10 +123,10 @@ typedef unsigned long  ulong;
                            / sizeof(type)))                             \
                 let (var, type, *(init ## __LINE__ + offset ## __LINE__))
 
-static any
-allocpy (int size, any contents)
+static void*
+allocpy (int size, void *contents)
 {
-        bytes allocated = malloc(size);
+        char* allocated = malloc(size);
         memcpy(allocated, contents, size);
         return allocated;
 }
@@ -161,8 +157,8 @@ allocpy (int size, any contents)
 static bool
 err_part_of (int err, size_t length, int *errs)
 {
-        foreach(i, int, length, errs)
-                if (err eq *i)
+        for (int i; i < length; ++i)
+                if (err == errs[i])
                         return true;
         return false;
 }
