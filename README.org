@@ -79,8 +79,8 @@ Mainly modeled after Lua and Lisp:
 - ~bitnot~ and ~bitxor~ for operations that used to be called
   inconsistently (~compl~ and ~xor~ respectively) in ~iso646.h~.
 - ~below~, ~above~, ~upto~, and ~downto~ comparison operators.
-- ~positive~, ~negative~, ~ispos~, ~isneg~, ~isnull~ as predicates for
-  numbers/data.
+- ~positive~, ~negative~, ~ispos~, ~isneg~, ~isnull~, ~iszero~ as
+  predicates for numbers/data.
 - ~nil~ for ~NULL~.
 - ~until~ for negated ~while~.
 - ~repeat~ from Lua as an alias for ~do~.
