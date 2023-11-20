@@ -127,8 +127,8 @@ typedef unsigned long  ulong;
 // Local/lexical bindings.
 #define let(var, type, ...)                             \
         for (type var = (__VA_ARGS__),                  \
-                     *flag_ ## __LINE__ = (void*) true;      \
-             flag_ ## __LINE__;                            \
+                     *flag_ ## __LINE__ = (void*) true; \
+             flag_ ## __LINE__;                         \
              flag_ ## __LINE__ = (void*) false)
 #define local(var, type, ...)                   \
         let (var, type, __VA_ARGS__)
@@ -187,9 +187,9 @@ err_part_of (int err, size_t length, int *errs)
         return false;
 }
 
-#define catch(...)                                                      \
-        if (err_part_of(errno,                                          \
-                        len((int[]){__VA_ARGS__}),                      \
+#define catch(...)                                      \
+        if (err_part_of(errno,                          \
+                        len((int[]){__VA_ARGS__}),      \
                         (int[]){__VA_ARGS__}))
 #define NOERROR 0
 #define NOERR 0
