@@ -36,7 +36,7 @@ typedef unsigned long  ulong;
 #undef len
 #if __STDC_VERSION__ >= 201112
 #define len(...) _Generic((__VA_ARGS__),                                \
-                          string: strlen((string)(__VA_ARGS__)),        \
+                          char*: strlen((char*)(__VA_ARGS__)),          \
                           default: (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0]))
 #else
 #define len(...) (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0])
