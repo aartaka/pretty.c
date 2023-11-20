@@ -27,13 +27,8 @@ typedef unsigned int   uint;
 typedef unsigned long  ulong;
 
 // Small macros.
-#undef min
 #define min(a, b) ((a) < (b) ? (a) : (b))
-
-#undef max
 #define max(a, b) ((a) > (b) ? (a) : (b))
-
-#undef len
 #if __STDC_VERSION__ >= 201112
 #define len(...) _Generic((__VA_ARGS__),                                \
                           char*: strlen((char*)(__VA_ARGS__)),          \
