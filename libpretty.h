@@ -18,8 +18,6 @@
 #define bitnot ~
 #define bitxor ^
 
-// TODO: equal on floats, strings etc.
-
 // Frequently used types. Suckless and Go.
 typedef char*          string;
 typedef char           byte;
