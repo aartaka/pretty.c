@@ -122,15 +122,18 @@ typedef unsigned long  ulong;
 // For each loop from basically every language.
 #define foreach(var, type, length, ...)                                 \
         let (init ## __LINE__, type*, (__VA_ARGS__))                    \
-                fortimes (offset ## __LINE__, length)                   \
+                for (int offset ## __LINE__ = 0;                        \
+                     offset ## __LINE__ < length;                       \
+                     offset ## __LINE__ += 1)                           \
                 let (var, type*, (init ## __LINE__ + offset ## __LINE__))
 
 // Loop over the provided arguments.
 #define forthese(var, type, ...)                                        \
         let (init ## __LINE__, type*, (type[]){__VA_ARGS__})            \
-                fortimes (offset ## __LINE__,                           \
-                          (sizeof((type[]){__VA_ARGS__})                \
-                           / sizeof(type)))                             \
+                for (int offset ## __LINE__ = 0;                        \
+                     offset ## __LINE__ < (sizeof((type[]){__VA_ARGS__}) \
+                                           / sizeof(type));             \
+                     offset ## __LINE__ += 1)                           \
                 let (var, type, *(init ## __LINE__ + offset ## __LINE__))
 
 static void*
