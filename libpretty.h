@@ -14,6 +14,8 @@
 #define bitnot ~
 #define bitxor ^
 
+// TODO: equal on floats, strings etc.
+
 // Frequently used types.
 typedef char* string;
 typedef char  byte;
@@ -74,6 +76,7 @@ typedef unsigned long  ulong;
 #define never while(false)
 #define repeat do
 
+// TODO: auto type inference with on C23.
 // Tracking and freeing resources. Lisp, Python.
 #define with(close, var, ...)                                   \
         for (void *flag_ ## __LINE__ = (any) true,              \
@@ -94,6 +97,7 @@ typedef unsigned long  ulong;
 #define forrange(var, init, target)             \
         forrangeby(var, int, init, target, 1)
 
+// TODO: auto type inference on C23.
 // Repeat X times. Lisp, Lua
 #define fortimes(var, ...)                                      \
         for (int var = 0, result_ ## __LINE__ = (__VA_ARGS__);  \
