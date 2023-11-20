@@ -47,20 +47,20 @@ typedef unsigned long  ulong;
 #define len(...) (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0])
 #endif
 
-// Comparion operators. Lisp loop macro keywords.
-#define below <
-#define above >
-#define upto <=
-#define downto >=
-#define positive 0 <
-#define negative 0 >
-#define ispos 0 <
-#define isneg 0 >
-#define iszero 0 ==
-#define isnull nil ==
-
 // Lua/Lisp nil.
 #define nil NULL
+
+// Comparion operators. Lisp loop macro and SQL keywords.
+#define below    <
+#define above    >
+#define upto     <=
+#define downto   >=
+#define positive 0 <
+#define negative 0 >
+#define ispos    positive
+#define isneg    negative
+#define iszero   0 ==
+#define isnull   nil ==
 
 // Ternaries.
 #define when
