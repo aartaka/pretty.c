@@ -16,12 +16,11 @@
 
 // TODO: equal on floats, strings etc.
 
-// Frequently used types.
-typedef char* string;
-typedef char  byte;
-typedef char* bytes;
-typedef void* any;
-// Suckless, and consistent with uint32_t etc.
+// Frequently used types. Suckless and Go.
+typedef char*          string;
+typedef char           byte;
+typedef char*          bytes;
+typedef void*          any;
 typedef unsigned char  uchar;
 typedef unsigned short ushort;
 typedef unsigned int   uint;
