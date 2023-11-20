@@ -76,10 +76,10 @@ typedef unsigned long  ulong;
 
 // Tracking and freeing resources. Lisp, Python.
 #define with(close, var, ...)                                   \
-        for (void *flag_ ## __LINE__ = (any) 1,                 \
+        for (void *flag_ ## __LINE__ = (any) true,              \
                      *var = (any) (__VA_ARGS__);                \
              flag_ ## __LINE__;                                 \
-             (close)(var), flag_ ## __LINE__ = (any) 0)
+             (close)(var), flag_ ## __LINE__ = (any) false)
 
 // Ranges from INIT to TARGET. Python range() syntax.
 #define forrangeby(var, type, init, target, by)         \
@@ -103,9 +103,9 @@ typedef unsigned long  ulong;
 // Local/lexical bindings.
 #define let(var, type, ...)                             \
         for (type var = (__VA_ARGS__),                  \
-                     *flag_ ## __LINE__ = (any) 1;      \
-             ((any) flag_ ## __LINE__);                 \
-             flag_ ## __LINE__ = (any) 0)
+                     *flag_ ## __LINE__ = (any) true;      \
+             flag_ ## __LINE__;                            \
+             flag_ ## __LINE__ = (any) false)
 #define local(var, type, ...)                   \
         let (var, type, __VA_ARGS__)
 
