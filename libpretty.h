@@ -167,7 +167,7 @@ allocpy (int size, void *contents)
 static bool
 err_part_of (int err, size_t length, int *errs)
 {
-        for (int i; i < length; ++i)
+        for (int i = 0; i < length; ++i)
                 if (err == errs[i])
                         return true;
         return false;
