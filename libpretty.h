@@ -1,6 +1,10 @@
 #ifndef LIBPRETTY_H
 #define LIBPRETTY_H
 
+#if __STDC_VERSION__ < 199901L
+#error "Libpretty only works on C99+. Switch to it if you didn't yet."
+#endif
+
 #include <iso646.h>
 #include <stdlib.h>
 #include <errno.h>
