@@ -16,6 +16,7 @@
 
 // Missing yet useful.
 #define eq ==
+#define is ==
 // Fixing inconsistent bit operation names.
 #define bitnot ~
 #define bitxor ^
@@ -51,7 +52,6 @@ typedef unsigned long  ulong;
 #define downto   >=
 #define positive 0 <
 #define negative 0 >
-#define isnull   NULL ==
 
 // Ternaries and conditionals.
 #define elif else if
