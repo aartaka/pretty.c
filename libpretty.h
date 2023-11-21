@@ -94,11 +94,23 @@ typedef unsigned long  ulong;
               : (var += (by))))
 
 #if __STDC_VERSION__ >= 202311L || defined(__GNUC__)
-#define forrange(var, init, target)             \
-        forrangeby(var, typeof((init)+(target)), init, target, 1)
+#define forrange(var, init, target)                                     \
+        for (typeof((init)+(target)) init_ ## __LINE__ = (init),        \
+                     var = init_ ## __LINE__,                           \
+                     target_ ## __LINE__ = (target);                    \
+             ((init_ ## __LINE__ >= target_ ## __LINE__)                \
+              ? (var > target_ ## __LINE__)                             \
+              : (var < target_ ## __LINE__));                           \
+             var += ((init_ ## __LINE__ >= target_ ## __LINE__) ? -1 : +1))
 #else
-#define forrange(var, init, target)             \
-        forrangeby(var, int, init, target, 1)
+#define forrange(var, init, target)                                     \
+        for (int init_ ## __LINE__ = (init),                            \
+                     var = init_ ## __LINE__,                           \
+                     target_ ## __LINE__ = (target);                    \
+             ((init_ ## __LINE__ >= target_ ## __LINE__)                \
+              ? (var > target_ ## __LINE__)                             \
+              : (var < target_ ## __LINE__));                           \
+             var += ((init_ ## __LINE__ >= target_ ## __LINE__) ? -1 : +1))
 #endif
 
 // Repeat X times. Lisp, Lua
