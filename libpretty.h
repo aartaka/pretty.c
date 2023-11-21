@@ -107,9 +107,7 @@ typedef unsigned long  ulong;
         for (int init_ ## __LINE__ = (init),                            \
                      var = init_ ## __LINE__,                           \
                      target_ ## __LINE__ = (target);                    \
-             ((init_ ## __LINE__ >= target_ ## __LINE__)                \
-              ? (var > target_ ## __LINE__)                             \
-              : (var < target_ ## __LINE__));                           \
+             var != target_ ## __LINE__;                                \
              var += ((init_ ## __LINE__ >= target_ ## __LINE__) ? -1 : +1))
 #endif
 
