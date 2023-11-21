@@ -86,12 +86,12 @@ typedef unsigned long  ulong;
 // Ranges from INIT to TARGET. Python range() syntax.
 #define forrangeby(var, type, init, target, by)         \
         for (type var = (type)(init);                   \
-             (when ((init) >= ((type) target))          \
-              then (var > ((type) target))              \
-              otherwise (var < ((type) target)));       \
-             (when ((init) >= ((type) target))          \
-              then (var -= (by))                        \
-              otherwise (var += (by))))
+             (((init) >= ((type) target))          \
+              ? (var > ((type) target))                 \
+              : (var < ((type) target)));               \
+             (((init) >= ((type) target))               \
+              ? (var -= (by))                      \
+              : (var += (by))))
 
 #if __STDC_VERSION__ >= 202311L || defined(__GNUC__)
 #define forrange(var, init, target)             \
