@@ -62,7 +62,7 @@ typedef unsigned long  ulong;
 #define unless not
 #define then ?
 #define otherwise :
-#define notherwise : NULL
+#define otherwhen :
 #define only : NULL
 
 // Loops and blocks. Lisp, Lua, Ruby.
