@@ -162,6 +162,8 @@ allocpy (int size, void *contents)
         (type*) allocpy(sizeof(type) * length,          \
                         (type[length]){__VA_ARGS__})
 
+// TODO: A macro to allocate struct + flexible array member.
+
 // Go defer, but rather block scoped and with arbitrary code in it.
 #define defer(...)                                      \
         for (bool flag_ ## __LINE__ = true;             \
