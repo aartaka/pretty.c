@@ -93,8 +93,13 @@ typedef unsigned long  ulong;
               then (var = var - (by))                   \
               otherwise (var = var + (by))))
 
+#if __STDC_VERSION__ >= 202311L || defined(__GNUC__)
+#define forrange(var, init, target)             \
+        forrangeby(var, typeof((init)+(target)), init, target, 1)
+#else
 #define forrange(var, init, target)             \
         forrangeby(var, int, init, target, 1)
+#endif
 
 // Repeat X times. Lisp, Lua
 #if  __STDC_VERSION__ >= 202311L || defined(__GNUC__)
