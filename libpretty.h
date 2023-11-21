@@ -115,15 +115,6 @@ typedef unsigned long  ulong;
              var += 1)
 #endif
 
-// Local/lexical bindings.
-#define let(var, type, ...)                             \
-        for (type var = (__VA_ARGS__),                  \
-                     *flag_ ## __LINE__ = (void*) true; \
-             flag_ ## __LINE__;                         \
-             flag_ ## __LINE__ = (void*) false)
-#define local(var, type, ...)                   \
-        let (var, type, __VA_ARGS__)
-
 // For each loop from basically every language.
 #define foreach(var, type, length, ...)                                 \
         for (type *init ## __LINE__ = (__VA_ARGS__),                    \

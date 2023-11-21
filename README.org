@@ -232,11 +232,6 @@ contents":
 These establish new local bindings, ensure deferred computations, or
 otherwise act on the block after them.
 
-*** ~let (var, type, ...)~ and ~local~
-Binds the ~type~-d ~var~ to the varargs for the duration of the next
-block. Simulates JavaScript/Lisp ~let~. Also available as ~local~ with
-the same functionality.
-
 *** ~with (close, var, ...)~
 This ensures that you never have use-after-free, because you provide
 the freeing procedure (~close~) upfront. Especially useful for
