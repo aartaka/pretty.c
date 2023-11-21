@@ -140,12 +140,18 @@ typedef unsigned long  ulong;
 
 // Loop over the provided arguments.
 #define forthese(var, type, ...)                                        \
-        let (init ## __LINE__, type*, (type[]){__VA_ARGS__})            \
+        for (type *init ## __LINE__ = (type[]){__VA_ARGS__},            \
+                     *flag_ ## __LINE__ = (void*) true;                 \
+             flag_ ## __LINE__;                                         \
+             flag_ ## __LINE__ = (void*) false)                         \
                 for (int offset ## __LINE__ = 0;                        \
                      offset ## __LINE__ < (sizeof((type[]){__VA_ARGS__}) \
                                            / sizeof(type));             \
                      offset ## __LINE__ += 1)                           \
-                let (var, type, *(init ## __LINE__ + offset ## __LINE__))
+                        for (type var = init ## __LINE__ [offset ## __LINE__], \
+                                     *flag2_ ## __LINE__ = (void*) true; \
+                             flag2_ ## __LINE__;                        \
+                             flag2_ ## __LINE__ = (void*) false)
 
 static void*
 allocpy (int size, void *contents)
