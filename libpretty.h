@@ -5,11 +5,11 @@
 #error "Libpretty only works on C99+. Switch to it if you didn't yet."
 #endif
 
-#include <iso646.h>
-#include <stdlib.h>
 #include <errno.h>
+#include <iso646.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
 
 // Missing yet useful.
