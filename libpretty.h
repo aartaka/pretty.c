@@ -191,4 +191,51 @@ err_part_of (int err, size_t length, int *errs)
 #define NOERROR 0
 #define NOERR 0
 
+char *toa (char *format, void **v)
+{
+        char buf[1000] = {0};
+        int length = sprintf(buf, format, *v);
+        char *result = malloc(length);
+        memcpy(result, buf, length);
+        return result;
+}
+
+char *booltoa (_Bool v)                { return (v ? "true" : "false"); }
+char *itoa    (long long v)            { return toa("%lli", (void**) &v); }
+char *ldtoa   (long double v)          { return toa("%Lf", (void**) &v); }
+char *cmptoa  (long double _Complex v)
+{
+        char buf[1000] = {0};
+        int length = sprintf(buf, "%lf+%lfi", creal(v), cimag(v));
+        char *result = malloc(length);
+        memcpy(result, buf, length);
+        return result;
+}
+char *ctoa    (unsigned char v)        { return toa("%c", (void**) &v); }
+char *xtoa    (void *v)                { return toa("%p", (void**) &v); }
+
+#define tostring(x)                                     \
+        _Generic((x),                                   \
+                 _Bool: booltoa,                        \
+                 char: ctoa,                            \
+                 short: itoa,                           \
+                 int: itoa,                             \
+                 long: itoa,                            \
+                 long long:  itoa,                      \
+                 unsigned char: ctoa,                   \
+                 unsigned short: itoa,                  \
+                 unsigned int : itoa,                   \
+                 unsigned long:  itoa,                  \
+                 unsigned long long: itoa,              \
+                 float: ldtoa,                          \
+                 double: ldtoa,                         \
+                 long double: ldtoa,                    \
+                 float _Complex: cmptoa,                \
+                 double _Complex: cmptoa,               \
+                 long double _Complex: cmptoa,          \
+                 _Decimal32: ldtoa,                     \
+                 _Decimal64: ldtoa,                     \
+                 _Decimal128: ldtoa,                    \
+                 default: xtoa) (x)
+
 #endif /* LIBPRETTY_H */
