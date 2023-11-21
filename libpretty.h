@@ -51,9 +51,6 @@ typedef unsigned long  ulong;
 #define downto   >=
 #define positive 0 <
 #define negative 0 >
-#define ispos    0 <
-#define isneg    0 >
-#define iszero   0 ==
 #define isnull   NULL ==
 
 // Ternaries and conditionals.
