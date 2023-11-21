@@ -56,7 +56,8 @@ typedef unsigned long  ulong;
 #define iszero   0 ==
 #define isnull   NULL ==
 
-// Ternaries.
+// Ternaries and conditionals.
+#define elif else if
 #define when
 #define unless not
 #define then ?
