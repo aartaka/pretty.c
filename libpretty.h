@@ -90,8 +90,8 @@ typedef unsigned long  ulong;
               then (var > ((type) target))              \
               otherwise (var < ((type) target)));       \
              (when ((init) >= ((type) target))          \
-              then (var = var - (by))                   \
-              otherwise (var = var + (by))))
+              then (var -= (by))                        \
+              otherwise (var += (by))))
 
 #if __STDC_VERSION__ >= 202311L || defined(__GNUC__)
 #define forrange(var, init, target)             \
@@ -107,12 +107,12 @@ typedef unsigned long  ulong;
         for (typeof((__VA_ARGS__)) result_ ## __LINE__ = (__VA_ARGS__), \
                      var = (typeof((__VA_ARGS__))) 0;                   \
              var < result_ ## __LINE__;                                 \
-             ++var)
+             var += 1)
 #else
 #define fortimes(var, ...)                                      \
         for (int var = 0, result_ ## __LINE__ = (__VA_ARGS__);  \
              var < result_ ## __LINE__;                         \
-             ++var)
+             var += 1)
 #endif
 
 // Local/lexical bindings.
