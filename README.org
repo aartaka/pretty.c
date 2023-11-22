@@ -60,13 +60,14 @@ path.
 Everyone defines these, so why not provide them?
 - ~max~ and ~min~ of two numbers.
 - ~len~ for array length.
+- ~default~ for providing a fallback value.
 
 ** New types
 Type aliases:
-- ~string~ :: ~char*~.
-- ~byte~ :: ~char~.
-- ~bytes~ :: ~char*~.
-- ~any~ :: ~void*~.
+- ~string~ == ~char*~.
+- ~byte~ == ~char~.
+- ~bytes~ == ~char*~.
+- ~any~ == ~void*~.
 - Integer shortcuts:
   - ~uchar~.
   - ~ushort~.
@@ -76,13 +77,14 @@ Type aliases:
 ** New aliases
 Mainly modeled after Lua and Lisp:
 - ~eq~, because ~iso646.h~ only has ~not_eq~.
-  - ~is~ too.
+  - ~is~ means ~==~ too.
 - ~bitnot~ and ~bitxor~ for operations that used to be called
   inconsistently (~compl~ and ~xor~ respectively) in ~iso646.h~.
 - ~below~, ~above~, ~upto~, and ~downto~ comparison operators.
 - ~positive~ and ~negative~ as predicates for numbers/data.
 - ~nil~ for ~NULL~.
 - ~until~ for negated ~while~.
+- ~elif~ for ~else if~.
 - ~repeat~ from Lua as an alias for ~do~.
 #+begin_src C
   int a = 10;
