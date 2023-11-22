@@ -16,6 +16,7 @@
 
 // Missing yet useful.
 #define eq ==
+// SQL.
 #define is ==
 // Fixing inconsistent bit operation names.
 #define bitnot ~
