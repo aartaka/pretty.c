@@ -142,7 +142,6 @@ and ~otherwhen~ for the next condition
          then 'b' only;
 #+end_src
 
-
 ** ~for~ Macros
 These macros are aliases for certain ~for~ loop pattern, each
 abstracting away some of the frequent ~for~ loop uses.
