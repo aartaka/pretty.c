@@ -56,19 +56,19 @@ typedef unsigned long  ulong;
 #define negative 0 >
 
 // Ternaries and conditionals.
-#define elif else if
+#define elif      else if
 #define when
-#define unless not
-#define then ?
+#define unless    not
+#define then      ?
 #define otherwise :
 #define otherwhen :
-#define only : NULL
+#define only      : NULL
 
 // Loops and blocks. Lisp, Lua, Ruby.
 #define until(...) while(!(__VA_ARGS__))
-#define always while(true)
-#define never while(false)
-#define repeat do
+#define always     while(true)
+#define never      while(false)
+#define repeat     do
 
 // Tracking and freeing resources. Lisp, Python.
 #if __STDC_VERSION__ >= 202311L || defined(__GNUC__)
