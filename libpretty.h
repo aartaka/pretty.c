@@ -205,4 +205,12 @@ err_part_of (int err, size_t length, int *errs)
 #define NOERROR 0
 #define NOERR 0
 
+#if defined(__clang__)
+#define lambda(ret, name, ...) void * name = (void*) ^ ret (__VA_ARGS__)
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define lambda(ret, name, ...) ret name (__VA_ARGS__)
+#elif defined(__cplusplus)
+#define lambda(ret, name, ...) auto name = [](__VA_ARGS__)
+#endif
+
 #endif /* LIBPRETTY_H */
