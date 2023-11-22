@@ -96,19 +96,19 @@ typedef unsigned long  ulong;
               : (var += (by))))
 
 #if __STDC_VERSION__ >= 202311L || defined(__GNUC__)
-#define forrange(var, init, target)                                     \
-        for (typeof((init)+(target)) init_ ## __LINE__ = (init),        \
+#define forrange(var, init, ...)                                        \
+        for (typeof((init)+(__VA_ARGS__)) init_ ## __LINE__ = (init),   \
                      var = init_ ## __LINE__,                           \
-                     target_ ## __LINE__ = (target);                    \
+                     target_ ## __LINE__ = (__VA_ARGS__);               \
              ((init_ ## __LINE__ >= target_ ## __LINE__)                \
               ? (var > target_ ## __LINE__)                             \
               : (var < target_ ## __LINE__));                           \
              var += ((init_ ## __LINE__ >= target_ ## __LINE__) ? -1 : +1))
 #else
-#define forrange(var, init, target)                                     \
+#define forrange(var, init, ...)                                        \
         for (int init_ ## __LINE__ = (init),                            \
                      var = init_ ## __LINE__,                           \
-                     target_ ## __LINE__ = (target);                    \
+                     target_ ## __LINE__ = (__VA_ARGS__);               \
              var != target_ ## __LINE__;                                \
              var += ((init_ ## __LINE__ >= target_ ## __LINE__) ? -1 : +1))
 #endif
