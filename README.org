@@ -76,11 +76,11 @@ Type aliases:
 ** New aliases
 Mainly modeled after Lua and Lisp:
 - ~eq~, because ~iso646.h~ only has ~not_eq~.
+  - ~is~ too.
 - ~bitnot~ and ~bitxor~ for operations that used to be called
   inconsistently (~compl~ and ~xor~ respectively) in ~iso646.h~.
 - ~below~, ~above~, ~upto~, and ~downto~ comparison operators.
-- ~positive~, ~negative~, ~ispos~, ~isneg~, ~isnull~, ~iszero~ as
-  predicates for numbers/data.
+- ~positive~ and ~negative~ as predicates for numbers/data.
 - ~nil~ for ~NULL~.
 - ~until~ for negated ~while~.
 - ~repeat~ from Lua as an alias for ~do~.
@@ -126,12 +126,20 @@ It's ternaries underneath:
 - ~then~ expands to ~?~.
 - ~otherwise~ expands to ~:~.
 
-There's also ~only~ and ~notherwise~ for when the ~otherwise~ clause is
+There's also ~only~ for when the ~otherwise~ clause is
 unnecessary:
 #+begin_src C
   return when done()
          then 42 only;
 #+end_src
+and ~otherwhen~ for the next condition
+#+begin_src C
+  return when c is 'A'
+         then 'a'
+         otherwhen c is 'B'
+         then 'b' only;
+#+end_src
+
 
 ** ~for~ Macros
 These macros are aliases for certain ~for~ loop pattern, each
