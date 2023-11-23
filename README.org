@@ -49,6 +49,7 @@ file really, if you specify the path to libpretty as an include (~-I~)
 path.
 
 * Provided Conveniences
+Here are all the pretty changes making C hip again.
 
 ** Included Standard Headers
 - [[https://en.cppreference.com/w/c/types/boolean][stdbool.h]] :: for pretty booleans: ~true~, ~false~, and ~bool~.
