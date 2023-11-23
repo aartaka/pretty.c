@@ -70,7 +70,7 @@ typedef unsigned long  ulong;
 #define repeat     do
 
 // Tracking and freeing resources. Lisp, Python.
-#if __STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)
+#if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
 #define with(close, var, ...)                                   \
         for (typeof((__VA_ARGS__)) var = (__VA_ARGS__)          \
                      *flag_ ## __LINE__ = (void*) true;         \
@@ -94,7 +94,7 @@ typedef unsigned long  ulong;
               ? (var -= (by))                      \
               : (var += (by))))
 
-#if __STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)
+#if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
 #define forrange(var, init, ...)                                        \
         for (typeof((init)+(__VA_ARGS__)) init_ ## __LINE__ = (init),   \
                      var = init_ ## __LINE__,                           \
@@ -113,7 +113,7 @@ typedef unsigned long  ulong;
 #endif
 
 // Repeat X times. Lisp, Lua
-#if  __STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)
+#if  (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
 #define fortimes(var, ...)                                              \
         for (typeof((__VA_ARGS__)) result_ ## __LINE__ = (__VA_ARGS__), \
                      var = (typeof((__VA_ARGS__))) 0;                   \
