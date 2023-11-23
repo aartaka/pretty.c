@@ -242,6 +242,17 @@ contents":
 These establish new local bindings, ensure deferred computations, or
 otherwise act on the block after them.
 
+*** ~lambda (ret, name, ...)~
+Nested functions/lambdas/closures, now in C!
+#+begin_src C
+  int *arr = vector(10, int, 23423, 23423, 234, 5233, 6, 4, 34, 643, 3, 9);
+  lambda (int, cmp, int *a, int *b) {
+          return *a - *b;
+  };
+  qsort(arr, 10, sizeof(int), cmp);
+  // arr becomes {3 4 6 9 34 234 643 5233 23423 23423}
+#+end_src
+
 *** ~with (close, var, ...)~
 This ensures that you never have use-after-free, because you provide
 the freeing procedure (~close~) upfront. Especially useful for
