@@ -64,9 +64,19 @@ typedef unsigned long  ulong;
 #define only      : NULL
 
 // Dynamically-typed variable declarations
+#if defined(__GNUC__) || defined(__GNUG__)
+#define var   __auto_type
+#define let   __auto_type
+#define local __auto_type
+#elif __STDC_VERSION__ >= 202311L
 #define var   auto
 #define let   auto
 #define local auto
+#else
+#define var
+#define let
+#define local
+#endif
 
 // Loops and blocks. Lisp, Lua, Ruby.
 #define until(...) while(!(__VA_ARGS__))
