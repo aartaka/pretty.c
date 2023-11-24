@@ -121,7 +121,7 @@ Yes, you can do
   local at = asctime(lt);
   printf("%s", at);
 #+end_src
-With libpretty now.
+With libpretty.
 
 ** Pretty ternaries
 Ternaries are frightening, so it won't hurt to add some plain
