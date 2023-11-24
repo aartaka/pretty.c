@@ -35,7 +35,7 @@ typedef unsigned long  ulong;
 #define default(a, b) ((a) ? (a) : (b))
 #define min(a, b)     ((a) < (b) ? (a) : (b))
 #define max(a, b)     ((a) > (b) ? (a) : (b))
-#if __STDC_VERSION__ >= 201112
+#if __STDC_VERSION__ >= 201112L
 #define len(...) _Generic((__VA_ARGS__),                                \
                           char*: strlen((char*)(__VA_ARGS__)),          \
                           default: (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0]))
@@ -228,7 +228,7 @@ libpretty_err_part_of (int err, size_t length, int *errs)
 #define lambda(ret, name, ...) auto name = [](__VA_ARGS__)
 #endif
 
-#if __STDC_VERSION__ >= 201112
+#if __STDC_VERSION__ >= 201112L
 #define print(x)                                        \
         printf(_Generic((x),                            \
                         char:               "%c\n",     \
