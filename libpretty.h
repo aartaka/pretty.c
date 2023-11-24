@@ -171,7 +171,7 @@ typedef unsigned long  ulong;
                              flag2_ ## __LINE__ = (void*) false)
 
 static void*
-allocpy (int size, void *contents)
+libpretty_allocpy (int size, void *contents)
 {
         char* allocated = malloc(size);
         memcpy(allocated, contents, size);
@@ -179,14 +179,14 @@ allocpy (int size, void *contents)
 }
 
 // Easy resource allocation akin to C++.
-#define new(type, ...)                                          \
-        (type *) allocpy(sizeof(type), &((type) {__VA_ARGS__}))
+#define new(type, ...)                                                  \
+        (type *) libpretty_allocpy(sizeof(type), &((type) {__VA_ARGS__}))
 
 // Easy array allocation. C++ vector, but more primitive.
 // FIXME: Enforce array type somehow?
 #define vector(length, type, ...)                       \
-        (type*) allocpy(sizeof(type) * length,          \
-                        (type[length]){__VA_ARGS__})
+        (type*) libpretty_allocpy(sizeof(type) * length,        \
+                                  (type[length]){__VA_ARGS__})
 
 // TODO: A macro to allocate struct + flexible array member.
 
@@ -204,7 +204,7 @@ allocpy (int size, void *contents)
 
 
 static bool
-err_part_of (int err, size_t length, int *errs)
+libpretty_err_part_of (int err, size_t length, int *errs)
 {
         for (int i = 0; i < length; ++i)
                 if (err == errs[i])
@@ -213,9 +213,10 @@ err_part_of (int err, size_t length, int *errs)
 }
 
 #define catch(...)                                                      \
-        if (err_part_of(errno,                                          \
-                        sizeof ((int[]){__VA_ARGS__}) / sizeof(int),    \
-                        (int[]){__VA_ARGS__}))
+        if (libpretty_err_part_of                                       \
+            (errno,                                             \
+             sizeof ((int[]){__VA_ARGS__}) / sizeof(int),       \
+             (int[]){__VA_ARGS__}))
 #define NOERROR 0
 #define NOERR 0
 
