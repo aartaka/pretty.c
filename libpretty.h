@@ -229,22 +229,22 @@ err_part_of (int err, size_t length, int *errs)
 
 #define print(x)                                        \
         printf(_Generic((x),                            \
-                        char*: "%s\n",                  \
-                        wchar_t*: "%ls\n",              \
-                        signed char: "%hhi\n",          \
-                        short: "%hi\n",                 \
-                        int: "%i\n",                    \
-                        long: "%li\n",                  \
-                        long long: "%lli\n",            \
-                        unsigned char: "%hhu\n",          \
-                        unsigned short: "%hi\n",        \
-                        unsigned int: "%u\n",           \
-                        unsigned long: "%lu\n",         \
+                        char*:              "%s\n",     \
+                        wchar_t*:           "%ls\n",    \
+                        signed char:        "%hhi\n",   \
+                        short:              "%hi\n",    \
+                        int:                "%i\n",     \
+                        long:               "%li\n",    \
+                        long long:          "%lli\n",   \
+                        unsigned char:      "%hhu\n",   \
+                        unsigned short:     "%hi\n",    \
+                        unsigned int:       "%u\n",     \
+                        unsigned long:      "%lu\n",    \
                         unsigned long long: "%llu\n",   \
-                        float: "%g\n",                  \
-                        double: "%g\n",                 \
-                        long double: "%Lg\n",           \
-                        default: "%p\n"),               \
+                        float:              "%g\n",     \
+                        double:             "%g\n",     \
+                        long double:        "%Lg\n",    \
+                        default:            "%p\n"),    \
                x)
 
 #endif /* LIBPRETTY_H */
