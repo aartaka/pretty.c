@@ -231,6 +231,7 @@ libpretty_err_part_of (int err, size_t length, int *errs)
 #if __STDC_VERSION__ >= 201112
 #define print(x)                                        \
         printf(_Generic((x),                            \
+                        char:               "%c\n",     \
                         char*:              "%s\n",     \
                         wchar_t*:           "%ls\n",    \
                         signed char:        "%hhi\n",   \
