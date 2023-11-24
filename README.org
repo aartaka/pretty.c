@@ -113,6 +113,16 @@ Mainly modeled after Lua and Lisp:
   never printf("This never runs, but never gets outdated, because compiler will shout at you if it does.\n");
 #+end_src
 
+** Type inference
+Yes, you can do
+#+begin_src C
+  var t = time(0);
+  let lt = localtime(&t);
+  local at = asctime(lt);
+  printf("%s", at);
+#+end_src
+With libpretty now.
+
 ** Pretty ternaries
 Ternaries are frightening, so it won't hurt to add some plain
 text. ~if~ and ~else~ are taken, but there are proper linguistic
