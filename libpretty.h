@@ -100,13 +100,13 @@ typedef unsigned long  ulong;
 #endif
 
 // Ranges from INIT to TARGET. Python range() syntax.
-#define forrangeby(var, type, init, target, by)         \
-        for (type var = (type)(init);                   \
-             (((init) >= ((type) target))               \
-              ? (var > ((type) target))                 \
-              : (var < ((type) target)));               \
-             (((init) >= ((type) target))               \
-              ? (var -= (by))                      \
+#define forrangeby(var, type, init, target, by) \
+        for (type var = (type)(init);           \
+             (((init) >= ((type) target))       \
+              ? (var > ((type) target))         \
+              : (var < ((type) target)));       \
+             (((init) >= ((type) target))       \
+              ? (var -= (by))                   \
               : (var += (by))))
 
 #if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
@@ -152,7 +152,7 @@ typedef unsigned long  ulong;
                      offset ## __LINE__ += 1)                           \
                         for (type *var = (init ## __LINE__ + offset ## __LINE__), \
                                      *flag2_ ## __LINE__ = (void*) true; \
-                             flag2_ ## __LINE__;                         \
+                             flag2_ ## __LINE__;                        \
                              flag2_ ## __LINE__ = (void*) false)
 
 // Loop over the provided arguments.
@@ -184,7 +184,7 @@ libpretty_allocpy (int size, void *contents)
 
 // Easy array allocation. C++ vector, but more primitive.
 // FIXME: Enforce array type somehow?
-#define vector(length, type, ...)                       \
+#define vector(length, type, ...)                               \
         (type*) libpretty_allocpy(sizeof(type) * length,        \
                                   (type[length]){__VA_ARGS__})
 
@@ -212,8 +212,8 @@ libpretty_err_part_of (int err, size_t length, int *errs)
         return false;
 }
 
-#define catch(...)                                                      \
-        if (libpretty_err_part_of                                       \
+#define catch(...)                                              \
+        if (libpretty_err_part_of                               \
             (errno,                                             \
              sizeof ((int[]){__VA_ARGS__}) / sizeof(int),       \
              (int[]){__VA_ARGS__}))
