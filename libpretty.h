@@ -63,6 +63,11 @@ typedef unsigned long  ulong;
 #define otherwhen :
 #define only      : NULL
 
+// Dynamically-typed variable declarations
+#define var   auto
+#define let   auto
+#define local auto
+
 // Loops and blocks. Lisp, Lua, Ruby.
 #define until(...) while(!(__VA_ARGS__))
 #define always     while(true)
