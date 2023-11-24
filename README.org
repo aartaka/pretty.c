@@ -113,7 +113,7 @@ Mainly modeled after Lua and Lisp:
   never print("This never runs, but never gets outdated, because compiler will shout at you if it does.");
 #+end_src
 
-** Type inference
+** Type inference (GCC, Clang, or C23+)
 Yes, you can do
 #+begin_src C
   var t = time(0);
@@ -123,7 +123,7 @@ Yes, you can do
 #+end_src
 With libpretty.
 
-** Generic printing
+** Generic printing (C11+)
 ~print~ prints whatever you feed it:
 #+begin_src C
   print(3.1);
@@ -255,7 +255,7 @@ contents":
 These establish new local bindings, ensure deferred computations, or
 otherwise act on the block after them.
 
-*** ~lambda (ret, name, ...)~
+*** ~lambda (ret, name, ...)~ (GCC, Clang, or C++)
 Nested functions/lambdas/closures, now in C!
 #+begin_src C
   int *arr = vector(10, int, 23423, 23423, 234, 5233, 6, 4, 34, 643, 3, 9);
