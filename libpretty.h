@@ -72,10 +72,6 @@ typedef unsigned long  ulong;
 #define var   auto
 #define let   auto
 #define local auto
-#else
-#define var
-#define let
-#define local
 #endif
 
 // Loops and blocks. Lisp, Lua, Ruby.
