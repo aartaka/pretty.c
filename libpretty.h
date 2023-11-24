@@ -228,6 +228,7 @@ libpretty_err_part_of (int err, size_t length, int *errs)
 #define lambda(ret, name, ...) auto name = [](__VA_ARGS__)
 #endif
 
+#if __STDC_VERSION__ >= 201112
 #define print(x)                                        \
         printf(_Generic((x),                            \
                         char*:              "%s\n",     \
@@ -247,5 +248,6 @@ libpretty_err_part_of (int err, size_t length, int *errs)
                         long double:        "%Lg\n",    \
                         default:            "%p\n"),    \
                x)
+#endif
 
 #endif /* LIBPRETTY_H */
