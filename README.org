@@ -263,7 +263,7 @@ Nested functions/lambdas/closures, now in C!
           return *a - *b;
   };
   qsort(arr, 10, sizeof(int), cmp);
-  // arr becomes {3 4 6 9 34 234 643 5233 23423 23423}
+  // arr becomes {3, 4, 6, 9, 34, 234, 643, 5233, 23423, 23423}
 #+end_src
 
 *** ~with (close, var, ...)~
