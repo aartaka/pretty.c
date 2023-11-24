@@ -198,8 +198,6 @@ turning it into a simple
   print("28 stab wounds, you didn't want to leave him a chance, huh?");
 #+end_src
 
-~fortimes~ is implemented with...
-
 *** ~forrange (var, init, target)~
 Iterate over a range of numbers from ~init~ to
 ~target~. Pythonesque. Here's Celsius to Fahrenheit conversion loop
@@ -211,8 +209,6 @@ with ~forrange~:
 
 Note that ~init~ and ~target~ are arbitrary integers, signed and
 unsigned. And ~init~ might be greater than ~target~.
-
-~forrange~ is implemented with...
 
 *** ~forrangeby (var, type, init, target, by)~
 Iterate ~type~-d ~var~ from ~iter~ to ~target~, stepping by ~by~ every
