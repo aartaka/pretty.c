@@ -1,9 +1,11 @@
-#+TITLE:libpretty: Making C Look ✨Pretty✨
+#+TITLE:Pretty C: ✨Pretty✨ Scripting on Top of C
 
-The purpose of libpretty is to provide a programmer with a set of
-macros to make C code much more readable. Inspired by Lua, Python,
-JavaScript, and Lisp. Here's how a naive re-implementation of ~head~
-utility might look like with libpretty:
+Pretty C is a new scripting language compatible with C. Pretty C
+boosts your programs with dynamic typing, generic iteration, resource
+tracking and other niceties. And it's backwards-compatible with C and
+all of its libraries! Inspired by Lua, Python, JavaScript, and
+Lisp. Here's how a naive re-implementation of ~head~ utility might
+look like with Pretty C:
 
 #+begin_src C
   #include <stdio.h>
@@ -24,27 +26,28 @@ utility might look like with libpretty:
   }
 #+end_src
 
-The goals for the library are:
+The goals for Pretty C are:
 - Provide so much syntactic sugar as to cause any C developer a
   diabetes-induced heart attack.
 - Deprecate Lua, Python, JavaScript, Ruby and a dozen other languages,
-  because C+libpretty is the ultimate scripting language, but
+  because Pretty C is the ultimate scripting language, but
   lightning-fast and strongly typed!
-- Including only one header (yes, libpretty is a header-only library!)
-  to turn any codebase into a beginner friendly one.
+- Including only one header (yes, Pretty C is a header-only library
+  ~#include~-able from arbitrary C file!)  to turn any codebase into a
+  beginner friendly one.
 
 * Getting Started
 Checkout the repository
 #+begin_src sh
-  git clone https://github.com/aartaka/libpretty
+  git clone https://github.com/aartaka/PrettyC
 #+end_src
 
-Or simply copy the ~libpretty.h~ file—libpretty is a header-only
+Or simply copy the ~prettyc.h~ file—Pretty C is a header-only
 library, so you can
 #+begin_src C
-  #include "libpretty.h"
+  #include "prettyc.h"
 #+end_src
-from any file in the directory you drop ~libpretty.h~ to. Or from any
+from any file in the directory you drop ~prettyc.h~ to. Or from any
 file really, if you specify the path to libpretty as an include (~-I~)
 path.
 
@@ -88,7 +91,7 @@ Mainly modeled after Lua and Lisp:
 - ~elif~ for ~else if~.
 - ~repeat~ from Lua as an alias for ~do~.
 #+begin_src C
-  int a = 10;
+  var a = 10;
   repeat {
           printf("value of a: %i\n", a);
           a++;
@@ -121,7 +124,7 @@ Yes, you can do
   local at = asctime(lt);
   print(at);
 #+end_src
-With libpretty.
+With Pretty C.
 
 ** Generic printing (C11+)
 ~print~ prints whatever you feed it:
