@@ -83,10 +83,10 @@ typedef unsigned long  ulong;
 
 // Tracking and freeing resources. Lisp, Python.
 #if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
-#define with(close, var, ...)                                    \
-        for (typeof((__VA_ARGS__)) var = (__VA_ARGS__),          \
-                     *flag_ ## __LINE__ = (void*) true;          \
-             flag_ ## __LINE__;                                  \
+#define with(close, var, ...)                                   \
+        for (typeof((__VA_ARGS__)) var = (__VA_ARGS__),         \
+                     *flag_ ## __LINE__ = (void*) true;         \
+             flag_ ## __LINE__;                                 \
              (close)(var), flag_ ## __LINE__ = (void*) false)
 #else
 #define with(close, var, ...)                                   \
@@ -182,8 +182,8 @@ pretty_allocpy (int size, void *contents)
 // Easy array allocation. C++ vector, but more primitive.
 // FIXME: Enforce array type somehow?
 #define vector(length, type, ...)                               \
-        (type*) pretty_allocpy(sizeof(type) * length,        \
-                                  (type[length]){__VA_ARGS__})
+        (type*) pretty_allocpy(sizeof(type) * length,           \
+                               (type[length]){__VA_ARGS__})
 
 // TODO: A macro to allocate struct + flexible array member.
 
@@ -210,7 +210,7 @@ pretty_err_part_of (int err, size_t length, int *errs)
 }
 
 #define catch(...)                                              \
-        if (pretty_err_part_of                               \
+        if (pretty_err_part_of                                  \
             (errno,                                             \
              sizeof ((int[]){__VA_ARGS__}) / sizeof(int),       \
              (int[]){__VA_ARGS__}))
@@ -257,27 +257,27 @@ pretty_tostring (char *format, uintmax_t thing)
 }
 
 #if __STDC_VERSION__ >= 201112L
-#define tostring(...)                                                   \
-        _Generic((__VA_ARGS__),                                         \
-                 char*: __VA_ARGS__,                                    \
-                 wchar_t*: __VA_ARGS__,                                 \
-                 default: pretty_tostring(                              \
-                         _Generic((__VA_ARGS__),                        \
-                                  char:               "%c",             \
-                                  signed char:        "%hhi",           \
-                                  short:              "%hi",            \
-                                  int:                "%i",             \
-                                  long:               "%li",            \
-                                  long long:          "%lli",           \
-                                  unsigned char:      "%hhu",           \
-                                  unsigned short:     "%hi",            \
-                                  unsigned int:       "%u",             \
-                                  unsigned long:      "%lu",            \
-                                  unsigned long long: "%llu",           \
-                                  float:              "%g",             \
-                                  double:             "%g",             \
-                                  long double:        "%Lg",            \
-                                  default:            "%p"),            \
+#define tostring(...)                                           \
+        _Generic((__VA_ARGS__),                                 \
+                 char*: __VA_ARGS__,                            \
+                 wchar_t*: __VA_ARGS__,                         \
+                 default: pretty_tostring(                      \
+                         _Generic((__VA_ARGS__),                \
+                                  char:               "%c",     \
+                                  signed char:        "%hhi",   \
+                                  short:              "%hi",    \
+                                  int:                "%i",     \
+                                  long:               "%li",    \
+                                  long long:          "%lli",   \
+                                  unsigned char:      "%hhu",   \
+                                  unsigned short:     "%hi",    \
+                                  unsigned int:       "%u",     \
+                                  unsigned long:      "%lu",    \
+                                  unsigned long long: "%llu",   \
+                                  float:              "%g",     \
+                                  double:             "%g",     \
+                                  long double:        "%Lg",    \
+                                  default:            "%p"),    \
                          (uintmax_t) __VA_ARGS__))
 #endif
 
