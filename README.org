@@ -92,7 +92,7 @@ Mainly modeled after Lua and Lisp:
 #+begin_src C
   var a = 10;
   repeat {
-          printf("value of a: %i\n", a);
+          print(concat("value of a: ", a));
           a++;
   } until (a > 15);
 
@@ -139,6 +139,11 @@ JavaScript ~toString~.
   print(tostring(NULL)); // (nil)
 #+end_src
 
+*** String concatenation
+~concat~ does that for you.
+#+begin_src C
+  print(concat("string is ", 5));
+#+end_src
 
 ** Pretty ternaries
 Ternaries are frightening, so it won't hurt to add some plain
