@@ -1,8 +1,8 @@
-#ifndef LIBPRETTY_H
-#define LIBPRETTY_H
+#ifndef PRETTYC_H
+#define PRETTYC_H
 
 #if __STDC_VERSION__ < 199901L
-#error "Libpretty only works on C99+. Switch to it if you didn't yet."
+#error "Pretty C only works on C99+. Switch to it if you didn't yet."
 #endif
 
 #include <complex.h>
@@ -167,7 +167,7 @@ typedef unsigned long  ulong;
                              flag2_ ## __LINE__ = (void*) false)
 
 static void*
-libpretty_allocpy (int size, void *contents)
+prettyc_allocpy (int size, void *contents)
 {
         char* allocated = malloc(size);
         memcpy(allocated, contents, size);
@@ -176,12 +176,12 @@ libpretty_allocpy (int size, void *contents)
 
 // Easy resource allocation akin to C++.
 #define new(type, ...)                                                  \
-        (type *) libpretty_allocpy(sizeof(type), &((type) {__VA_ARGS__}))
+        (type *) prettyc_allocpy(sizeof(type), &((type) {__VA_ARGS__}))
 
 // Easy array allocation. C++ vector, but more primitive.
 // FIXME: Enforce array type somehow?
 #define vector(length, type, ...)                               \
-        (type*) libpretty_allocpy(sizeof(type) * length,        \
+        (type*) prettyc_allocpy(sizeof(type) * length,        \
                                   (type[length]){__VA_ARGS__})
 
 // TODO: A macro to allocate struct + flexible array member.
@@ -200,7 +200,7 @@ libpretty_allocpy (int size, void *contents)
 
 
 static bool
-libpretty_err_part_of (int err, size_t length, int *errs)
+prettyc_err_part_of (int err, size_t length, int *errs)
 {
         for (int i = 0; i < length; ++i)
                 if (err == errs[i])
@@ -209,7 +209,7 @@ libpretty_err_part_of (int err, size_t length, int *errs)
 }
 
 #define catch(...)                                              \
-        if (libpretty_err_part_of                               \
+        if (prettyc_err_part_of                               \
             (errno,                                             \
              sizeof ((int[]){__VA_ARGS__}) / sizeof(int),       \
              (int[]){__VA_ARGS__}))
@@ -247,4 +247,4 @@ libpretty_err_part_of (int err, size_t length, int *errs)
                x)
 #endif
 
-#endif /* LIBPRETTY_H */
+#endif /* PRETTYC_H */
