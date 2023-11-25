@@ -290,7 +290,12 @@ pretty_concat (char *one, char *two)
 }
 
 #if __STDC_VERSION__ >= 201112L
-#define concat(a, ...) \
+#define concat(a, ...)                                          \
+        pretty_concat(tostring(a), tostring(__VA_ARGS__))
+#endif
+
+#if __STDC_VERSION__ >= 201112L
+#define cat(a, ...)                                             \
         pretty_concat(tostring(a), tostring(__VA_ARGS__))
 #endif
 
