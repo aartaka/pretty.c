@@ -249,7 +249,7 @@ pretty_err_part_of (int err, size_t length, int *errs)
 #endif
 
 static char *
-pretty_tostring(char *format, uintmax_t thing)
+pretty_tostring (char *format, uintmax_t thing)
 {
         char *buffer = (char *) malloc(sizeof(char) * 1000);
         int written = sprintf(buffer, format, (void *) thing);
@@ -282,7 +282,7 @@ pretty_tostring(char *format, uintmax_t thing)
 #endif
 
 static char *
-pretty_concat(char *one, char *two)
+pretty_concat (char *one, char *two)
 {
         char *buff = malloc((strlen(one) + strlen(two) + 1) * sizeof(char));
         strcpy(buff, one);
