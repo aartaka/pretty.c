@@ -38,13 +38,13 @@ The goals for Pretty C are:
 * Getting Started
 Checkout the repository
 #+begin_src sh
-  git clone https://github.com/aartaka/PrettyC
+  git clone https://github.com/aartaka/pretty.c
 #+end_src
 
 Or simply copy the ~pretty.h~ file—Pretty C is a header-only
 library, so you can
 #+begin_src C
-  #include "prettyc.h"
+  #include "pretty.h"
 #+end_src
 from any file in the directory you drop ~pretty.h~ to. Or from any
 file really, if you specify the path to Pretty C as an include (~-I~)
