@@ -1,5 +1,5 @@
-#ifndef PRETTYC_H
-#define PRETTYC_H
+#ifndef PRETTY_H
+#define PRETTY_H
 
 #if __STDC_VERSION__ < 199901L
 #error "Pretty C only works on C99+. Switch to it if you didn't yet."
@@ -168,7 +168,7 @@ typedef unsigned long  ulong;
                              flag2_ ## __LINE__ = (void*) false)
 
 static void*
-prettyc_allocpy (int size, void *contents)
+pretty_allocpy (int size, void *contents)
 {
         char* allocated = malloc(size);
         memcpy(allocated, contents, size);
@@ -177,12 +177,12 @@ prettyc_allocpy (int size, void *contents)
 
 // Easy resource allocation akin to C++.
 #define new(type, ...)                                                  \
-        (type *) prettyc_allocpy(sizeof(type), &((type) {__VA_ARGS__}))
+        (type *) pretty_allocpy(sizeof(type), &((type) {__VA_ARGS__}))
 
 // Easy array allocation. C++ vector, but more primitive.
 // FIXME: Enforce array type somehow?
 #define vector(length, type, ...)                               \
-        (type*) prettyc_allocpy(sizeof(type) * length,        \
+        (type*) pretty_allocpy(sizeof(type) * length,        \
                                   (type[length]){__VA_ARGS__})
 
 // TODO: A macro to allocate struct + flexible array member.
@@ -201,7 +201,7 @@ prettyc_allocpy (int size, void *contents)
 
 
 static bool
-prettyc_err_part_of (int err, size_t length, int *errs)
+pretty_err_part_of (int err, size_t length, int *errs)
 {
         for (int i = 0; i < length; ++i)
                 if (err == errs[i])
@@ -210,7 +210,7 @@ prettyc_err_part_of (int err, size_t length, int *errs)
 }
 
 #define catch(...)                                              \
-        if (prettyc_err_part_of                               \
+        if (pretty_err_part_of                               \
             (errno,                                             \
              sizeof ((int[]){__VA_ARGS__}) / sizeof(int),       \
              (int[]){__VA_ARGS__}))
@@ -248,4 +248,4 @@ prettyc_err_part_of (int err, size_t length, int *errs)
                x)
 #endif
 
-#endif /* PRETTYC_H */
+#endif /* PRETTY_H */
