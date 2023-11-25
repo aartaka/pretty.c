@@ -54,9 +54,9 @@ path.
 Here are all the pretty changes making C hip again.
 
 ** Included Standard Headers
-- [[https://en.cppreference.com/w/c/types/boolean][stdbool.h]] :: for pretty booleans: ~true~, ~false~, and ~bool~.
-- [[https://en.cppreference.com/w/c/types/integer][stdint.h]] :: for fixed-width integer types like ~uint64_t~.
-- [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] :: for readable alternatives to regular operators,
+- [[https://en.cppreference.com/w/c/types/boolean][stdbool.h]] for pretty booleans: ~true~, ~false~, and ~bool~.
+- [[https://en.cppreference.com/w/c/types/integer][stdint.h]] for fixed-width integer types like ~uint64_t~.
+- [[https://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29][iso646.h]] for readable alternatives to regular operators,
   including ~and~ for ~&&~ and ~or~ for ~||~. Neat!
 
 ** Simple macros
