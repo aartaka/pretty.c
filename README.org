@@ -20,7 +20,7 @@ look like with Pretty C:
                           then printf(buf)
                           otherwise 0;
       else
-          puts("Please provide an input file");
+          print("Please provide an input file");
       return EXIT_SUCCESS;
   }
 #+end_src
