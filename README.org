@@ -8,7 +8,7 @@ Lisp. Here's how a naive re-implementation of ~head~ utility might
 look like with Pretty C:
 
 #+begin_src C
-  #include "prettyc.h"
+  #include "pretty.h"
 
   int main (int argc, string argv[])
   {
@@ -41,12 +41,12 @@ Checkout the repository
   git clone https://github.com/aartaka/PrettyC
 #+end_src
 
-Or simply copy the ~prettyc.h~ file—Pretty C is a header-only
+Or simply copy the ~pretty.h~ file—Pretty C is a header-only
 library, so you can
 #+begin_src C
   #include "prettyc.h"
 #+end_src
-from any file in the directory you drop ~prettyc.h~ to. Or from any
+from any file in the directory you drop ~pretty.h~ to. Or from any
 file really, if you specify the path to Pretty C as an include (~-I~)
 path.
 
@@ -296,5 +296,5 @@ Fancy error handling, now in C. Refactored example from [[https://en.cppreferenc
           print("Math error!");
 #+end_src
 
-~NOERR~ and ~NOERROR~ are also provided by libpretty, for convenience
+~NOERR~ and ~NOERROR~ are also provided by Pretty C, for convenience
 of error switch-casing.
