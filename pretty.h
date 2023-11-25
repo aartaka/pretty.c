@@ -226,8 +226,8 @@ pretty_err_part_of (int err, size_t length, int *errs)
 #endif
 
 #if __STDC_VERSION__ >= 201112L
-#define print(x)                                        \
-        printf(_Generic((x),                            \
+#define print(...)                                      \
+        printf(_Generic((__VA_ARGS__),                  \
                         char:               "%c\n",     \
                         char*:              "%s\n",     \
                         wchar_t*:           "%ls\n",    \
@@ -245,7 +245,7 @@ pretty_err_part_of (int err, size_t length, int *errs)
                         double:             "%g\n",     \
                         long double:        "%Lg\n",    \
                         default:            "%p\n"),    \
-               x)
+               __VA_ARGS__)
 #endif
 
 static char *
@@ -257,28 +257,28 @@ pretty_tostring(char *format, uintmax_t thing)
 }
 
 #if __STDC_VERSION__ >= 201112L
-#define tostring(x)                                             \
-        _Generic((x),                                           \
-                 char*: x,                                      \
-                 wchar_t*: x,                                   \
-                 default: pretty_tostring(                      \
-                         _Generic((x),                          \
-                                  char:               "%c",     \
-                                  signed char:        "%hhi",   \
-                                  short:              "%hi",    \
-                                  int:                "%i",     \
-                                  long:               "%li",    \
-                                  long long:          "%lli",   \
-                                  unsigned char:      "%hhu",   \
-                                  unsigned short:     "%hi",    \
-                                  unsigned int:       "%u",     \
-                                  unsigned long:      "%lu",    \
-                                  unsigned long long: "%llu",   \
-                                  float:              "%g",     \
-                                  double:             "%g",     \
-                                  long double:        "%Lg",    \
-                                  default:            "%p"),    \
-                         (uintmax_t) x))
+#define tostring(...)                                                   \
+        _Generic((__VA_ARGS__),                                         \
+                 char*: __VA_ARGS__,                                    \
+                 wchar_t*: __VA_ARGS__,                                 \
+                 default: pretty_tostring(                              \
+                         _Generic((__VA_ARGS__),                        \
+                                  char:               "%c",             \
+                                  signed char:        "%hhi",           \
+                                  short:              "%hi",            \
+                                  int:                "%i",             \
+                                  long:               "%li",            \
+                                  long long:          "%lli",           \
+                                  unsigned char:      "%hhu",           \
+                                  unsigned short:     "%hi",            \
+                                  unsigned int:       "%u",             \
+                                  unsigned long:      "%lu",            \
+                                  unsigned long long: "%llu",           \
+                                  float:              "%g",             \
+                                  double:             "%g",             \
+                                  long double:        "%Lg",            \
+                                  default:            "%p"),            \
+                         (uintmax_t) __VA_ARGS__))
 #endif
 
 static char *
