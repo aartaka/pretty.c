@@ -136,13 +136,13 @@ With Pretty C.
 ~tostring~ converts whatever you feed it into a string, just like
 JavaScript ~toString~.
 #+begin_src C
-  print(tostring(NULL)); // (nil)
+  tostring(NULL); // "(nil)"
 #+end_src
 
 *** String concatenation
 ~concat~ does that for you.
 #+begin_src C
-  print(concat("string is ", 5));
+  concat("string is ", 5); // "string is 5"
 #+end_src
 
 ** Pretty ternaries
