@@ -286,7 +286,7 @@ end of function as in Go, because that's +impossible+ hard to
 implement in C. Still, libpretty ~defer~ is useful enough.
 
 *** ~try~ and ~catch~
-Fancy error handling, now in C. Fancy example from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
+Fancy error handling, now in C. Refactored example from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
 
 #+begin_src C
   try log(0.0);
