@@ -132,6 +132,14 @@ With Pretty C.
   print("Hello world!");
 #+end_src
 
+*** Conversion to string
+~tostring~ converts whatever you feed it into a string, just like
+JavaScript ~toString~.
+#+begin_src C
+  print(tostring(NULL)); // (nil)
+#+end_src
+
+
 ** Pretty ternaries
 Ternaries are frightening, so it won't hurt to add some plain
 text. ~if~ and ~else~ are taken, but there are proper linguistic

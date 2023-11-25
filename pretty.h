@@ -248,4 +248,37 @@ pretty_err_part_of (int err, size_t length, int *errs)
                x)
 #endif
 
+char *
+pretty_tostring(char *format, uintmax_t thing)
+{
+        char *buffer = (char *) malloc(sizeof(char) * 1000);
+        int written = sprintf(buffer, format, (void *) thing);
+        return (char *) realloc(buffer, (written + 1) * sizeof(char));
+}
+
+#if __STDC_VERSION__ >= 201112L
+#define tostring(x)                                             \
+        _Generic((x),                                           \
+                 char*: x,                                      \
+                 wchar_t*: x,                                   \
+                 default: pretty_tostring(                      \
+                         _Generic((x),                          \
+                                  char:               "%c",     \
+                                  signed char:        "%hhi",   \
+                                  short:              "%hi",    \
+                                  int:                "%i",     \
+                                  long:               "%li",    \
+                                  long long:          "%lli",   \
+                                  unsigned char:      "%hhu",   \
+                                  unsigned short:     "%hi",    \
+                                  unsigned int:       "%u",     \
+                                  unsigned long:      "%lu",    \
+                                  unsigned long long: "%llu",   \
+                                  float:              "%g",     \
+                                  double:             "%g",     \
+                                  long double:        "%Lg",    \
+                                  default:            "%p"),    \
+                         (uintmax_t) x))
+#endif
+
 #endif /* PRETTY_H */
