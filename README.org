@@ -8,7 +8,6 @@ Lisp. Here's how a naive re-implementation of ~head~ utility might
 look like with Pretty C:
 
 #+begin_src C
-  #include <stdio.h>
   #include "prettyc.h"
 
   int main (int argc, string argv[])
