@@ -47,7 +47,7 @@ library, so you can
   #include "prettyc.h"
 #+end_src
 from any file in the directory you drop ~prettyc.h~ to. Or from any
-file really, if you specify the path to libpretty as an include (~-I~)
+file really, if you specify the path to Pretty C as an include (~-I~)
 path.
 
 * Provided Conveniences
@@ -283,7 +283,7 @@ might need to coerce it to your type before using it.
 *** ~defer (...)~
 Offloads the code to be executed after the following block. Not at the
 end of function as in Go, because that's +impossible+ hard to
-implement in C. Still, libpretty ~defer~ is useful enough.
+implement in C. Still, Pretty C ~defer~ is useful enough.
 
 *** ~try~ and ~catch~
 Fancy error handling, now in C. Refactored example from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
