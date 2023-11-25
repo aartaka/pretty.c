@@ -93,7 +93,7 @@ Mainly modeled after Lua and Lisp:
   var a = 10;
   repeat {
           print(concat("value of a: ", a));
-          a++;
+          ++a;
   } until (a > 15);
 
   // Versus Lua:
