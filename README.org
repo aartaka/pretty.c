@@ -140,7 +140,7 @@ JavaScript ~toString~.
 #+end_src
 
 *** String concatenation
-~concat~ does that for you.
+~concat~ and ~cat~ do that for you.
 #+begin_src C
   concat("string is ", 5); // "string is 5"
 #+end_src
