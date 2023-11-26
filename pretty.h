@@ -77,23 +77,23 @@ typedef unsigned long  ulong;
 
 // Loops and blocks. Lisp, Lua, Ruby.
 #define until(...) while(!(__VA_ARGS__))
-#define always     while(true)
-#define never      while(false)
+#define always     while(1)
+#define never      while(0)
 #define repeat     do
 
 // Tracking and freeing resources. Lisp, Python.
 #if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
 #define with(close, var, ...)                                   \
         for (typeof((__VA_ARGS__)) var = (__VA_ARGS__),         \
-                     *flag_ ## __LINE__ = (void*) true;         \
+                     *flag_ ## __LINE__ = (void*) 1;            \
              flag_ ## __LINE__;                                 \
-             (close)(var), flag_ ## __LINE__ = (void*) false)
+             (close)(var), flag_ ## __LINE__ = (void*) 0)
 #else
 #define with(close, var, ...)                                   \
         for (void *var = (void*) (__VA_ARGS__),                 \
-                     *flag_ ## __LINE__ = (void*) true;         \
+                     *flag_ ## __LINE__ = (void*) 1;            \
              flag_ ## __LINE__;                                 \
-             (close)(var), flag_ ## __LINE__ = (void*) false)
+             (close)(var), flag_ ## __LINE__ = (void*) 0)
 #endif
 
 // Ranges from INIT to TARGET. Python range() syntax.
@@ -141,31 +141,31 @@ typedef unsigned long  ulong;
 // For each loop from basically every language.
 #define foreach(var, type, length, ...)                                 \
         for (type *init ## __LINE__ = (__VA_ARGS__),                    \
-                     *flag_ ## __LINE__ = (void*) true;                 \
+                     *flag_ ## __LINE__ = (void*) 1;                    \
              flag_ ## __LINE__;                                         \
-             flag_ ## __LINE__ = (void*) false)                         \
+             flag_ ## __LINE__ = (void*) 0)                             \
                 for (size_t offset ## __LINE__ = 0;                     \
                      offset ## __LINE__ < length;                       \
                      offset ## __LINE__ += 1)                           \
                         for (type *var = (init ## __LINE__ + offset ## __LINE__), \
-                                     *flag2_ ## __LINE__ = (void*) true; \
+                                     *flag2_ ## __LINE__ = (void*) 1;   \
                              flag2_ ## __LINE__;                        \
-                             flag2_ ## __LINE__ = (void*) false)
+                             flag2_ ## __LINE__ = (void*) 0)
 
 // Loop over the provided arguments.
 #define forthese(var, type, ...)                                        \
         for (type *init ## __LINE__ = (type[]){__VA_ARGS__},            \
-                     *flag_ ## __LINE__ = (void*) true;                 \
+                     *flag_ ## __LINE__ = (void*) 1;                    \
              flag_ ## __LINE__;                                         \
-             flag_ ## __LINE__ = (void*) false)                         \
+             flag_ ## __LINE__ = (void*) 0)                             \
                 for (size_t offset ## __LINE__ = 0;                     \
                      offset ## __LINE__ < (sizeof((type[]){__VA_ARGS__}) \
                                            / sizeof(type));             \
                      offset ## __LINE__ += 1)                           \
                         for (type var = init ## __LINE__ [offset ## __LINE__], \
-                                     *flag2_ ## __LINE__ = (void*) true; \
+                                     *flag2_ ## __LINE__ = (void*) 1;   \
                              flag2_ ## __LINE__;                        \
-                             flag2_ ## __LINE__ = (void*) false)
+                             flag2_ ## __LINE__ = (void*) 0)
 
 static void*
 pretty_allocpy (size_t size, void *contents)
@@ -189,24 +189,24 @@ pretty_allocpy (size_t size, void *contents)
 
 // Go defer, but rather block scoped and with arbitrary code in it.
 #define defer(...)                                      \
-        for (bool flag_ ## __LINE__ = true;             \
+        for (bool flag_ ## __LINE__ = 1;                \
              flag_ ## __LINE__;                         \
-             flag_ ## __LINE__ = false, (__VA_ARGS__))
+             flag_ ## __LINE__ = 0, (__VA_ARGS__))
 
 #define try                                     \
         errno = 0;                              \
-        for (bool flag_ ## __LINE__ = true;     \
+        for (bool flag_ ## __LINE__ = 1;        \
              flag_ ## __LINE__;                 \
-             flag_ ## __LINE__ = false)
+             flag_ ## __LINE__ = 0)
 
 
-static bool
+static int
 pretty_err_part_of (int err, size_t length, int *errs)
 {
         for (size_t i = 0; i < length; ++i)
                 if (err == errs[i])
-                        return true;
-        return false;
+                        return 1;
+        return 0;
 }
 
 #define catch(...)                                              \
