@@ -144,7 +144,7 @@ typedef unsigned long  ulong;
                      *flag_ ## __LINE__ = (void*) true;                 \
              flag_ ## __LINE__;                                         \
              flag_ ## __LINE__ = (void*) false)                         \
-                for (int offset ## __LINE__ = 0;                        \
+                for (size_t offset ## __LINE__ = 0;                     \
                      offset ## __LINE__ < length;                       \
                      offset ## __LINE__ += 1)                           \
                         for (type *var = (init ## __LINE__ + offset ## __LINE__), \
@@ -158,7 +158,7 @@ typedef unsigned long  ulong;
                      *flag_ ## __LINE__ = (void*) true;                 \
              flag_ ## __LINE__;                                         \
              flag_ ## __LINE__ = (void*) false)                         \
-                for (int offset ## __LINE__ = 0;                        \
+                for (size_t offset ## __LINE__ = 0;                     \
                      offset ## __LINE__ < (sizeof((type[]){__VA_ARGS__}) \
                                            / sizeof(type));             \
                      offset ## __LINE__ += 1)                           \
@@ -203,7 +203,7 @@ pretty_allocpy (int size, void *contents)
 static bool
 pretty_err_part_of (int err, size_t length, int *errs)
 {
-        for (int i = 0; i < length; ++i)
+        for (size_t i = 0; i < length; ++i)
                 if (err == errs[i])
                         return true;
         return false;
