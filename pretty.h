@@ -259,8 +259,28 @@ pretty_tostring (char *format, uintmax_t thing)
 #endif
 
 #if __STDC_VERSION__ >= 201112L
-#define print(...)                              \
-        puts(tostring(__VA_ARGS__))
+#define print(...)                                              \
+        _Generic((__VA_ARGS__),                                 \
+                 char*: puts(__VA_ARGS__),                      \
+                 _Bool: puts(__VA_ARGS__ ? "true" : "false"),   \
+                 default: printf(                               \
+                         _Generic((__VA_ARGS__),                \
+                                  char:               "%c\n",   \
+                                  signed char:        "%hhi\n", \
+                                  short:              "%hi\n",  \
+                                  int:                "%i\n",   \
+                                  long:               "%li\n",  \
+                                  long long:          "%lli\n", \
+                                  unsigned char:      "%hhu\n", \
+                                  unsigned short:     "%hi\n",  \
+                                  unsigned int:       "%u\n",   \
+                                  unsigned long:      "%lu\n",  \
+                                  unsigned long long: "%llu\n", \
+                                  float:              "%g\n",   \
+                                  double:             "%g\n",   \
+                                  long double:        "%Lg\n",  \
+                                  default:            "%p\n"),  \
+                         __VA_ARGS__))
 #endif
 
 #endif /* PRETTY_H */
