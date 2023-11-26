@@ -129,7 +129,7 @@ With Pretty C.
 ~tostring~ converts whatever you feed it into a string, just like
 JavaScript ~toString~.
 #+begin_src C
-  tostring(NULL); // "(nil)"
+  tostring(nil); // "(nil)"
 #+end_src
 
 ** Generic printing (C11+)
