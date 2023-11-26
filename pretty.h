@@ -58,7 +58,7 @@ typedef unsigned long  ulong;
 // Ternaries and conditionals.
 #define elif      else if
 #define when
-#define unless    not
+#define unless    !
 #define then      ?
 #define otherwise :
 #define otherwhen :
