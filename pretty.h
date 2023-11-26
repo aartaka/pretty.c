@@ -229,6 +229,7 @@ pretty_err_part_of (int err, size_t length, int *errs)
 #define print(...)                                                      \
         _Generic((__VA_ARGS__),                                         \
                  char *: puts(__VA_ARGS__),                             \
+                 _Bool: puts(__VA_ARGS__ ? "true" : "false"),           \
                  default: printf(                                       \
                          _Generic((__VA_ARGS__),                        \
                                   char:               "%c\n",           \
