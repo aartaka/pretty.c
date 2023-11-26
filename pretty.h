@@ -225,32 +225,6 @@ pretty_err_part_of (int err, size_t length, int *errs)
 #define lambda(ret, name, ...) auto name = [](__VA_ARGS__)
 #endif
 
-#if __STDC_VERSION__ >= 201112L
-#define print(...)                                                      \
-        _Generic((__VA_ARGS__),                                         \
-                 char *: puts(__VA_ARGS__),                             \
-                 _Bool: puts(__VA_ARGS__ ? "true" : "false"),           \
-                 default: printf(                                       \
-                         _Generic((__VA_ARGS__),                        \
-                                  char:               "%c\n",           \
-                                  wchar_t*:           "%ls\n",          \
-                                  signed char:        "%hhi\n",         \
-                                  short:              "%hi\n",          \
-                                  int:                "%i\n",           \
-                                  long:               "%li\n",          \
-                                  long long:          "%lli\n",         \
-                                  unsigned char:      "%hhu\n",         \
-                                  unsigned short:     "%hi\n",          \
-                                  unsigned int:       "%u\n",           \
-                                  unsigned long:      "%lu\n",          \
-                                  unsigned long long: "%llu\n",         \
-                                  float:              "%g\n",           \
-                                  double:             "%g\n",           \
-                                  long double:        "%Lg\n",          \
-                                  default:            "%p\n"),          \
-                         __VA_ARGS__))
-#endif
-
 static char *
 pretty_tostring (char *format, uintmax_t thing)
 {
@@ -283,6 +257,11 @@ pretty_tostring (char *format, uintmax_t thing)
                                   long double:        "%Lg",    \
                                   default:            "%p"),    \
                          (uintmax_t) __VA_ARGS__))
+#endif
+
+#if __STDC_VERSION__ >= 201112L
+#define print(...)                              \
+        puts(tostring(__VA_ARGS__))
 #endif
 
 static char *
