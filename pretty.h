@@ -229,7 +229,7 @@ static char *
 pretty_tostring (char *format, uintmax_t thing)
 {
         char *buffer = (char *) malloc(sizeof(char) * 1000);
-        int written = sprintf(buffer, format, (void *) thing);
+        size_t written = (size_t) snprintf(buffer, 1000, format, (void*) thing);
         return (char *) realloc(buffer, (written + 1) * sizeof(char));
 }
 
