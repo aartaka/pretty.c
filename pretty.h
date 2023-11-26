@@ -168,7 +168,7 @@ typedef unsigned long  ulong;
                              flag2_ ## __LINE__ = (void*) false)
 
 static void*
-pretty_allocpy (int size, void *contents)
+pretty_allocpy (size_t size, void *contents)
 {
         char* allocated = malloc(size);
         memcpy(allocated, contents, size);
