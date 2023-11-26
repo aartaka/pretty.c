@@ -92,7 +92,7 @@ Mainly modeled after Lua and Lisp:
 #+begin_src C
   var a = 10;
   repeat {
-          print(concat("value of a: ", a));
+          printf("value of a: %i\n");
           ++a;
   } until (a > 15);
 
@@ -125,24 +125,18 @@ Yes, you can do
 #+end_src
 With Pretty C.
 
-** Generic printing (C11+)
-~print~ prints whatever you feed it:
-#+begin_src C
-  print(3.1);
-  print("Hello world!");
-#+end_src
-
-*** Conversion to string
+** Conversion to string
 ~tostring~ converts whatever you feed it into a string, just like
 JavaScript ~toString~.
 #+begin_src C
   tostring(NULL); // "(nil)"
 #+end_src
 
-*** String concatenation
-~concat~ and ~cat~ do that for you.
+** Generic printing (C11+)
+~print~ prints whatever you feed it (using ~tostring~):
 #+begin_src C
-  concat("string is ", 5); // "string is 5"
+  print(3.1);
+  print("Hello world!");
 #+end_src
 
 ** Pretty ternaries

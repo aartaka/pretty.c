@@ -264,22 +264,4 @@ pretty_tostring (char *format, uintmax_t thing)
         puts(tostring(__VA_ARGS__))
 #endif
 
-static char *
-pretty_concat (char *one, char *two)
-{
-        char *buff = malloc((strlen(one) + strlen(two) + 1) * sizeof(char));
-        strcpy(buff, one);
-        return strcat(buff, two);
-}
-
-#if __STDC_VERSION__ >= 201112L
-#define concat(a, ...)                                          \
-        pretty_concat(tostring(a), tostring(__VA_ARGS__))
-#endif
-
-#if __STDC_VERSION__ >= 201112L
-#define cat(a, ...)                                             \
-        pretty_concat(tostring(a), tostring(__VA_ARGS__))
-#endif
-
 #endif /* PRETTY_H */
