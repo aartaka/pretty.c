@@ -237,7 +237,6 @@ pretty_tostring (char *format, uintmax_t thing)
 #define tostring(...)                                           \
         _Generic((__VA_ARGS__),                                 \
                  char*: __VA_ARGS__,                            \
-                 wchar_t*: __VA_ARGS__,                         \
                  _Bool: (__VA_ARGS__ ? "true" : "false"),       \
                  default: pretty_tostring(                      \
                          _Generic((__VA_ARGS__),                \
