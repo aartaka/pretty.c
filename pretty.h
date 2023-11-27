@@ -262,7 +262,7 @@ pretty_tostring (char *format, uintmax_t thing)
 #if __STDC_VERSION__ >= 201112L
 #define print(...)                                              \
         _Generic((__VA_ARGS__),                                 \
-                 _Bool: puts(__VA_ARGS__ ? "true" : "false"),   \
+                 _Bool: puts((__VA_ARGS__) ? "true" : "false"), \
                  default: printf(                               \
                          _Generic((__VA_ARGS__),                \
                                   char*:              "%s\n",   \
@@ -281,7 +281,7 @@ pretty_tostring (char *format, uintmax_t thing)
                                   double:             "%g\n",   \
                                   long double:        "%Lg\n",  \
                                   default:            "%p\n"),  \
-                         __VA_ARGS__))
+                         (__VA_ARGS__)))
 #endif
 
 #endif /* PRETTY_H */
