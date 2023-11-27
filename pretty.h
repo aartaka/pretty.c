@@ -260,10 +260,10 @@ pretty_tostring (char *format, uintmax_t thing)
 #if __STDC_VERSION__ >= 201112L
 #define print(...)                                              \
         _Generic((__VA_ARGS__),                                 \
-                 char*: puts(__VA_ARGS__),                      \
                  _Bool: puts(__VA_ARGS__ ? "true" : "false"),   \
                  default: printf(                               \
                          _Generic((__VA_ARGS__),                \
+                                  char*:              "%s\n",   \
                                   char:               "%c\n",   \
                                   signed char:        "%hhi\n", \
                                   short:              "%hi\n",  \
