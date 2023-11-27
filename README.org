@@ -89,21 +89,6 @@ Mainly modeled after Lua and Lisp:
 - ~until~ for negated ~while~.
 - ~elif~ for ~else if~.
 - ~repeat~ from Lua as an alias for ~do~.
-#+begin_src C
-  var a = 10;
-  repeat {
-          printf("value of a: %i\n");
-          ++a;
-  } until (a > 15);
-
-  // Versus Lua:
-  // a = 10
-  // repeat
-  //    print("value of a:", a)
-  //    a = a + 1
-  // until( a > 15 ) */
-#+end_src
-- ~begin~ and ~end~ block markers from BASIC, Ruby etc.
 - ~always~, so that you can make infinite (event? server?) loops
 #+begin_src C
   always print("After all this time?");
