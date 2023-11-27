@@ -227,6 +227,8 @@ pretty_err_part_of (int err, size_t length, int *errs)
 static char *
 pretty_tostring (char *format, uintmax_t thing)
 {
+        if (!strcmp("%s", format))
+                return thing;
         char *buffer = (char *) malloc(sizeof(char) * 1000);
         size_t written = (size_t) snprintf(buffer, 1000, format, (void*) thing);
         return (char *) realloc(buffer, (written + 1) * sizeof(char));
@@ -235,11 +237,11 @@ pretty_tostring (char *format, uintmax_t thing)
 #if __STDC_VERSION__ >= 201112L
 #define tostring(...)                                           \
         _Generic((__VA_ARGS__),                                 \
-                 char*: __VA_ARGS__,                            \
                  _Bool: (__VA_ARGS__ ? "true" : "false"),       \
                  default: pretty_tostring(                      \
                          _Generic((__VA_ARGS__),                \
                                   char:               "%c",     \
+                                  char*:              "%s",     \
                                   signed char:        "%hhi",   \
                                   short:              "%hi",    \
                                   int:                "%i",     \
