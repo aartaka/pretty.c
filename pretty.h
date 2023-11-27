@@ -33,8 +33,8 @@ typedef unsigned int   uint;
 typedef unsigned long  ulong;
 
 // Small macros. Mostly from Suckless.
-#define min(a, b)     ((a) < (b) ? (a) : (b))
-#define max(a, b)     ((a) > (b) ? (a) : (b))
+#define min(a, b) ((a) < (b) ? (a) : (b))
+#define max(a, b) ((a) > (b) ? (a) : (b))
 #if __STDC_VERSION__ >= 201112L
 #define len(...) _Generic((__VA_ARGS__),                                \
                           char*: strlen((char*)(__VA_ARGS__)),          \
