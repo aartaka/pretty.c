@@ -28,6 +28,7 @@ typedef char           byte;
 typedef char*          bytes;
 typedef void*          any;
 typedef unsigned char  uchar;
+typedef unsigned char  ubyte;
 typedef unsigned short ushort;
 typedef unsigned int   uint;
 typedef unsigned long  ulong;
