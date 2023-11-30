@@ -13,6 +13,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+#include <float.h>
 
 // Missing yet useful.
 #define eq ==
@@ -296,6 +298,53 @@ pretty_tostring (char *format, union float_uint thing)
                                   long double:        "%Lg\n",  \
                                   default:            "%p\n"),  \
                          (__VA_ARGS__)))
+#endif
+
+static int
+pretty_fltcmp (union float_uint this, union float_uint other, long double epsilon)
+{
+  return fabsl(this.f - other.f) < epsilon;
+}
+
+static int
+pretty_strcmp (union float_uint this, union float_uint other, long double epsilon)
+{
+  return !strcmp((char*) this.i, (char*) other.i);
+}
+
+static int
+pretty_cmp (union float_uint this, union float_uint other, long double epsilon)
+{
+  return this.i == other.i;
+}
+
+
+#if __STDC_VERSION__ >= 201112L
+#define equal(val, ...)                                 \
+  _Generic((val),                                       \
+           float: pretty_fltcmp,                        \
+           double: pretty_fltcmp,                       \
+           long double: pretty_fltcmp,                  \
+           char *: pretty_strcmp,                       \
+           default: pretty_cmp)                         \
+    ((union float_uint)                                 \
+     _Generic((val),                                    \
+              float: (long double) (val),               \
+              double: (long double) (val),              \
+              long double: (long double) (val),         \
+              default: (uintmax_t) (val)),              \
+     (union float_uint)                                 \
+     _Generic((val),                                    \
+              float: (long double) (__VA_ARGS__),       \
+              double: (long double) (__VA_ARGS__),      \
+              long double: (long double) (__VA_ARGS__), \
+              default: (uintmax_t) (__VA_ARGS__)),      \
+     _Generic((val),                                    \
+              float: FLT_EPSILON,                       \
+              double: DBL_EPSILON,                      \
+              long double: DBL_EPSILON,                 \
+              char *: 0.0,                                \
+              default: 0.0))
 #endif
 
 #endif /* PRETTY_H */
