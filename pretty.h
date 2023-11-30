@@ -225,13 +225,21 @@ pretty_err_part_of (int err, size_t length, int *errs)
 #define lambda(ret, name, ...) auto name = [](__VA_ARGS__)
 #endif
 
+union float_uint {
+  uintmax_t i;
+  long double f;
+};
+
 static char *
-pretty_tostring (char *format, uintmax_t thing)
+pretty_tostring (char *format, union float_uint thing)
 {
         if (!strcmp("%s", format))
-                return (char *) thing;
+                return (char *) thing.i;
         char *buffer = (char *) malloc(sizeof(char) * 1000);
-        size_t written = (size_t) snprintf(buffer, 1000, format, (void*) thing);
+        size_t written
+          = ((!strcmp("%Lg", format))
+             ? snprintf(buffer, 1000, format, thing.f)
+             : snprintf(buffer, 1000, format, (void*) thing.i));
         return (char *) realloc(buffer, (written + 1) * sizeof(char));
 }
 
@@ -253,11 +261,16 @@ pretty_tostring (char *format, uintmax_t thing)
                                   unsigned int:       "%u",     \
                                   unsigned long:      "%lu",    \
                                   unsigned long long: "%llu",   \
-                                  float:              "%g",     \
-                                  double:             "%g",     \
+                                  float:              "%Lg",    \
+                                  double:             "%Lg",    \
                                   long double:        "%Lg",    \
                                   default:            "%p"),    \
-                         (uintmax_t) __VA_ARGS__))
+                         (union float_uint) \
+                         _Generic((__VA_ARGS__),                        \
+                                  float: (long double) (__VA_ARGS__),   \
+                                  double: (long double) (__VA_ARGS__),  \
+                                  long double: (long double) (__VA_ARGS__), \
+                                  default: (uintmax_t) (__VA_ARGS__))))
 #endif
 
 #if __STDC_VERSION__ >= 201112L
