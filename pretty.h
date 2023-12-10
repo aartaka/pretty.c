@@ -248,24 +248,24 @@ pretty_tostring (char *format, union float_uint thing)
         _Generic((__VA_ARGS__),                                 \
                  _Bool: (__VA_ARGS__ ? "true" : "false"),       \
                  default: pretty_tostring(                      \
-                         _Generic((__VA_ARGS__),                \
-                                  char:               "%c",     \
-                                  char*:              "%s",     \
-                                  signed char:        "%hhi",   \
-                                  short:              "%hi",    \
-                                  int:                "%i",     \
-                                  long:               "%li",    \
-                                  long long:          "%lli",   \
-                                  unsigned char:      "%hhu",   \
-                                  unsigned short:     "%hi",    \
-                                  unsigned int:       "%u",     \
-                                  unsigned long:      "%lu",    \
-                                  unsigned long long: "%llu",   \
-                                  float:              "%Lg",    \
-                                  double:             "%Lg",    \
-                                  long double:        "%Lg",    \
-                                  default:            "%p"),    \
-                         (union float_uint) \
+                         _Generic((__VA_ARGS__),                        \
+                                  char:               "%c",             \
+                                  char*:              "%s",             \
+                                  signed char:        "%hhi",           \
+                                  short:              "%hi",            \
+                                  int:                "%i",             \
+                                  long:               "%li",            \
+                                  long long:          "%lli",           \
+                                  unsigned char:      "%hhu",           \
+                                  unsigned short:     "%hi",            \
+                                  unsigned int:       "%u",             \
+                                  unsigned long:      "%lu",            \
+                                  unsigned long long: "%llu",           \
+                                  float:              "%Lg",            \
+                                  double:             "%Lg",            \
+                                  long double:        "%Lg",            \
+                                  default:            "%p"),            \
+                         (union float_uint)                             \
                          _Generic((__VA_ARGS__),                        \
                                   float: (long double) (__VA_ARGS__),   \
                                   double: (long double) (__VA_ARGS__),  \
