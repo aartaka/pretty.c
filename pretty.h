@@ -80,6 +80,7 @@ typedef unsigned long  ulong;
 #define always     while(1)
 #define never      while(0)
 #define repeat     do
+#define done       break
 
 // Tracking and freeing resources. Lisp, Python.
 #if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
