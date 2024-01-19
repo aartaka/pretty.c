@@ -79,6 +79,7 @@ typedef unsigned long  ulong;
 #define until(...) while(!(__VA_ARGS__))
 #define always     while(1)
 #define never      while(0)
+#define comment    while(0)
 #define repeat     do
 #define done       break
 
