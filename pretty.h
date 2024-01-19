@@ -228,11 +228,6 @@ pretty_err_part_of (int err, size_t length, int *errs)
 #define lambda(ret, name, ...) auto name = [](__VA_ARGS__)
 #endif
 
-union float_uint {
-  uintmax_t i;
-  long double f;
-};
-
 #if __STDC_VERSION__ >= 201112L
 #define print(...)                                              \
         _Generic((__VA_ARGS__),                                 \
