@@ -232,49 +232,6 @@ union float_uint {
   long double f;
 };
 
-static char *
-pretty_tostring (char *format, union float_uint thing)
-{
-        if (!strcmp("%s", format))
-                return (char *) thing.i;
-        char *buffer = (char *) malloc(sizeof(char) * 1000);
-        size_t written
-          = ((!strcmp("%Lg", format))
-             ? snprintf(buffer, 1000, format, thing.f)
-             : snprintf(buffer, 1000, format, (void*) thing.i));
-        return (char *) realloc(buffer, (written + 1) * sizeof(char));
-}
-
-#if __STDC_VERSION__ >= 201112L
-#define tostring(...)                                           \
-        _Generic((__VA_ARGS__),                                 \
-                 _Bool: (__VA_ARGS__ ? "true" : "false"),       \
-                 default: pretty_tostring(                      \
-                         _Generic((__VA_ARGS__),                        \
-                                  char:               "%c",             \
-                                  char*:              "%s",             \
-                                  signed char:        "%hhi",           \
-                                  short:              "%hi",            \
-                                  int:                "%i",             \
-                                  long:               "%li",            \
-                                  long long:          "%lli",           \
-                                  unsigned char:      "%hhu",           \
-                                  unsigned short:     "%hi",            \
-                                  unsigned int:       "%u",             \
-                                  unsigned long:      "%lu",            \
-                                  unsigned long long: "%llu",           \
-                                  float:              "%Lg",            \
-                                  double:             "%Lg",            \
-                                  long double:        "%Lg",            \
-                                  default:            "%p"),            \
-                         (union float_uint)                             \
-                         _Generic((__VA_ARGS__),                        \
-                                  float: (long double) (__VA_ARGS__),   \
-                                  double: (long double) (__VA_ARGS__),  \
-                                  long double: (long double) (__VA_ARGS__), \
-                                  default: (uintmax_t) (__VA_ARGS__))))
-#endif
-
 #if __STDC_VERSION__ >= 201112L
 #define print(...)                                              \
         _Generic((__VA_ARGS__),                                 \

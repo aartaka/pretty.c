@@ -110,15 +110,8 @@ Yes, you can do
 #+end_src
 With Pretty C.
 
-** Conversion to string
-~tostring~ converts whatever you feed it into a string, just like
-JavaScript ~toString~.
-#+begin_src C
-  tostring(nil); // "(nil)"
-#+end_src
-
 ** Generic printing (C11+)
-~print~ prints whatever you feed it (using ~tostring~):
+~print~ prints whatever you feed it:
 #+begin_src C
   print(3.1);
   print("Hello world!");
