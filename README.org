@@ -93,9 +93,9 @@ Mainly modeled after Lua and Lisp:
 #+begin_src C
   always print("After all this time?");
 #+end_src
-- and ~never~ to comment out some code with just one keyword, while
-  still allowing the compiler to analyze/optimize it (similar to
-  [[https://clojuredocs.org/clojure.core/comment][Clojure ~comment~ form]]):
+- and ~never~ and ~comment~ to comment out some code with just one
+  keyword, while still allowing the compiler to analyze/optimize it
+  (similar to [[https://clojuredocs.org/clojure.core/comment][Clojure ~comment~ form]]):
 #+begin_src C
   never print("This never runs, but never gets outdated, because compiler will shout at you if it does.");
 #+end_src
