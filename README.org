@@ -17,7 +17,7 @@ look like with Pretty C:
               fortimes (line, 10)
                   with (free, buf, vector(200, char, 0))
                       when (fgets(buf, 200, f))
-                          then printf(buf)
+                          then printf("%s", buf)
                           otherwise 0;
       else
           print("Please provide an input file");
