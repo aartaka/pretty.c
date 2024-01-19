@@ -183,6 +183,7 @@ pretty_allocpy (size_t size, void *contents)
 
 // Easy array allocation. C++ vector, but more primitive.
 // FIXME: Enforce array type somehow?
+// TODO: Infer the type from the __VA_ARGS__.
 #define vector(length, type, ...)                               \
         (type*) pretty_allocpy(sizeof(type) * length,           \
                                (type[length]){__VA_ARGS__})
