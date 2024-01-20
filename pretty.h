@@ -72,7 +72,7 @@ typedef unsigned long  ulong;
 #define let   __auto_type
 #define local __auto_type
 #define fn    __auto_type
-#elif __STDC_VERSION__ >= 202311L
+#elif __STDC_VERSION__ >= 202311L || defined(__cplusplus)
 #define var   auto
 #define let   auto
 #define local auto
