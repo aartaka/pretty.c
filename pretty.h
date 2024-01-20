@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <float.h>
 
 // Missing yet useful.
 #define eq ==
@@ -252,5 +253,20 @@ pretty_err_part_of (int err, size_t length, int *errs)
                                   default:            "%p\n"),  \
                          (__VA_ARGS__)))
 #endif
+
+int pretty_anything_equal (unsigned long long a, unsigned long long b) {return a == b;}
+int pretty_float_equal (float a, float b) { return fabsf(a - b) < FLT_EPSILON; }
+int pretty_double_equal (double a, double b) { return fabs(a - b) < DBL_EPSILON; }
+int pretty_long_double_equal (long double a, long double b) { return fabsl(a - b) < LDBL_EPSILON; }
+int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
+
+#define equal(a, b)                                     \
+        _Generic((a),                                   \
+                 float: pretty_float_equal,             \
+                 double: pretty_double_equal,           \
+                 long double: pretty_long_double_equal, \
+                 char *: pretty_string_equal,           \
+                 default: pretty_anything_equal)        \
+        (a, b)
 
 #endif /* PRETTY_H */
