@@ -65,7 +65,7 @@ typedef unsigned long  ulong;
 #define otherwhen :
 #define only      : NULL
 
-// Dynamically-typed variable declarations
+// Dynamically-typed declarations
 #if defined(__GNUC__) || defined(__GNUG__)
 #define var   __auto_type
 #define let   __auto_type
