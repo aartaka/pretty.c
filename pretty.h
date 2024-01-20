@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <float.h>
+#include <math.h>
 
 // Missing yet useful.
 #define eq ==
