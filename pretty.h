@@ -70,10 +70,12 @@ typedef unsigned long  ulong;
 #define var   __auto_type
 #define let   __auto_type
 #define local __auto_type
+#define fn    __auto_type
 #elif __STDC_VERSION__ >= 202311L
 #define var   auto
 #define let   auto
 #define local auto
+#define fn    auto
 #endif
 
 // Loops and blocks. Lisp, Lua, Ruby.
