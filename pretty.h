@@ -91,18 +91,18 @@ typedef unsigned long  ulong;
 #define done       break
 
 // Tracking and freeing resources. Lisp, Python.
-#if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
+#if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
 #define with(close, var, ...)                                   \
         for (typeof((__VA_ARGS__)) var = (__VA_ARGS__),         \
-                     *flag_ ## __LINE__ = (void*) 1;            \
+                     *with_flag = (void*) 1;            \
              flag_ ## __LINE__;                                 \
-             (close)(var), flag_ ## __LINE__ = (void*) 0)
+             (close)(var), with_flag = (void*) 0)
 #else
 #define with(close, var, ...)                                   \
         for (void *var = (void*) (__VA_ARGS__),                 \
-                     *flag_ ## __LINE__ = (void*) 1;            \
+                     *with_flag_ = (void*) 1;            \
              flag_ ## __LINE__;                                 \
-             (close)(var), flag_ ## __LINE__ = (void*) 0)
+             (close)(var), with_flag = (void*) 0)
 #endif
 
 // Ranges from INIT to TARGET. Python range() syntax.
@@ -115,7 +115,7 @@ typedef unsigned long  ulong;
               ? (var -= (by))                   \
               : (var += (by))))
 
-#if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
+#if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
 #define forrange(var, init, ...)                                        \
         for (typeof((init)+(__VA_ARGS__)) init_ ## __LINE__ = (init),   \
                      var = init_ ## __LINE__,                           \
@@ -134,17 +134,17 @@ typedef unsigned long  ulong;
 #endif
 
 // Repeat X times. Lisp, Lua
-#if  (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
+#if  (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
 #define fortimes(var, ...)                                              \
         for (typeof((__VA_ARGS__)) result_ ## __LINE__ = (__VA_ARGS__), \
                      var = (typeof((__VA_ARGS__))) 0;                   \
              var < result_ ## __LINE__;                                 \
-             var += 1)
+             ++var)
 #else
 #define fortimes(var, ...)                                      \
         for (int var = 0, result_ ## __LINE__ = (__VA_ARGS__);  \
              var < result_ ## __LINE__;                         \
-             var += 1)
+             ++var)
 #endif
 
 // For each loop from basically every language.
@@ -227,7 +227,7 @@ pretty_err_part_of (int err, size_t length, int *errs)
 #define NOERROR 0
 #define NOERR 0
 
-#if defined(__clang__)
+#if defined(__clang_major__)
 #define lambda(ret, name, ...) void * name = (void*) ^ ret (__VA_ARGS__)
 #elif defined(__GNUC__) || defined(__GNUG__)
 #define lambda(ret, name, ...) ret name (__VA_ARGS__)
