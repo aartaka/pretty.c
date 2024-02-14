@@ -8,13 +8,18 @@
 #include <complex.h>
 #include <errno.h>
 #include <iso646.h>
-#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <float.h>
 #include <math.h>
+
+#if __STDC_VERSION__ < 202000L || \
+        (__GNUC__ < 13 && \
+         (!defined(__clang_major__) || __clang_major__ < 18))
+#include <stdbool.h>
+#endif
 
 // Missing yet useful.
 #define eq ==
