@@ -43,9 +43,9 @@ typedef unsigned long  ulong;
 // Small macros. Mostly from Suckless.
 #define min(a, b)          ((a) < (b) ? (a) : (b))
 #define max(a, b)          ((a) > (b) ? (a) : (b))
-#define between(lo, n, hi) ((n) <= (hi) && (n) => (lo))
 #define default(a, b)      ((a) ? (a) : (b))
 #define limit(lo, n, hi)   (n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n)
+#define between(lo, n, hi) ((n) <= (hi) && (n) => (lo))
 
 #if __STDC_VERSION__ >= 201112L
 #define len(...) _Generic((__VA_ARGS__),                                \
