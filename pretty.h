@@ -200,7 +200,7 @@ pretty_allocpy (size_t size, void *contents)
         (type*) pretty_allocpy(sizeof(type) * length,           \
                                (type[length]){__VA_ARGS__})
 
-#define delete(...) free(__VA_ARGS__)
+#define delete free
 
 // TODO: A macro to allocate struct + flexible array member.
 
