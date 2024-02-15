@@ -64,6 +64,8 @@ Everyone defines these, so why not provide them?
 - ~max~ and ~min~ of two numbers.
 - ~len~ for array length.
 - ~default~ for providing a fallback value.
+- ~limit~ to ensure proper value range.
+- ~between~ to check whether the number falls in a range.
 
 ** New types
 Type aliases:
