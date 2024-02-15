@@ -25,6 +25,7 @@
 #define eq ==
 // SQL.
 #define is ==
+#define isnt !=
 // Fixing inconsistent bit operation names.
 #define bitnot ~
 #define bitxor ^
