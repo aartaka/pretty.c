@@ -240,6 +240,11 @@ contents":
   double *vec = vector(10, double, 1, 2, 3, 4, 5);
 #+end_src
 
+*** ~delete (...)~
+In case you don't like ~free~-ing the resources and prefer a fancier C++ name.
+
+Otherwise the same as ~free~.
+
 ** Block utilities
 These establish new local bindings, ensure deferred computations, or
 otherwise act on the block after them.
