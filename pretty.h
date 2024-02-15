@@ -274,13 +274,13 @@ int pretty_double_equal (double a, double b) { return fabs(a - b) < DBL_EPSILON;
 int pretty_long_double_equal (long double a, long double b) { return fabsl(a - b) < LDBL_EPSILON; }
 int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
 
-#define equal(a, b)                                     \
+#define equal(a, ...)                                   \
         _Generic((a),                                   \
                  float: pretty_float_equal,             \
                  double: pretty_double_equal,           \
                  long double: pretty_long_double_equal, \
                  char *: pretty_string_equal,           \
                  default: pretty_anything_equal)        \
-        (a, b)
+        (a, __VA_ARGS__)
 
 #endif /* PRETTY_H */
