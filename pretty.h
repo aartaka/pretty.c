@@ -208,6 +208,7 @@ pretty_allocpy (size_t size, void *contents)
              flag_ ## __LINE__;                         \
              flag_ ## __LINE__ = 0, (__VA_ARGS__))
 
+#define throw return errno =
 #define try                                     \
         errno = 0;                              \
         for (bool flag_ ## __LINE__ = 1;        \
