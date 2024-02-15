@@ -80,7 +80,7 @@ typedef unsigned long  ulong;
 #define var   __auto_type
 #define let   __auto_type
 #define local __auto_type
-#elif __STDC_VERSION__ >= 202311L || defined(__cplusplus)
+#elif __STDC_VERSION__ > 202000L || defined(__cplusplus)
 #define var   auto
 #define let   auto
 #define local auto
@@ -95,7 +95,7 @@ typedef unsigned long  ulong;
 #define done       break
 
 // Tracking and freeing resources. Lisp, Python.
-#if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
+#if (__STDC_VERSION__ > 202000L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
 #define with(close, var, ...)                                   \
         for (typeof((__VA_ARGS__)) var = (__VA_ARGS__),         \
                      *with_flag = (void*) 1;            \
@@ -119,7 +119,7 @@ typedef unsigned long  ulong;
               ? (var -= (by))                   \
               : (var += (by))))
 
-#if (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
+#if (____STDC_VERSION__ > 202000L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
 #define forrange(var, init, ...)                                        \
         for (typeof((init)+(__VA_ARGS__)) init_ ## __LINE__ = (init),   \
                      var = init_ ## __LINE__,                           \
@@ -138,7 +138,7 @@ typedef unsigned long  ulong;
 #endif
 
 // Repeat X times. Lisp, Lua
-#if  (__STDC_VERSION__ >= 202311L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
+#if  (__STDC_VERSION__ > 202000L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
 #define fortimes(var, ...)                                              \
         for (typeof((__VA_ARGS__)) result_ ## __LINE__ = (__VA_ARGS__), \
                      var = (typeof((__VA_ARGS__))) 0;                   \
