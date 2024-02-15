@@ -41,9 +41,9 @@ typedef unsigned int   uint;
 typedef unsigned long  ulong;
 
 // Small macros. Mostly from Suckless.
-#define min(a, b)          ((a) < (b) ? (a) : (b))
-#define max(a, b)          ((a) > (b) ? (a) : (b))
-#define default(a, b)      ((a) ? (a) : (b))
+#define min(x, ...)        ((x) < (__VA_ARGS__) ? (x) : (__VA_ARGS__))
+#define max(x, ...)        ((x) > (__VA_ARGS__) ? (x) : (__VA_ARGS__))
+#define default(x, ...)    ((x) ? (x) : (__VA_ARGS__))
 #define limit(lo, n, hi)   (n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n)
 #define between(lo, n, hi) ((n) <= (hi) && (n) => (lo))
 
