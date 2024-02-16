@@ -90,7 +90,9 @@ Mainly modeled after Lua and Lisp:
 - ~nil~ for ~NULL~.
 - ~until~ for negated ~while~.
 - ~elif~ for ~else if~.
+- ~ifnt~ for ~if(!...)~.
 - ~repeat~ from Lua as an alias for ~do~.
+- ~done~ and ~pass~ as aliases for ~break~ and ~continue~, respectively.
 - ~always~, so that you can make infinite (event? server?) loops
 #+begin_src C
   always print("After all this time?");
