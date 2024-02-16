@@ -68,6 +68,7 @@ typedef unsigned long  ulong;
 #define negative 0 >
 
 // Ternaries and conditionals.
+#define ifnt(...) if(!(__VA_ARGS__))
 #define elif      else if
 #define when
 #define unless    !
