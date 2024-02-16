@@ -94,6 +94,7 @@ typedef unsigned long  ulong;
 #define comment    while(0)
 #define repeat     do
 #define done       break
+#define pass       continue
 
 // Tracking and freeing resources. Lisp, Python.
 #if (__STDC_VERSION__ > 202000L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
