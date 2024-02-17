@@ -77,7 +77,7 @@ Type aliases:
   - ~uchar~.
   - ~ushort~.
   - ~uint~.
-  - ~ulong~
+  - ~ulong~.
 
 ** New aliases
 Mainly modeled after Lua and Lisp:
