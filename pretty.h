@@ -15,8 +15,8 @@
 #include <float.h>
 #include <math.h>
 
-#if __STDC_VERSION__ < 202000L || \
-        (__GNUC__ < 13 && \
+#if __STDC_VERSION__ < 202000L ||                               \
+        (__GNUC__ < 13 &&                                       \
          (!defined(__clang_major__) || __clang_major__ < 18))
 #include <stdbool.h>
 #endif
@@ -101,8 +101,8 @@ typedef unsigned long  ulong;
 #if (__STDC_VERSION__ > 202000L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
 #define with(close, var, ...)                                   \
         for (typeof((__VA_ARGS__)) var = (__VA_ARGS__),         \
-                     *pretty_with_flag = (void*) 1;            \
-             pretty_with_flag;                                 \
+                     *pretty_with_flag = (void*) 1;             \
+             pretty_with_flag;                                  \
              (close)(var), pretty_with_flag = (void*) 0)
 #else
 #define with(close, var, ...)                                   \
@@ -157,30 +157,30 @@ typedef unsigned long  ulong;
 // For each loop from basically every language.
 #define foreach(var, type, length, ...)                                 \
         for (type *pretty_init = (__VA_ARGS__),                         \
-                     *pretty_foreach_flag = (void*) 1;                          \
-             pretty_foreach_flag;                                               \
-             pretty_foreach_flag = (void*) 0)                                   \
+                     *pretty_foreach_flag = (void*) 1;                  \
+             pretty_foreach_flag;                                       \
+             pretty_foreach_flag = (void*) 0)                           \
                 for (size_t pretty_offset = 0;                          \
                      pretty_offset < length;                            \
                      pretty_offset += 1)                                \
                         for (type *var = (pretty_init + pretty_offset), \
-                                     *pretty_foreach_flag2 = (void*) 1;         \
-                             pretty_foreach_flag2;                              \
+                                     *pretty_foreach_flag2 = (void*) 1; \
+                             pretty_foreach_flag2;                      \
                              pretty_foreach_flag2 = (void*) 0)
 
 // Loop over the provided arguments.
 #define forthese(var, type, ...)                                        \
         for (type *pretty_init = (type[]){__VA_ARGS__},                 \
-                     *pretty_forthese_flag = (void*) 1;                          \
-             pretty_forthese_flag;                                               \
-             pretty_forthese_flag = (void*) 0)                                   \
+                     *pretty_forthese_flag = (void*) 1;                 \
+             pretty_forthese_flag;                                      \
+             pretty_forthese_flag = (void*) 0)                          \
                 for (size_t pretty_offset = 0;                          \
                      pretty_offset < (sizeof((type[]){__VA_ARGS__})     \
                                       / sizeof(type));                  \
                      pretty_offset += 1)                                \
                         for (type var = pretty_init [pretty_offset],    \
-                                     *pretty_forthese_flag2 = (void*) 1;         \
-                             pretty_forthese_flag2;                              \
+                                     *pretty_forthese_flag2 = (void*) 1; \
+                             pretty_forthese_flag2;                     \
                              pretty_forthese_flag2 = (void*) 0)
 
 static void*
@@ -207,16 +207,16 @@ pretty_allocpy (size_t size, void *contents)
 // TODO: A macro to allocate struct + flexible array member.
 
 // Go defer, but rather block scoped and with arbitrary code in it.
-#define defer(...)                                      \
-        for (bool pretty_flag = 1;                \
-             pretty_flag;                         \
+#define defer(...)                              \
+        for (bool pretty_flag = 1;              \
+             pretty_flag;                       \
              pretty_flag = 0, (__VA_ARGS__))
 
 #define throw return errno =
 #define try                                     \
         errno = 0;                              \
-        for (bool pretty_flag = 1;        \
-             pretty_flag;                 \
+        for (bool pretty_flag = 1;              \
+             pretty_flag;                       \
              pretty_flag = 0)
 
 
@@ -283,6 +283,6 @@ int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
                  long double: pretty_long_double_equal, \
                  char *: pretty_string_equal,           \
                  default: pretty_anything_equal)        \
-        (a, __VA_ARGS__)
+                (a, __VA_ARGS__)
 
 #endif /* PRETTY_H */
