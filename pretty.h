@@ -277,7 +277,7 @@ int pretty_long_double_equal (long double a, long double b) { return fabsl(a - b
 int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
 
 #define equal(a, ...)                                   \
-        _Generic((a),                                   \
+        _Generic((__VA_ARGS__),                         \
                  float: pretty_float_equal,             \
                  double: pretty_double_equal,           \
                  long double: pretty_long_double_equal, \
