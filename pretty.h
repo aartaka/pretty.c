@@ -101,15 +101,15 @@ typedef unsigned long  ulong;
 #if (__STDC_VERSION__ > 202000L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
 #define with(close, var, ...)                                   \
         for (typeof((__VA_ARGS__)) var = (__VA_ARGS__),         \
-                     *with_flag = (void*) 1;            \
-             flag_ ## __LINE__;                                 \
-             (close)(var), with_flag = (void*) 0)
+                     *pretty_with_flag = (void*) 1;            \
+             pretty_with_flag;                                 \
+             (close)(var), pretty_with_flag = (void*) 0)
 #else
 #define with(close, var, ...)                                   \
         for (void *var = (void*) (__VA_ARGS__),                 \
-                     *with_flag_ = (void*) 1;            \
-             flag_ ## __LINE__;                                 \
-             (close)(var), with_flag = (void*) 0)
+                     *pretty_with_flag = (void*) 1;             \
+             pretty_with_flag;                                  \
+             (close)(var), pretty_with_flag = (void*) 0)
 #endif
 
 // Ranges from INIT to TARGET. Python range() syntax.
@@ -123,65 +123,65 @@ typedef unsigned long  ulong;
               : (var += (by))))
 
 #if (____STDC_VERSION__ > 202000L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
-#define forrange(var, init, ...)                                        \
-        for (typeof((init)+(__VA_ARGS__)) init_ ## __LINE__ = (init),   \
-                     var = init_ ## __LINE__,                           \
-                     target_ ## __LINE__ = (__VA_ARGS__);               \
-             ((init_ ## __LINE__ >= target_ ## __LINE__)                \
-              ? (var > target_ ## __LINE__)                             \
-              : (var < target_ ## __LINE__));                           \
-             var += ((init_ ## __LINE__ >= target_ ## __LINE__) ? -1 : +1))
+#define forrange(var, init, ...)                                \
+        for (typeof((init)+(__VA_ARGS__)) pretty_init = (init), \
+                     var = pretty_init,                         \
+                     pretty_target = (__VA_ARGS__);             \
+             ((pretty_init >= pretty_target)                    \
+              ? (var > pretty_target)                           \
+              : (var < pretty_target));                         \
+             var += ((pretty_init >= pretty_target) ? -1 : +1))
 #else
-#define forrange(var, init, ...)                                        \
-        for (int init_ ## __LINE__ = (init),                            \
-                     var = init_ ## __LINE__,                           \
-                     target_ ## __LINE__ = (__VA_ARGS__);               \
-             var != target_ ## __LINE__;                                \
-             var += ((init_ ## __LINE__ >= target_ ## __LINE__) ? -1 : +1))
+#define forrange(var, init, ...)                                \
+        for (int pretty_init = (init),                          \
+                     var = pretty_init,                         \
+                     pretty_target = (__VA_ARGS__);             \
+             var != pretty_target;                              \
+             var += ((pretty_init >= pretty_target) ? -1 : +1))
 #endif
 
 // Repeat X times. Lisp, Lua
 #if  (__STDC_VERSION__ > 202000L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
 #define fortimes(var, ...)                                              \
-        for (typeof((__VA_ARGS__)) result_ ## __LINE__ = (__VA_ARGS__), \
+        for (typeof((__VA_ARGS__)) pretty_result = (__VA_ARGS__),       \
                      var = (typeof((__VA_ARGS__))) 0;                   \
-             var < result_ ## __LINE__;                                 \
+             var < pretty_result;                                       \
              ++var)
 #else
 #define fortimes(var, ...)                                      \
-        for (int var = 0, result_ ## __LINE__ = (__VA_ARGS__);  \
-             var < result_ ## __LINE__;                         \
+        for (int var = 0, pretty_result = (__VA_ARGS__);        \
+             var < pretty_result;                               \
              ++var)
 #endif
 
 // For each loop from basically every language.
 #define foreach(var, type, length, ...)                                 \
-        for (type *init ## __LINE__ = (__VA_ARGS__),                    \
-                     *flag_ ## __LINE__ = (void*) 1;                    \
-             flag_ ## __LINE__;                                         \
-             flag_ ## __LINE__ = (void*) 0)                             \
-                for (size_t offset ## __LINE__ = 0;                     \
-                     offset ## __LINE__ < length;                       \
-                     offset ## __LINE__ += 1)                           \
-                        for (type *var = (init ## __LINE__ + offset ## __LINE__), \
-                                     *flag2_ ## __LINE__ = (void*) 1;   \
-                             flag2_ ## __LINE__;                        \
-                             flag2_ ## __LINE__ = (void*) 0)
+        for (type *pretty_init = (__VA_ARGS__),                         \
+                     *pretty_foreach_flag = (void*) 1;                          \
+             pretty_foreach_flag;                                               \
+             pretty_foreach_flag = (void*) 0)                                   \
+                for (size_t pretty_offset = 0;                          \
+                     pretty_offset < length;                            \
+                     pretty_offset += 1)                                \
+                        for (type *var = (pretty_init + pretty_offset), \
+                                     *pretty_foreach_flag2 = (void*) 1;         \
+                             pretty_foreach_flag2;                              \
+                             pretty_foreach_flag2 = (void*) 0)
 
 // Loop over the provided arguments.
 #define forthese(var, type, ...)                                        \
-        for (type *init ## __LINE__ = (type[]){__VA_ARGS__},            \
-                     *flag_ ## __LINE__ = (void*) 1;                    \
-             flag_ ## __LINE__;                                         \
-             flag_ ## __LINE__ = (void*) 0)                             \
-                for (size_t offset ## __LINE__ = 0;                     \
-                     offset ## __LINE__ < (sizeof((type[]){__VA_ARGS__}) \
-                                           / sizeof(type));             \
-                     offset ## __LINE__ += 1)                           \
-                        for (type var = init ## __LINE__ [offset ## __LINE__], \
-                                     *flag2_ ## __LINE__ = (void*) 1;   \
-                             flag2_ ## __LINE__;                        \
-                             flag2_ ## __LINE__ = (void*) 0)
+        for (type *pretty_init = (type[]){__VA_ARGS__},                 \
+                     *pretty_forthese_flag = (void*) 1;                          \
+             pretty_forthese_flag;                                               \
+             pretty_forthese_flag = (void*) 0)                                   \
+                for (size_t pretty_offset = 0;                          \
+                     pretty_offset < (sizeof((type[]){__VA_ARGS__})     \
+                                      / sizeof(type));                  \
+                     pretty_offset += 1)                                \
+                        for (type var = pretty_init [pretty_offset],    \
+                                     *pretty_forthese_flag2 = (void*) 1;         \
+                             pretty_forthese_flag2;                              \
+                             pretty_forthese_flag2 = (void*) 0)
 
 static void*
 pretty_allocpy (size_t size, void *contents)
@@ -208,16 +208,16 @@ pretty_allocpy (size_t size, void *contents)
 
 // Go defer, but rather block scoped and with arbitrary code in it.
 #define defer(...)                                      \
-        for (bool flag_ ## __LINE__ = 1;                \
-             flag_ ## __LINE__;                         \
-             flag_ ## __LINE__ = 0, (__VA_ARGS__))
+        for (bool pretty_flag = 1;                \
+             pretty_flag;                         \
+             pretty_flag = 0, (__VA_ARGS__))
 
 #define throw return errno =
 #define try                                     \
         errno = 0;                              \
-        for (bool flag_ ## __LINE__ = 1;        \
-             flag_ ## __LINE__;                 \
-             flag_ ## __LINE__ = 0)
+        for (bool pretty_flag = 1;        \
+             pretty_flag;                 \
+             pretty_flag = 0)
 
 
 static int
