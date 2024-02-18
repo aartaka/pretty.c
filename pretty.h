@@ -295,4 +295,18 @@ int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
                 (a, __VA_ARGS__)
 #endif
 
+int pretty_contains (void *a, size_t size, size_t length, void *arr)
+{
+        for (size_t i = 0; i < length/size; ++i)
+                if(0 == memcmp(a, (((char*)arr)+(size*i)), size))
+                        return 1;
+        return 0;
+}
+
+#define contains(a, type, ...)                                          \
+        pretty_contains((void*)(type[1]){a},                             \
+                        sizeof(type),                                   \
+                        sizeof((type[]){__VA_ARGS__}),                  \
+                        (void*)((type[]){__VA_ARGS__}))
+
 #endif /* PRETTY_H */
