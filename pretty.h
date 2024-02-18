@@ -75,6 +75,7 @@ typedef unsigned long  ulong;
 #define when
 #define unless    !
 #define then      ?
+#define other     :
 #define otherwise :
 #define otherwhen :
 #define only      : NULL
