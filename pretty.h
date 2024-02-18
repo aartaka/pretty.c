@@ -55,11 +55,11 @@ typedef unsigned long  ulong;
         (__VA_ARGS__ == NULL) ? 0                                       \
         : _Generic((__VA_ARGS__),                                       \
                    char*: strlen((char*)(__VA_ARGS__)),                 \
-                   default: (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0]))
+                   default: (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__[0])))
 #else
 #define len(...)                                                \
         (__VA_ARGS__ == NULL) ? 0                               \
-        : (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0])
+        : (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__[0]))
 #endif
 
 // Lua/Lisp nil.
