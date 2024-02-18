@@ -283,6 +283,8 @@ int pretty_double_equal (double a, double b) { return fabs(a - b) < DBL_EPSILON;
 int pretty_long_double_equal (long double a, long double b) { return fabsl(a - b) < LDBL_EPSILON; }
 int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
 
+
+#if __STDC_VERSION__ >= 201112L
 #define equal(a, ...)                                   \
         _Generic((__VA_ARGS__),                         \
                  float: pretty_float_equal,             \
@@ -291,5 +293,6 @@ int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
                  char *: pretty_string_equal,           \
                  default: pretty_anything_equal)        \
                 (a, __VA_ARGS__)
+#endif
 
 #endif /* PRETTY_H */
