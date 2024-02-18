@@ -128,14 +128,14 @@ alternatives that look quite Python/Lisp-like:
 #+begin_src C
   return when some_condition
          then do_something()
-         otherwise do_something_else();
+         other do_something_else();
 #+end_src
 
 It's ternaries underneath:
 - ~when~ expands to empty string and is only provided for readability.
   - ~unless~ expands to ~not~ to be a negative version of ~when~.
 - ~then~ expands to ~?~.
-- ~otherwise~ expands to ~:~.
+- ~other~ / ~otherwise~ expands to ~:~.
 
 There's also ~only~ for when the ~otherwise~ clause is
 unnecessary:
