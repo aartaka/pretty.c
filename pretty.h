@@ -51,11 +51,15 @@ typedef unsigned long  ulong;
 #define between(lo, n, hi) ((n) <= (hi) && (n) => (lo))
 
 #if __STDC_VERSION__ >= 201112L
-#define len(...) _Generic((__VA_ARGS__),                                \
-                          char*: strlen((char*)(__VA_ARGS__)),          \
-                          default: (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0]))
+#define len(...)                                                        \
+        (__VA_ARGS__ == NULL) ? 0                                       \
+        : _Generic((__VA_ARGS__),                                       \
+                   char*: strlen((char*)(__VA_ARGS__)),                 \
+                   default: (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0]))
 #else
-#define len(...) (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0])
+#define len(...)                                                \
+        (__VA_ARGS__ == NULL) ? 0                               \
+        : (sizeof(__VA_ARGS__) / sizeof(__VA_ARGS__)[0])
 #endif
 
 // Lua/Lisp nil.
