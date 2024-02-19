@@ -219,7 +219,6 @@ pretty_allocpy (size_t size, void *contents)
              pretty_flag;                       \
              pretty_flag = 0, (__VA_ARGS__))
 
-#define throw return errno =
 #define try                                     \
         errno = 0;                              \
         for (bool pretty_flag = 1;              \
