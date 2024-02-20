@@ -66,6 +66,7 @@ Everyone defines these, so why not provide them?
 - ~default~ for providing a fallback value.
 - ~limit~ to ensure proper value range.
 - ~between~ to check whether the number falls in a range.
+- ~divisible~ to check whether a number is modulo divisible by another number.
 
 ** New types
 Type aliases:
@@ -86,7 +87,7 @@ Mainly modeled after Lua and Lisp:
 - ~bitnot~ and ~bitxor~ for operations that used to be called
   inconsistently (~compl~ and ~xor~ respectively) in ~iso646.h~.
 - ~below~, ~above~, ~upto~, and ~downto~ comparison operators.
-- ~positive~ and ~negative~ as predicates for numbers/data.
+- ~positive~, ~negative~, ~zero~, and ~empty~ as predicates for numbers/data.
 - ~nil~ for ~NULL~.
 - ~until~ for negated ~while~.
 - ~elif~ for ~else if~.

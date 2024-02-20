@@ -44,6 +44,7 @@ typedef unsigned long  ulong;
 // Small macros. Mostly from Suckless.
 #define min(x, ...)        ((x) < (__VA_ARGS__) ? (x) : (__VA_ARGS__))
 #define max(x, ...)        ((x) > (__VA_ARGS__) ? (x) : (__VA_ARGS__))
+#define divisible(n, d)    ((n) % (d) == 0)
 #define even(...)          (__VA_ARGS__ % 2 == 0)
 #define odd(...)           (__VA_ARGS__ % 2 != 0)
 #define default(x, ...)    ((x) ? (x) : (__VA_ARGS__))
@@ -72,6 +73,8 @@ typedef unsigned long  ulong;
 #define downto   >=
 #define positive 0 <
 #define negative 0 >
+#define zero     0 ==
+#define empty    NULL ==
 
 // Ternaries and conditionals.
 #define ifnt(...) if(!(__VA_ARGS__))
