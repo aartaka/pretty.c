@@ -297,4 +297,20 @@ int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
                 (a, __VA_ARGS__)
 #endif
 
+int pretty_in (void *thing, size_t thing_size, size_t total_size, void *things)
+{
+        char *char_things = things;
+        for (size_t i = 0; i < total_size; i += thing_size)
+                if (!memcmp(thing, char_things+i, thing_size))
+                        return 1;
+        return 0;
+}
+
+
+#define in(thing, type, ...)                    \
+        pretty_in((void*)(type[1]){thing},      \
+                  sizeof(type),                 \
+                  sizeof((type[]){__VA_ARGS__}), \
+                  (void*)(type[]){__VA_ARGS__})
+
 #endif /* PRETTY_H */
