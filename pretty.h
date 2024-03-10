@@ -45,16 +45,18 @@ typedef unsigned long  ulong;
 #define min(x, ...)        ((x) < (__VA_ARGS__) ? (x) : (__VA_ARGS__))
 #define max(x, ...)        ((x) > (__VA_ARGS__) ? (x) : (__VA_ARGS__))
 #define divisible(n, d)    ((n) % (d) == 0)
-#define even(...)          (__VA_ARGS__ % 2 == 0)
-#define odd(...)           (__VA_ARGS__ % 2 != 0)
-#define positive(...)      0 < __VA_ARGS__
-#define negative(...)      0 > __VA_ARGS__
-#define zero(...)          0 == __VA_ARGS__
-#define empty(...)         NULL == __VA_ARGS__
-#define null(...)          NULL == __VA_ARGS__
 #define default(x, ...)    ((x) ? (x) : (__VA_ARGS__))
 #define limit(lo, n, hi)   (n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n)
 #define between(lo, n, hi) ((n) <= (hi) && (n) => (lo))
+
+// Predicates
+#define even               0 == 1 &
+#define odd                1 == 1 &
+#define positive           0 <
+#define negative           0 >
+#define zero               0 ==
+#define empty              NULL ==
+#define null               NULL ==
 
 #if __STDC_VERSION__ >= 201112L
 #define len(...)                                                        \
