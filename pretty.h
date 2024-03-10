@@ -77,15 +77,16 @@ typedef unsigned long  ulong;
 #define downto   >=
 
 // Ternaries and conditionals.
-#define ifnt(...) if(!(__VA_ARGS__))
-#define elif      else if
+#define ifnt(...)   if(!(__VA_ARGS__))
+#define elif        else if
+#define elifnt(...) else if(!(__VA_ARGS__))
 #define when
-#define unless    !
-#define then      ?
-#define other     :
-#define otherwise :
-#define otherwhen :
-#define only      : NULL
+#define unless      !
+#define then        ?
+#define other       :
+#define otherwise   :
+#define otherwhen   :
+#define only        : NULL
 
 // Dynamically-typed declarations
 #if defined(__GNUC__) || defined(__GNUG__)
