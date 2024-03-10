@@ -51,6 +51,7 @@ typedef unsigned long  ulong;
 #define negative(...)      0 > __VA_ARGS__
 #define zero(...)          0 == __VA_ARGS__
 #define empty(...)         NULL == __VA_ARGS__
+#define null(...)          NULL == __VA_ARGS__
 #define default(x, ...)    ((x) ? (x) : (__VA_ARGS__))
 #define limit(lo, n, hi)   (n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n)
 #define between(lo, n, hi) ((n) <= (hi) && (n) => (lo))
