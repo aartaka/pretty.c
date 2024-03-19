@@ -162,9 +162,9 @@ typedef unsigned long  ulong;
              var < pretty_result;                                       \
              ++var)
 #else
-#define fortimes(var, ...)                                      \
-        for (int var = 0, pretty_result = (__VA_ARGS__);        \
-             var < pretty_result;                               \
+#define fortimes(var, ...)                                              \
+        for (size_t var = 0, pretty_result = (size_t)(__VA_ARGS__);     \
+             var < pretty_result;                                       \
              ++var)
 #endif
 
