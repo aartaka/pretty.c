@@ -283,11 +283,11 @@ pretty_err_part_of (int err, size_t length, int *errs)
                          (__VA_ARGS__)))
 #endif
 
-int pretty_anything_equal (unsigned long long a, unsigned long long b) {return a == b;}
-int pretty_float_equal (float a, float b) { return fabsf(a - b) < FLT_EPSILON; }
-int pretty_double_equal (double a, double b) { return fabs(a - b) < DBL_EPSILON; }
-int pretty_long_double_equal (long double a, long double b) { return fabsl(a - b) < LDBL_EPSILON; }
-int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
+static int pretty_anything_equal (unsigned long long a, unsigned long long b) {return a == b;}
+static int pretty_float_equal (float a, float b) { return fabsf(a - b) < FLT_EPSILON; }
+static int pretty_double_equal (double a, double b) { return fabs(a - b) < DBL_EPSILON; }
+static int pretty_long_double_equal (long double a, long double b) { return fabsl(a - b) < LDBL_EPSILON; }
+static int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
 
 
 #if __STDC_VERSION__ >= 201112L
@@ -301,7 +301,8 @@ int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
                 (a, __VA_ARGS__)
 #endif
 
-int pretty_in (void *thing, size_t thing_size, size_t total_size, void *things)
+static int
+pretty_in (void *thing, size_t thing_size, size_t total_size, void *things)
 {
         char *char_things = things;
         for (size_t i = 0; i < total_size; i += thing_size)
