@@ -311,10 +311,10 @@ int pretty_in (void *thing, size_t thing_size, size_t total_size, void *things)
 }
 
 
-#define in(thing, type, ...)                    \
-        pretty_in((void*)(type[1]){thing},      \
-                  sizeof(type),                 \
-                  sizeof((type[]){__VA_ARGS__}), \
+#define in(thing, type, ...)                            \
+        pretty_in((void*)(type[1]){thing},              \
+                  sizeof(type),                         \
+                  sizeof((type[]){__VA_ARGS__}),        \
                   (void*)(type[]){__VA_ARGS__})
 
 #endif /* PRETTY_H */
