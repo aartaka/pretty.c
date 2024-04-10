@@ -87,7 +87,7 @@ Mainly modeled after Lua and Lisp:
 - ~bitnot~ and ~bitxor~ for operations that used to be called
   inconsistently (~compl~ and ~xor~ respectively) in ~iso646.h~.
 - ~below~, ~above~, ~upto~, and ~downto~ comparison operators.
-- ~positive~, ~negative~, ~zero~, and ~empty~ as predicates for numbers/data.
+- ~even~, ~odd~, ~positive~, ~negative~, ~zero~, and ~empty~ as predicates for numbers/data.
 - ~nil~ for ~NULL~.
 - ~until~ for negated ~while~.
 - ~elif~ for ~else if~.
@@ -120,6 +120,13 @@ With Pretty C.
 #+begin_src C
   print(3.1);
   print("Hello world!");
+#+end_src
+
+** Generic equality (C11+)
+Compare all the things!
+#+begin_src C
+  equal("NA", line); // true
+  equal(0.3, 0.2 + 0.1); // true
 #+end_src
 
 ** Pretty ternaries
@@ -180,7 +187,7 @@ A frequent case of going from 0 to some positive number. Saves you
 quite some time for your
 #+begin_src C
   for (int i = 0; i < 28; i++)
-          print(i);
+          print(i+1);
 #+end_src
 
 turning it into a simple
@@ -200,7 +207,8 @@ with ~forrange~:
 #+end_src
 
 Note that ~init~ and ~target~ are arbitrary integers, signed and
-unsigned. And ~init~ might be greater than ~target~.
+unsigned. And ~init~ might be greater than ~target~ in which case the
+iteration step decreases the variable.
 
 *** ~forrangeby (var, type, init, target, by)~
 Iterate ~type~-d ~var~ from ~iter~ to ~target~, stepping by ~by~ every
