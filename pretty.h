@@ -5,6 +5,9 @@
 #error "Pretty C only works on C99+. Switch to it if you didn't yet."
 #endif
 
+// TODO: Add PRETTY_NO_SHORT_NAMES and prefix everything with pretty_
+// by default.
+
 #include <complex.h>
 #include <errno.h>
 #include <iso646.h>
