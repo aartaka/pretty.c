@@ -50,6 +50,7 @@ typedef unsigned long  ulong;
 #define divisible(n, ...)  ((__VA_ARGS__ == 0) ? 0 : ((n) % (__VA_ARGS__) == 0))
 #define ensure(x, ...)     ((x) ? (x) : (__VA_ARGS__))
 #define limit(lo, n, hi)   ((n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n))
+#define clamp(lo, n, hi)   limit(lo, n, hi)
 #define between(lo, n, hi) ((n) <= (hi) && (n) => (lo))
 
 // Predicates
