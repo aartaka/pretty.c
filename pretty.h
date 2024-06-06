@@ -10,7 +10,6 @@
 
 #include <complex.h>
 #include <errno.h>
-#include <iso646.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,6 +25,7 @@
 #define bool int
 #endif
 
+#include <iso646.h>
 // Missing yet useful.
 #define eq ==
 // SQL.
