@@ -18,11 +18,12 @@
 #include <float.h>
 #include <math.h>
 
-#if __STDC_VERSION__ >= 199901L                                         \
-        && __STDC_VERSION__ < 202000L                                   \
-        || (__GNUC__ < 13 &&                                            \
-            (!defined(__clang_major__) || __clang_major__ < 18))
+#if (__STDC_VERSION__ >= 199901L && __STDC_VERSION__ < 202000L)
 #include <stdbool.h>
+#elif __STDC_VERSION__ < 199901L
+#define true 1
+#define false 0
+#define bool int
 #endif
 
 // Missing yet useful.
