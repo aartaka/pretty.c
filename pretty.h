@@ -18,9 +18,10 @@
 #include <float.h>
 #include <math.h>
 
-#if __STDC_VERSION__ < 202000L ||                               \
-        (__GNUC__ < 13 &&                                       \
-         (!defined(__clang_major__) || __clang_major__ < 18))
+#if __STDC_VERSION__ >= 199901L                                         \
+        && __STDC_VERSION__ < 202000L                                   \
+        || (__GNUC__ < 13 &&                                            \
+            (!defined(__clang_major__) || __clang_major__ < 18))
 #include <stdbool.h>
 #endif
 
