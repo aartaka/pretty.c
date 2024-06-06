@@ -305,6 +305,7 @@ static int pretty_string_equal (char *a, char *b) { return !strcmp(a, b); }
                  char *: pretty_string_equal,           \
                  default: pretty_anything_equal)        \
                 (a, __VA_ARGS__)
+#define like(a, ...) equal(a, __VA_ARGS__)
 #endif
 
 static int
