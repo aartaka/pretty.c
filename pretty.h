@@ -97,6 +97,15 @@ typedef unsigned long  ulong;
 #define otherwhen   :
 #define only        : NULL
 
+// Loops and blocks. Lisp, Lua, Ruby.
+#define until(...) while(!(__VA_ARGS__))
+#define always     while(1)
+#define never      while(0)
+#define comment    while(0)
+#define repeat     do
+#define done       break
+#define pass       continue
+
 // Dynamically-typed declarations
 #if defined(__GNUC__) || defined(__GNUG__)
 #define var   __auto_type
@@ -107,15 +116,6 @@ typedef unsigned long  ulong;
 #define let   auto
 #define local auto
 #endif
-
-// Loops and blocks. Lisp, Lua, Ruby.
-#define until(...) while(!(__VA_ARGS__))
-#define always     while(1)
-#define never      while(0)
-#define comment    while(0)
-#define repeat     do
-#define done       break
-#define pass       continue
 
 // Tracking and freeing resources. Lisp, Python.
 #if (__STDC_VERSION__ > 201710L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
