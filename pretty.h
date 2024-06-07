@@ -22,7 +22,8 @@
 #elif __STDC_VERSION__ < 199901L
 #define true 1
 #define false 0
-#define bool unsigned int
+typedef unsigned int _Bool;
+#define bool _Bool
 #endif
 
 #include <iso646.h>
