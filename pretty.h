@@ -20,8 +20,8 @@
 #if (__STDC_VERSION__ >= 199901L && __STDC_VERSION__ < 202000L)
 #include <stdbool.h>
 #elif __STDC_VERSION__ < 199901L
-#define true 1
-#define false 0
+#define true ((unsigned int)1)
+#define false ((unsigned int)0)
 typedef unsigned int _Bool;
 #define bool _Bool
 #endif
