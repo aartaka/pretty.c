@@ -1,7 +1,7 @@
 pkgname=pretty-c
 pkgver=1.0.0
 pkgrel=1
-pkgdesc="Make C look like many other languages while retaining its charecteristics. not how god intended."
+pkgdesc="Making C Look ✨Pretty✨and Lua/Lisp/Python-esque"
 arch=("any")
 url="https://github.com/aartaka/pretty.c"
 license=("WTFPL")
