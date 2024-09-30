@@ -288,6 +288,8 @@ pretty_err_part_of (int err, size_t length, int *errs)
                                   long double:        "%Lg",		\
                                   default:            "%p"),		\
                          (__VA_ARGS__)))
+#define println(...)				\
+	print(__VA_ARGS__), print("\n")
 #endif
 
 static int pretty_anything_equal (unsigned long long a, unsigned long long b) {return a == b;}

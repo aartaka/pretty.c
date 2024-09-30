@@ -20,7 +20,7 @@ look like with Pretty C:
                           then print(buf)
                           otherwise 0;
       else
-          print("Please provide an input file");
+          println("Please provide an input file");
       return EXIT_SUCCESS;
   }
 #+end_src
@@ -96,13 +96,13 @@ Mainly modeled after Lua and Lisp:
 - ~done~ and ~pass~ as aliases for ~break~ and ~continue~, respectively.
 - ~always~, so that you can make infinite (event? server?) loops
 #+begin_src C
-  always print("After all this time?\n");
+  always println("After all this time?");
 #+end_src
 - and ~never~ and ~comment~ to comment out some code with just one
   keyword, while still allowing the compiler to analyze/optimize it
   (similar to [[https://clojuredocs.org/clojure.core/comment][Clojure ~comment~ form]]):
 #+begin_src C
-  never print("This never runs, but never gets outdated, because compiler will shout at you if it does.\n");
+  never println("This never runs, but never gets outdated, because compiler will shout at you if it does.");
 #+end_src
 
 ** Type inference (GCC, Clang, or C23+)
@@ -111,14 +111,14 @@ Yes, you can do
   var t = time(0);
   let lt = localtime(&t);
   local at = asctime(lt);
-  print(at);
+  println(at);
 #+end_src
 With Pretty C.
 
 ** Generic printing (C11+)
-~print~ prints whatever you feed it:
+~print~ prints whatever you feed it. ~println~ adds a newline after it.
 #+begin_src C
-  print(3.1);
+  println(3.1);
   print("Hello world!\n");
 #+end_src
 
@@ -170,7 +170,7 @@ respective array element. Yes, pointer—so that you can modify the
 element in place if you have to.
 #+begin_src C
   foreach (i, int, 10, vector(10, int, 1, 2, 3, 3, 4, 5))
-          print(*i);
+          println(*i);
 #+end_src
 Also shows the use of ~vector~.
 
@@ -179,7 +179,7 @@ Iterates over the provided varargs, binding each of these to ~type~-d
 ~var~. The loop above can be translated as:
 #+begin_src C
   forthese (i, int, 1, 2, 3, 3, 4, 5)
-          print(i);
+          println(i);
 #+end_src
 
 *** ~fortimes (var, times)~
@@ -187,14 +187,14 @@ A frequent case of going from 0 to some positive number. Saves you
 quite some time for your
 #+begin_src C
   for (int i = 0; i < 28; i++)
-          print(i+1);
+          println(i+1);
 #+end_src
 
 turning it into a simple
 #+begin_src C
   fortimes (i, 28)
-          print(i+1);
-  print("\n28 stab wounds, you didn't want to leave him a chance, huh?\n");
+          println(i+1);
+  println("28 stab wounds, you didn't want to leave him a chance, huh?");
 #+end_src
 
 *** ~forrange (var, init, target)~
@@ -216,7 +216,7 @@ time. Pythonesque.
 
 #+begin_src C
   forrangeby (x, double, 1.0, 10.0, 0.5)
-          print(x);
+          println(x);
 #+end_src
 
 ** Allocation macros
@@ -294,9 +294,9 @@ Fancy error handling, now in C. Refactored example from [[https://en.cppreferenc
 #+begin_src C
   try log(0.0);
   catch (NOERR)
-          print("No error.\n");
+          println("No error.");
   catch (EDOM, ERANGE)
-          print("Math error!\n");
+          println("Math error!");
 #+end_src
 
 ~NOERR~ and ~NOERROR~ are also provided by Pretty C, for convenience
