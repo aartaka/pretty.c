@@ -268,7 +268,7 @@ pretty_err_part_of (int err, size_t length, int *errs)
 #if __STDC_VERSION__ >= 201112L
 #define print(...)                                                      \
         _Generic((__VA_ARGS__),                                         \
-                 _Bool: fputs(stdout, (_Bool)(__VA_ARGS__) ? "true" : "false"), \
+                 _Bool: fputs((_Bool)(__VA_ARGS__) ? "true" : "false", stdout), \
                  default: printf(                                       \
                          _Generic((__VA_ARGS__),                        \
                                   char*:              "%s",		\
