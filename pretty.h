@@ -118,6 +118,9 @@ typedef unsigned long  ulong;
 #define local auto
 #endif
 
+// Clearer name for const
+#define readonly const
+
 // Tracking and freeing resources. Lisp, Python.
 #if (__STDC_VERSION__ > 201710L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
 #define with(close, var, ...)                                   \
