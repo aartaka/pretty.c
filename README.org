@@ -13,9 +13,9 @@ look like with Pretty C:
   int main (int argc, string argv[])
   {
       if (argc above 1)
-          with (fclose, f, fopen(argv[1], "r"))
+          with (f, fclose, fopen(argv[1], "r"))
               fortimes (line, 10)
-                  with (free, buf, vector(200, char, 0))
+                  with (buf, free, vector(200, char, 0))
                       when (fgets(buf, 200, f))
                           then print(buf)
                           otherwise 0;
@@ -271,12 +271,12 @@ Nested functions/lambdas/closures, now in C!
   // arr becomes {3, 4, 6, 9, 34, 234, 643, 5233, 23423, 23423}
 #+end_src
 
-*** ~with (close, var, ...)~
+*** ~with (var, close, ...)~
 This ensures that you never have use-after-free, because you provide
 the freeing procedure (~close~) upfront. Especially useful for
 dynamically allocated objects and file designators.
 #+begin_src C
-  with (fclose, file, fopen("hello.txt", "w"))
+  with (file, fclose, fopen("hello.txt", "w"))
           fprintf(file, "Hello world!\n");
 #+end_src
 

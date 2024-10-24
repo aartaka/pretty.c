@@ -126,13 +126,13 @@ typedef unsigned long  ulong;
 
 // Tracking and freeing resources. Lisp, Python.
 #if (__STDC_VERSION__ > 201710L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
-#define with(close, var, ...)                                   \
+#define with(var, close, ...)					\
         for (typeof((__VA_ARGS__)) var = (__VA_ARGS__),         \
                      *pretty_with_flag = (void*) 1;             \
              pretty_with_flag;                                  \
              (close)(var), pretty_with_flag = (void*) 0)
 #else
-#define with(close, var, ...)                                   \
+#define with(var, close, ...)					\
         for (void *var = (void*) (__VA_ARGS__),                 \
                      *pretty_with_flag = (void*) 1;             \
              pretty_with_flag;                                  \
