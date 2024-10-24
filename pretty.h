@@ -299,6 +299,8 @@ pretty_err_part_of (int err, size_t length, int *errs)
 #endif
 
 static int pretty_anything_equal (unsigned long long a, unsigned long long b) {return a == b;}
+// TODO: scale it |x - y| <= ε * max(|x|, |y|)
+// Thanks to the Hacker News commenter!
 static int pretty_float_equal (float a, float b) { return fabsf(a - b) < FLT_EPSILON; }
 static int pretty_double_equal (double a, double b) { return fabs(a - b) < DBL_EPSILON; }
 static int pretty_long_double_equal (long double a, long double b) { return fabsl(a - b) < LDBL_EPSILON; }
