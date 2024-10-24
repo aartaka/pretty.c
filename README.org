@@ -94,7 +94,7 @@ Mainly modeled after Lua and Lisp:
 - ~ifnt~ for ~if(!...)~.
 - ~repeat~ from Lua as an alias for ~do~.
 - ~done~ and ~pass~ as aliases for ~break~ and ~continue~, respectively.
-- ~always~, ~forever~, and ~loop~ so that you can make infinite (event? server?) loops
+- ~always~, ~forever~, ~loop~, and ~indefinitely~ so that you can make infinite (event? server?) loops
 #+begin_src C
   always println("After all this time?");
 #+end_src

@@ -99,15 +99,16 @@ typedef unsigned long  ulong;
 #define only        : NULL
 
 // Loops and blocks. Lisp, Lua, Ruby.
-#define until(...) while(!(__VA_ARGS__))
-#define always     while(1)
-#define forever    while(1)
-#define loop       while(1)
-#define never      while(0)
-#define comment    while(0)
-#define repeat     do
-#define done       break
-#define pass       continue
+#define until(...)   while(!(__VA_ARGS__))
+#define always       while(1)
+#define forever      while(1)
+#define loop         while(1)
+#define indefinitely while(1)
+#define never        while(0)
+#define comment      while(0)
+#define repeat       do
+#define done         break
+#define pass         continue
 
 // Dynamically-typed declarations
 #if defined(__GNUC__) || defined(__GNUG__)
