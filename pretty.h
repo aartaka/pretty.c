@@ -1,10 +1,6 @@
 #ifndef PRETTY_H
 #define PRETTY_H
 
-#if !defined(__STDC__) || __STDC_VERSION__ < 199901L
-#error "Pretty C only works on C99+. Switch to it if you didn't yet."
-#endif
-
 // TODO: Add PRETTY_NO_SHORT_NAMES and prefix everything with pretty_
 // by default.
 
