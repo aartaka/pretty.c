@@ -108,6 +108,7 @@ typedef unsigned long  ulong;
 #define comment      while(0)
 #define repeat       do
 #define done         break
+#define finish       break
 #define pass         continue
 
 // Dynamically-typed declarations
