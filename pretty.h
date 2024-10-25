@@ -53,6 +53,9 @@ typedef unsigned long ulong;
 #define between(lo, n, hi) ((n) <= (hi) && (n) => (lo))
 
 // Predicates
+#define success            0 ==
+#define failure            0 !=
+#define fail               0 !=
 #define even               0 == 1 &
 #define odd                1 == 1 &
 #define positive           0 <

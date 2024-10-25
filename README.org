@@ -86,6 +86,7 @@ Mainly modeled after Lua and Lisp:
   - ~is~ means ~==~ too.
 - ~bitnot~ and ~bitxor~ for operations that used to be called
   inconsistently (~compl~ and ~xor~ respectively) in ~iso646.h~.
+- ~success~ and ~fail~ / ~failure~ for pattern of ~success == 0~.
 - ~below~, ~above~, ~upto~, and ~downto~ comparison operators.
 - ~even~, ~odd~, ~positive~, ~negative~, ~zero~, and ~empty~ as predicates for numbers/data.
 - ~nil~ for ~NULL~.

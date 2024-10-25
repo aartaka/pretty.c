@@ -59,6 +59,8 @@ test_predicate_macros()
 	assert(not(zero 1));
 	int *ptr = NULL;
 	assert(empty ptr);
+	assert(success strcmp("hello", "hello"));
+	assert(failure strcmp("hello", "hell"));
 }
 
 void
