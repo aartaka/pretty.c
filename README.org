@@ -289,7 +289,7 @@ Offloads the code to be executed after the following block. Not at the
 end of function as in Go, because that's +impossible+ hard to
 implement in C. Still, Pretty C ~defer~ is useful enough.
 
-*** ~try~,, and ~catch~
+*** ~try~ and ~catch~
 Fancy error handling, now in C. Refactored example from [[https://en.cppreference.com/w/c/error/errno][errno reference]]:
 
 #+begin_src C
