@@ -1,6 +1,6 @@
 .PHONY: indent clean check install
 
-CFLAGS ?= -lm
+CFLAGS ?= -lm -std=c2x
 
 indent: test.c pretty.h
 	-indent -linux --procnames-start-lines $^
