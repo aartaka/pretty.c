@@ -157,7 +157,8 @@ test_print_macros()
 	print("Testing print macro: ");
 	print(123);
 	print("\n");
-	println("Testing println macro with number:", 456);
+	print("Testing println macro with number: ");
+	println(456);
 }
 
 int
