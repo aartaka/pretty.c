@@ -302,3 +302,7 @@ Fancy error handling, now in C. Refactored example from [[https://en.cppreferenc
 ~NOERR~ and ~NOERROR~ are also provided by Pretty C, for convenience
 of error switch-casing.
 
+* Contributing
+- Please follow [[https://www.kernel.org/doc/html/v4.10/process/coding-style.html][Linux Kernel Style Guide]] for functions you add.
+  - Run ~make indent~ before commiting, that should handle most of the style details.
+- It is preferable that you follow [[https://aartaka.me/commitmsg][A's Commit Message Guide]], but it's okay if you don't want to.
