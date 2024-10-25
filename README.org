@@ -92,7 +92,7 @@ Mainly modeled after Lua and Lisp:
 - ~nil~ for ~NULL~.
 - ~until~ for negated ~while~.
 - ~elif~ for ~else if~.
-- ~ifnt~ for ~if(!...)~.
+- ~ifnt~ for ~if(!...)~ and ~elifnt~ (you guessed it.)
 - ~repeat~ from Lua as an alias for ~do~.
 - ~done~/~finish~ and ~pass~ as aliases for ~break~ and ~continue~, respectively.
 - ~always~, ~forever~, ~loop~, and ~indefinitely~ so that you can make infinite (event? server?) loops
