@@ -125,7 +125,7 @@ typedef unsigned long ulong;
 #define readonly const
 
 // Tracking and freeing resources. Lisp, Python.
-#if (__STDC_VERSION__ > 201710L || defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang_major__)
+#if (__STDC_VERSION__ > 201710L || defined(__GNUC__) || defined(__GNUG__))
 #define with(var, close, ...)					\
         for (typeof((__VA_ARGS__)) var = (__VA_ARGS__),         \
                      *pretty_with_flag = (void*) 1;             \
