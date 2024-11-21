@@ -28,6 +28,7 @@ typedef unsigned int _Bool;
 // SQL.
 #define is ==
 #define isnt !=
+#define isnot !=
 // Fixing inconsistent bit operation names.
 #define bitnot ~
 #define bitxor ^
@@ -87,8 +88,10 @@ typedef unsigned long ulong;
 
 // Ternaries and conditionals.
 #define ifnt(...)   if(!(__VA_ARGS__))
+#define ifnot(...)  if(!(__VA_ARGS__))
 #define elif        else if
 #define elifnt(...) else if(!(__VA_ARGS__))
+#define elifnot(...) else if(!(__VA_ARGS__))
 #define when
 #define unless      !
 #define then        ?
